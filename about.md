@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: blog
 title: Out and About
 permalink: /about/
 ---
