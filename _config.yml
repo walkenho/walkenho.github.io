@@ -6,7 +6,7 @@ title             : "To be defined"
 title_separator   : "-"
 name              : "Jessica Walkenhorst"
 description       : "Tbd2"
-url               : "https://walkenho.github.io"
+url               : https://walkenho.github.io
 baseurl           : # the subpath of your site, e.g. "/blog"
 repository        : "walkenho/walkenho.github.io"
 teaser            : # fallback teaser image in /images/, .e.g. "500x300.png"
