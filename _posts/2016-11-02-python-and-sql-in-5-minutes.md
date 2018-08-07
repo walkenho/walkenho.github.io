@@ -4,8 +4,8 @@ tags:
   - python
   - pandas
   - sql
-  excerpt: An introduction to combining Python with SQL
-  ---
+excerpt: An introduction to combining Python with SQL
+---
 
 
 # Python and SQL in 5 Minutes
