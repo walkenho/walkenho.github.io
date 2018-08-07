@@ -1,7 +1,7 @@
 ---
-layout: archive
-title: Out and About
+layout: single
 permalink: /about/
+title: Out and About
 ---
 
 Out and About 2
