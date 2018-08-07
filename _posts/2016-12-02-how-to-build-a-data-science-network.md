@@ -16,7 +16,7 @@ institutions; specifically: the cultivation of productive relationships for empl
 
 So how do you start a professional network from scratch?
 
-I recently came to London to participate in a data science bootcamp run by Pivigo called S2DS (Science 2 Data
+I recently came to London to participate in a data science bootcamp run by [Pivigo](https://www.pivigo.com/) called [S2DS](http://www.s2ds.org/) (Science 2 Data
 Science), a 5-week intensive programme to transition academics into industry data science roles. As everyone from the
 S2DS cohort, I have recently been facing several big changes in my (professional) life. We are all about to leave
 academia and transition to industry. Additionally, many of us are physicists, astronomers, mathematicians,
@@ -49,7 +49,6 @@ Thirdly, as mentioned before, not everyone on the course was from London. Myself
 Edinburgh, which I have always felt is a bit under-served with data-science events. We now know enough people up
 here (and know them well enough) to start organising events (meet-ups, talks, learning-groups,
 Kaggle-competitions) on our own. So many things that we now have a critical mass for (BTW: if you are reading
-this and would like to participate in organising data-science events in Edinburgh, feel free to get in touch).
 
 But we should not forget the valuable networking opportunities outside of the 2016 London cohort. As part of
 S2DS, Pivigo organised a set of industry viewpoint lectures, where they invited data scientists to present
