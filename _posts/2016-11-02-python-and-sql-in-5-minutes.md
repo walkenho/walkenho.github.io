@@ -17,7 +17,9 @@ Here is a summary of the main functionality.
 
 ## Step 0 - Preparing the Data
 
-Let's assume that we start with three csv-files that include information about movie ratings: movies.csv, reviewers.csv and ratings.csv (this is in example database from Stanford's SQL course, the fifth in their row of db courses).
+Let's assume that we start with three csv-files that include information about movie ratings: movies.csv,
+reviewers.csv and ratings.csv (this is in example database from [Stanford's SQL
+course](https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/about). 
 
 First, we have to import the necessary modules. Here, I will be working with SQLite3.
 
