@@ -1,5 +1,6 @@
 ---
 title: How to Build a Data Science Network
+classes: wide
 tags:
   - networking
 excerpt: Some thoughts about the importance of networking.
