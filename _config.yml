@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en"
-title                    : "Tales of 1001 Data"
+title                    : "Tales of One Thousand and One Data"
 title_separator          : "-"
 name                     : "Jessica Walkenhorst"
 description              : "My personal website"
