@@ -38,7 +38,7 @@ comments:
     num_posts            : 5 # 5 (default)
     colorscheme          : # "light" (default), "dark"
 staticman:
-  allowedFields          : # ['name', 'email', 'url', 'message']
+  allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : # "master"
   commitMessage          : # "New comment."
   filename               : # comment-{@timestamp}
@@ -52,7 +52,7 @@ staticman:
     date:
       type               : # "date"
       options:
-        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
   siteKey                :
   secret                 :
