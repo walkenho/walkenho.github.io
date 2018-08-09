@@ -1,5 +1,5 @@
 ---
-title: How to Build a Data Science Network
+title: Python and SQL in 5 Minutes
 tags:
   - python
   - pandas
