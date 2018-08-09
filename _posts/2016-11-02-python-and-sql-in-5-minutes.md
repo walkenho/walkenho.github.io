@@ -9,9 +9,10 @@ excerpt: An introduction to combining Python with SQL
 
 Recently I played around with a combination of SQL and Python. I had been quite interested in learning SQL before and
 had been working through Stanford's excellent collection of
-[self-paced courses](https://lagunita.stanford.edu/courses/DB/2014/SelfPaced/about) on the topic. Since I normally
-work in Python, I wanted to look for opportunities to combine the two: SQL and Python. And I found a dream team! While
-using SQL in combination with Python can sometimes seem a bit more complicated, using it together with the Pandas package is easier than anything, you just need to know eight commands.
+[self-paced database courses](https://lagunita.stanford.edu/courses/DB/2014/SelfPaced/about). Since I normally
+work in Python, I was looking for an way of combining SQL and Python. And I found a dream team! While
+using SQL in combination with Python can sometimes seem a bit cumbersome, combining SQL with the Pandas package is
+easier than anything. In fact, I found that one can achieve a reasonable lot with only eight commands.
 
 Here is a summary of the main functionality.
 
