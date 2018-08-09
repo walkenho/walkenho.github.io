@@ -199,7 +199,7 @@ pd.read_sql_query("""select rID, mID, ratingDate, ratingDate as date from rating
 
 ## Step 4: Changing and Updating Tables
 
-Changing and updating of datbases happens in three steps:
+Changing and updating of databases happens in three steps:
 1. Define a cursor: **cur = conn.cursor()**
 2. Execute command: **cur.execute(SQL-command)**
 3. (Commit the change to the db: **conn.commit()**)
@@ -415,9 +415,12 @@ pd.read_sql_query("""select * from reviewers""", conn2).head(2)
 This might look a bit strange at first glance, but has the reason to prevent inconsistent databases if the something goes wrong in the process. Imagine the case that money is transfered from one bank account to another. If something goes wrong after the money is subtracted from the first account but before arriving at the second you end up with inconsistent tables. To prevent this you first do both changes then commit them together.
 
 ### 3. Word of Caution! 
-Here is a word of caution taken from the <a href="https://docs.python.org/2/library/sqlite3.html"> python documention on sqlite3 </a> because a) security is important and b) it gives me a good reason to link to the xkcd comic, which made me laugh so much :D
+Here is a word of caution taken from the <a href="https://docs.python.org/2/library/sqlite3.html"> python documention
+on sqlite3 </a> because a) security is important and b) it gives me a good reason to link to the xkcd comic below, which made me laugh so much :D
 
-Usually your SQL operations will need to use values from Python variables. You shouldn’t assemble your query using Python’s string operations because doing so is insecure; it makes your program vulnerable to an SQL injection attack (see https://xkcd.com/327/ for a humorous example of what can go wrong). 
+Usually your SQL operations will need to use values from Python variables. You shouldn’t assemble your query using
+Python’s string operations because doing so is insecure; it makes your program vulnerable to an SQL injection
+attack (see [this](https://xkcd.com/327/) fabulous XKCD for a humorous example of what can go wrong). 
 Instead, use the DB-API’s parameter substitution. Put ? as a placeholder wherever you want to use a value, and then provide a tuple of values as the second argument to the cursor’s execute() method.
 
 
