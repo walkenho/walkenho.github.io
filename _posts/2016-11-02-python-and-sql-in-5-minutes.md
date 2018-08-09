@@ -7,9 +7,6 @@ tags:
 excerpt: An introduction to combining Python with SQL
 ---
 
-
-# Python and SQL in 5 Minutes
-
 Recently I played around with a combination of SQL and Python. I had been quite interested in learning SQL before and
 had been working through Stanford's excellent collection of
 [self-paced courses](https://lagunita.stanford.edu/courses/DB/2014/SelfPaced/about) on the topic. Since I normally
