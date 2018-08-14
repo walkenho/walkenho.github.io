@@ -5,7 +5,7 @@ tags:
   - graph theory
   - python
   - networkX
-excerpt: An introduction to graph theory and NetworkX
+excerpt: An introduction to graph theory and NetworkX in multiple parts.
 ---
 
 This is the first post in a series of blogposts about graph theory and NetworkX. In this series of blogposts, I will give a short (and very basic!) introduction into some of the basic concepts and terminology found in graph theory and show how to practically carry out some of the related calculations using the python library NetworkX.
