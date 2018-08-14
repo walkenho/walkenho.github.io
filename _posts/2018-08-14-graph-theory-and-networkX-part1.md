@@ -1,9 +1,11 @@
 ---
-title: Testtitle 
+title: "An Introduction to Graph Theory and Network X - Part 1: Loading and Visualization"
 tags:
+  - graph theory
   - python
   - networkX
-excerpt: An introduction to graph theory and NetworkX
+excerpt: In the first part of this series, I am looking at how to load graphs into networkX and how to use networkX for
+basic graph visualization tasks.
 ---
 
 This is the first post in a series of blogposts about graph theory and NetworkX. In this series of blogposts, I will give a short (and very basic!) introduction into some of the basic concepts and terminology found in graph theory and show how to practically carry out some of the related calculations using the python library NetworkX.
