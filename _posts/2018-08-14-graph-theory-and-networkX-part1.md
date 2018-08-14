@@ -1,7 +1,6 @@
 ---
 title: "An Introduction to Graph Theory and Network X"
 tags:
-  - "graph theory"
   - python
   - networkX
 excerpt: In the first part of this series, I am looking at how to load graphs into networkX and how to use networkX for
