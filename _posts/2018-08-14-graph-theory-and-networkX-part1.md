@@ -400,7 +400,7 @@ nx.draw_networkx(G)
 ```
 
 
-<figure style="width: 600px" class="align-center">
+<figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img01.png" alt="">
     <figcaption>A simple network graph</figcaption>
 </figure>
