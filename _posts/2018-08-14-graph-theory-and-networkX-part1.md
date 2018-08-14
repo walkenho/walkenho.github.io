@@ -414,7 +414,7 @@ nx.draw_networkx(G)
 ```
 
 
-<figure style="width: 600px" class="align-center">
+<figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img02.png" alt="">
     <figcaption>The same graph as before with a different layout</figcaption>
 </figure>
@@ -440,7 +440,7 @@ nx.draw_networkx(G, pos)
 ```
 
 
-<figure style="width: 600px" class="align-center">
+<figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img03.png" alt="">
 </figure>
 
@@ -455,7 +455,7 @@ nx.draw_circular(G, with_labels=True)
 ```
 
 
-<figure style="width: 600px" class="align-center">
+<figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img04.png" alt="">
     <figcaption>A graph with circular layout with an aspect ration of 1:1</figcaption>
 </figure>
@@ -515,7 +515,7 @@ nx.draw_circular(G, \
 ```
 
 
-<figure style="width: 600px" class="align-center">
+<figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img05.png" alt="">
     <figcaption>So, where would you like to live?</figcaption>
 </figure>
