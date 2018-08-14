@@ -1,5 +1,8 @@
-
-# Graph Theory and NetworkX - Part 1: Loading and Visualization
+title: Graph Theory and NetworkX - Part 1: Loading and Visualization
+tags:
+  - python
+  - networkX
+excerpt: An introduction to graph theory and NetworkX
 
 This is the first post in a series of blogposts about graph theory and NetworkX. In this series of blogposts, I will give a short (and very basic!) introduction into some of the basic concepts and terminology found in graph theory and show how to practically carry out some of the related calculations using the python library NetworkX.
 
@@ -394,7 +397,7 @@ nx.draw_networkx(G)
 
 <figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img01.png" alt="">
-    <figcaption>Test caption </figcaption>
+    <figcaption>A simple network graph</figcaption>
 </figure>
 
 
@@ -406,7 +409,10 @@ nx.draw_networkx(G)
 ```
 
 
-![png](output_45_0.png)
+<figure style="width: 600px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img02.png" alt="">
+    <figcaption>The same graph as before with a different layout</figcaption>
+</figure>
 
 
 If we want to fix the positions, we can pass them as parameters to the plotting function. To demonstrate this, I first use the `random_layout()` function to produce a dictionary of positions (again in spring-layout) for G:
@@ -429,7 +435,10 @@ nx.draw_networkx(G, pos)
 ```
 
 
-![png](output_49_0.png)
+<figure style="width: 600px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img03.png" alt="">
+    <figcaption>The same graph as before with a different layout</figcaption>
+</figure>
 
 
 We can also draw the graphs with a circular layout. When using the circular layout, we can use an aspect ration of 1:1 ('equal') to make the graph appear "more circular". Note that in contrast to `draw_networkx()`, `draw_circular()` by default does not display the node names. In order to display the node names, we set `with_labels=True`. Also note, that draw_circular's default behaviour is to switch of the axis.
@@ -442,7 +451,10 @@ nx.draw_circular(G, with_labels=True)
 ```
 
 
-![png](output_51_1.png)
+<figure style="width: 600px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img04.png" alt="">
+    <figcaption>A graph with circular layout with an aspect ration of 1:1</figcaption>
+</figure>
 
 
 In order to further personalize the plot, we can change properties like node color and size, edge color and more. Let's demonstrate this using a small example. Let's assume we have a set of cities and would like to know where to move to. Things that we care about are size, quality of life (above, below or just average) and -since we don't have a car - if there is a direct train connection and if so, how fast it is (again: fast, slow, average). 
@@ -499,7 +511,10 @@ nx.draw_circular(G, \
 ```
 
 
-![png](output_57_1.png)
+<figure style="width: 600px" class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img05.png" alt="">
+    <figcaption>So, where would you like to live?</figcaption>
+</figure>
 
 
 As said before: Not very pretty, but it visualizes the information. We can easily see that Carrot-City has a good quality of life, but has only two direct train routes, which addtionally are slow. Darktown is a lot better connected (three direct train routes, two of them fast), but the quality of life is not great. Appleville has both a good quality of life and fast connections (at least to Darktown and Fluxhole), but it is very small, so if you are an opera fan, you might be up for a hard time. At the end, the choice is up to you, the information is there ;)
