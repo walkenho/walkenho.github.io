@@ -1,7 +1,8 @@
 ---
 title: >-
-    Graph Theory and NetworkX - Part 1 Loading and Visualization 
+    Graph Theory and NetworkX - Part 1: Loading and Visualization 
 tags:
+  - graph theory
   - python
   - networkX
 excerpt: An introduction to graph theory and NetworkX
