@@ -1,5 +1,5 @@
 ---
-title: Graph Theory and NetworkX - Part 1: Loading and Visualization
+title: Graph Theory and NetworkX \- Part 1: Loading and Visualization
 tags:
   - python
   - networkX
