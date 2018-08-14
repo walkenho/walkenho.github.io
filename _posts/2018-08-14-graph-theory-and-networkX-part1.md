@@ -1,5 +1,5 @@
 ---
-title: Testtitle 
+title: "Graph Theory and NetworkX Part 1 Loading and Visualization" 
 tags:
   - python
   - networkX
