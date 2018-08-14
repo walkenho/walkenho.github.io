@@ -164,6 +164,7 @@ In order to define a graph where the edges have the additional attribute "weight
     0 1 1
     0 2 2
     1 3 4
+
 using the command:
 
 
@@ -439,7 +440,6 @@ nx.draw_networkx(G, pos)
 
 <figure style="width: 600px" class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part1-img03.png" alt="">
-    <figcaption>The same graph as before with a different layout</figcaption>
 </figure>
 
 
