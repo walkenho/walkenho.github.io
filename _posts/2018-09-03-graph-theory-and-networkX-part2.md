@@ -33,7 +33,7 @@ nx.is_connected(G)
 For *directed graphs* we distinguish between strong and weak connectivitiy. A *directed* graph is called **strongly connected** if again we can get from every node to every other node (obeying the directions of the edges). We call the graph **weakly connected** if its undirected version is connected. The graph below is weakly connected, but not strongly connected (the edge goes from the thinner to the wider part) - ignoring the edge directions, you can get from anywhere to anywhere else, taking into account edge directions, the only possibilities of movement are from 0 to 1 to 2.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig2.eps" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig2.jpg" alt="">
     <figcaption>A weakly connected graph.</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ nx.node_connected_component(G_un, 5)
 If we are interested in network stability we might want to find out how many edges or nodes we need to remove from a graph to disconnected and which ones they are. Let's look at the edges of the following, completely connected graph.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig3.eps" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig3.jpg" alt="">
     <figcaption></figcaption>
 </figure>
 
@@ -181,7 +181,7 @@ The figure below shows the graph G on the left in red and the tree obtained thro
 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig4.eps" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig4.jpg" alt="">
     <figcaption>A graph and the corresponding shortest-path-tree from one of its nodes.</figcaption>
 </figure>
 
