@@ -17,7 +17,7 @@ You can find the full jupyter notebook [here on my github](https://github.com/wa
 An *undirected* graph is called **connected** if you can get from every node to every other node in the network. A graph where this is not possible is called **unconnected**. In the figure below, the graph on the left is connected, whilst the graph on the right is unconnected. 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig1.eps" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig1.jpg" alt="">
     <figcaption>A fully connected vs. an unconnected graph.</figcaption>
 </figure>
 
