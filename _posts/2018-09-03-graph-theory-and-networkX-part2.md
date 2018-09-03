@@ -5,7 +5,8 @@ tags:
   - graph theory
   - python
   - networkX
-excerpt: An introduction to graph theory and NetworkX in multiple parts.
+excerpt: In order to do some analysis of one of my favourite boardgames, I have recently started looking into graph
+theory. Here, I am writing down some of the basics that I have learned on the way.  
 ---
 
 In the third post in this series, we will be introducing the concept of **network centrality**, which introduces
