@@ -34,7 +34,7 @@ For *directed graphs* we distinguish between strong and weak connectivitiy. A *d
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/graph-theory-and-networkX-part2-fig2.jpg" alt="">
-    <figcaption>A weakly connected graph.</figcaption>
+    <figcaption>A weakly, but not strongly connected graph.</figcaption>
 </figure>
 
 
