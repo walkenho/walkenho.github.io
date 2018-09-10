@@ -44,9 +44,9 @@ In a directed graph, one can distinguish between the **in-degree** counting the 
 
 However, while the degree is well suited to compare different nodes within a network, it is not suited to compare different networks since with the number of nodes in a network, also the possible number of edges grows. Therefore we need to normalize, leading us to the **degree centrality**, which is defined as the number of edges normalized by the number of nodes in the network minus one:
 
-${ c_D(s) = \frac{d(s)}{n-1}}$
+$${ c_D(s) = \frac{d(s)}{n-1}}$$
 
-with $d(s)$ being the degree of node $s$ and $n$ the number of nodes in the network.
+with $$d(s)$$ being the degree of node $$s$$ and $$n$$ the number of nodes in the network.
 
 The function `degree_centrality()` returns a dictionary of nodes with their degree centralities:
 
@@ -83,9 +83,9 @@ print(nx.out_degree_centrality(G_d))
 
 The [**closeness centrality**](https://en.wikipedia.org/wiki/Closeness_centrality) of a node gives us a measure of how quickly one can get from this node to all other nodes (remember the example of the distribution center). The closeness centrality is defined as the inverse of the sum of shortest paths from this node to all others, normalized by the number of total nodes in the network minus one:
 
-$c_C(s) = \frac{n - 1}{\sum_{t\in G} p(s, t)}$
+$$c_C(s) = \frac{n - 1}{\sum_{t\in G} p(s, t)}$$
 
-with $p(s,t)$ being the shortest path between nodes $s$ and $t$ and $n$ being the number of nodes in the network.  The shorter the connections to all nodes are, the larger is the closeness centrality.
+with $$p(s,t)$$ being the shortest path between nodes $$s$$ and $$t$$ and $$n$$ being the number of nodes in the network.  The shorter the connections to all nodes are, the larger is the closeness centrality.
 
 Note, that while normalization of the closeness centrality is straight forward for completely connected networks, several scenarios are possible for unconnected graphs. One might want to normalize using the total number of nodes in the network or alternatively only the number of nodes in the connected subgraph. NetworkX offers solutions to both situations by allowing us to set the `normalized` parameter. `normalized = True` (default) normalizes by the number of nodes in the subgraph, `normalized=False` normalizes by using the total number of nodes in the graph.
 
@@ -97,9 +97,9 @@ Note that the closeness centrality of a node, which cannot reach any other node 
 
 Another way of thinking about importance is to say that what makes a node important is being included in many shortest paths between other nodes. This is the basis of the [**betweenness centrality**](https://en.wikipedia.org/wiki/Betweenness_centrality), which was firstly formalized by Freeman [here](https://www.jstor.org/stable/3033543?origin=crossref&seq=1#page_scan_tab_contents). The betweenness centrality could be a good centrality measure for traffic junctions for example or for determining who to talk to in a social network if you need to get in contact with somebody specific. The betweenness centrality is defined as
 
-$c_B(v) =\sum_{s,t \in G} \frac{p(s, t|v)}{p(s, t)}$
+$$c_B(v) =\sum_{s,t \in G} \frac{p(s, t|v)}{p(s, t)}$$
     
-with $G$ being the graph, $p(s, t)$ the number of shortest paths between nodes $s$ and $t$ and $p(s, t|v)$ the number of those paths  passing through the node $v$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
+with $$G$$ being the graph, $$p(s, t)$$ the number of shortest paths between nodes $$s$$ and $$t$$ and $$p(s, t|v)$$ the number of those paths  passing through the node $$v$$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
 
 A variant of the betweenness centrality is **Newman's betweenness centrality**. Whilst the standard betweenness centrality takes into account only shortest paths, Newman's betweenness centrality takes into account all paths via a random walk method with weights assigned according to the path lenghts. Whilst published in 2005 in Elsevier, the publication presenting the metric can also be found on the archive [here](https://arxiv.org/abs/cond-mat/0309045). It is implemented in networkX as `load_centrality()`.
 
@@ -107,15 +107,15 @@ A variant of the betweenness centrality is **Newman's betweenness centrality**. 
 
 Whilst most of the metrics above take into account only the immediate properties of a node, the [**eigenvector centrality**](https://en.wikipedia.org/wiki/Eigenvector_centrality) takes into account the properties of its neighbours by assuming that connections to more important nodes should be more important. Mathematically, the eigenvector centrality is obtained by calculating the eigenvectors of the adjacency matrix A by solving the eigenvector equation 
 
-$Ax = \lambda x$.
+$$Ax = \lambda x$$.
 
-The eigenvector with the largest eigenvalue $\lambda$ gives the relative centrality scores for the nodes in the network. In networkX use the function `eigenvector_centrality()` to obtain this centrality score.
+The eigenvector with the largest eigenvalue $$\lambda$$ gives the relative centrality scores for the nodes in the network. In networkX use the function `eigenvector_centrality()` to obtain this centrality score.
 
 ## Page Rank
 The [**page rank**](https://en.wikipedia.org/wiki/PageRank) (referring both to the web page and to Larry Page, one of the founders of Google) is a variant of the eigenvector centrality in the sense that the centrality score of a node depends on the centrality scores of the connected nodes. It is used by Google to rank the websites in their search engine results (it is not the only one that is used, but it was the first and is the best known). The page rank of a page is higher if it receives many links from pages with a high page rank themselves. A detailed explanation would lead to far for this post, but if you are interested, take a look [here](https://en.wikipedia.org/wiki/PageRank). The page rank in networkX is computed by the function `pagerank()`. 
 
 ## Katz centrality
-Another centrality measure related to the eigenvector centrality is the [**Katz centrality**](https://en.wikipedia.org/wiki/Katz_centrality) (introduced 1953 by Leo Katz). When assessing connectivity, it not only takes into account the shortest paths, but results as the sum over all paths between a pair of nodes, where paths are weighted by a factor $\alpha^n$ with $b$ being the path length. It is implemented in networkX as `katz_centrality()`.
+Another centrality measure related to the eigenvector centrality is the [**Katz centrality**](https://en.wikipedia.org/wiki/Katz_centrality) (introduced 1953 by Leo Katz). When assessing connectivity, it not only takes into account the shortest paths, but results as the sum over all paths between a pair of nodes, where paths are weighted by a factor $$\alpha^n$$ with $$b$$ being the path length. It is implemented in networkX as `katz_centrality()`.
 
 ## Summary
 
