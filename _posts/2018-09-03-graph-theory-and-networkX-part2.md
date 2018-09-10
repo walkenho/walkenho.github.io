@@ -191,8 +191,8 @@ normalized by the number of possible paths $$n(n-1)$$:
 
 $$a(G) =\sum_{s,t \in V} \frac{d(s, t)}{n(n-1)}$$
 
-with $V$ being the nodes of the graph $G$, 
-$d(s, t)$ the shortest path from node $s$ to node $t$ and $n$ the number of nodes in $G$. 
+with $$V$$ being the nodes of the graph $$G$$, 
+$$d(s, t)$$ the shortest path from node $$s$$ to node $$t$$ and $$n$$ the number of nodes in $$G$$. 
 
 In networkx, we calculate the average shortest path using the `average_shortest_path()` function: 
 
@@ -210,9 +210,9 @@ nx.average_shortest_path_length(G)
 
 Whilst calculating the average shortest path can give us an idea about typical distances, we might often be interested in asking what is the maximum shortest path for a node. Imagine a scenario where you want to build a distribution center. Intuitively it makes sense that this center should be "well connected". What we mean with well connected in this particular scenario is that from the center you should be able to reach all points in the network quickly. 
 
-This is described by the **eccentricity** of a node. The eccentricity is the largest distance between one node $s$ and all other nodes $t$ of the network:
+This is described by the **eccentricity** of a node. The eccentricity is the largest distance between one node $$s$$ and all other nodes $$t$$ of the network:
 
-$\rm{eccentricity(s)} = \max_{t \in V} d(s,t)$
+$$\rm{eccentricity(s)} = \max_{t \in V} d(s,t)$$
 
 If we compare the eccentricity of nodes 0 and 4 of our network G, we find that 0 has indeed a smaller eccentricity.
 
@@ -228,9 +228,9 @@ print(nx.eccentricity(G,4))
 
 Having calculated the eccentricity for all nodes in the network, it can make sense to look for the minimum and maximum. The minimum -which is called **radius** of the network- tells us, "how central" our most central node is, the maximum -which is called **diameter**- tells us how far apart the two nodes furthest apart are.
 
-$\rm{radius(G)}=\min_{s\in V} \rm{eccentricity(s)}$
+$$\rm{radius(G)}=\min_{s\in V} \rm{eccentricity(s)}$$
 
-$\rm{diameter(G)}=\max_{s\in V} \rm{eccentricity(s)}$
+$$\rm{diameter(G)}=\max_{s\in V} \rm{eccentricity(s)}$$
 
 
 ```python
