@@ -186,9 +186,10 @@ The figure below shows the graph G on the left in red and the tree obtained thro
 </figure>
 
 
-Finally we can calculate the **average shortest path length** which is defined as the sum of all path-lengths normalized by the number of possible paths $n(n-1)$:
+Finally we can calculate the **average shortest path length** which is defined as the sum of all path-lengths
+normalized by the number of possible paths $$n(n-1)$$:
 
-$a(G) =\sum_{s,t \in V} \frac{d(s, t)}{n(n-1)}$
+$$a(G) =\sum_{s,t \in V} \frac{d(s, t)}{n(n-1)}$$
 
 with $V$ being the nodes of the graph $G$, 
 $d(s, t)$ the shortest path from node $s$ to node $t$ and $n$ the number of nodes in $G$. 
