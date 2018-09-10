@@ -5,7 +5,7 @@ tags:
   - graph theory
   - python
   - networkX
-excerpt: In order to do some analysis of one of my favourite boardgames, I have recently started looking into graph theory. Here, I am writing down some of the basics that I have learned on the way.  
+excerpt: Third and for the moment final post about graph theory and networkX. 
 ---
 
 In this for the moment final post in my Graph Theory and NetworkX series, we will be looking at the question of how important an edge or a node is. This is called **network centrality**.
