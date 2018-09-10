@@ -100,9 +100,9 @@ Note that the closeness centrality of a node, which cannot reach any other node 
 
 Another way of thinking about importance is to say that what makes a node important is being included in many shortest paths between other nodes. This is the basis of the [**betweenness centrality**](https://en.wikipedia.org/wiki/Betweenness_centrality), which was firstly formalized by Freeman [here](https://www.jstor.org/stable/3033543?origin=crossref&seq=1#page_scan_tab_contents). The betweenness centrality could be a good centrality measure for traffic junctions for example or for determining who to talk to in a social network if you need to get in contact with somebody specific. The betweenness centrality is defined as
 
-$$c_B(v) =\sum_{s,t \in V} \frac{p(s, t|v)}{p(s, t)}$$
+$$c_B(v) =\sum_{s,t \in V} \frac{p(s,t;v)}{p(s, t)}$$
     
-with $$V$$ being the nodes of the graph G, $$p(s, t)$$ the number of shortest paths between nodes $$s$$ and $$t$$ and $$p(s, t|v)$$ the number of those paths  passing through the node $$v$$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
+with $$V$$ being the nodes of the graph G, $$p(s, t)$$ the number of shortest paths between nodes $$s$$ and $$t$$ and $$p(s,t;v)$$ the number of those paths passing through the node $$v$$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
 
 A variant of the betweenness centrality is **Newman's betweenness centrality**. Whilst the standard betweenness centrality takes into account only shortest paths, Newman's betweenness centrality takes into account all paths via a random walk method with weights assigned according to the path lenghts. Whilst published in 2005 in Elsevier, the publication presenting the metric can also be found on the archive [here](https://arxiv.org/abs/cond-mat/0309045). It is implemented in networkX as `load_centrality()`.
 
