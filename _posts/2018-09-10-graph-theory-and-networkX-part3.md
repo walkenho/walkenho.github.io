@@ -81,11 +81,14 @@ print(nx.out_degree_centrality(G_d))
 
 ## Closeness centrality
 
-The [**closeness centrality**](https://en.wikipedia.org/wiki/Closeness_centrality) of a node gives us a measure of how quickly one can get from this node to all other nodes (remember the example of the distribution center). The closeness centrality is defined as the inverse of the sum of shortest paths from this node to all others, normalized by the number of total nodes in the network minus one:
+The [**closeness centrality**](https://en.wikipedia.org/wiki/Closeness_centrality) of a node gives us a measure of
+how quickly one can get from this node to all other nodes (remember the example of the distribution center). The
+closeness centrality is defined as the inverse of the sum of the number of shortest paths from this node to all others, normalized by the number of total nodes in the network minus one:
 
-$$c_C(s) = \frac{n - 1}{\sum_{t\in G} p(s, t)}$$
+$$c_C(s) = \frac{n - 1}{\sum_{t\in V} p(s, t)}$$
 
-with $$p(s,t)$$ being the shortest path between nodes $$s$$ and $$t$$ and $$n$$ being the number of nodes in the network.  The shorter the connections to all nodes are, the larger is the closeness centrality.
+with $$p(s,t)$$ being the shortest path between nodes $$s$$ and $$t$$, $$V$$ being the nodes of the network and $$n$$
+the number of nodes in the network.  The shorter the shortest paths to all nodes are, the larger is the closeness centrality.
 
 Note, that while normalization of the closeness centrality is straight forward for completely connected networks, several scenarios are possible for unconnected graphs. One might want to normalize using the total number of nodes in the network or alternatively only the number of nodes in the connected subgraph. NetworkX offers solutions to both situations by allowing us to set the `normalized` parameter. `normalized = True` (default) normalizes by the number of nodes in the subgraph, `normalized=False` normalizes by using the total number of nodes in the graph.
 
@@ -97,9 +100,9 @@ Note that the closeness centrality of a node, which cannot reach any other node 
 
 Another way of thinking about importance is to say that what makes a node important is being included in many shortest paths between other nodes. This is the basis of the [**betweenness centrality**](https://en.wikipedia.org/wiki/Betweenness_centrality), which was firstly formalized by Freeman [here](https://www.jstor.org/stable/3033543?origin=crossref&seq=1#page_scan_tab_contents). The betweenness centrality could be a good centrality measure for traffic junctions for example or for determining who to talk to in a social network if you need to get in contact with somebody specific. The betweenness centrality is defined as
 
-$$c_B(v) =\sum_{s,t \in G} \frac{p(s, t|v)}{p(s, t)}$$
+$$c_B(v) =\sum_{s,t \in V} \frac{p(s, t|v)}{p(s, t)}$$
     
-with $$G$$ being the graph, $$p(s, t)$$ the number of shortest paths between nodes $$s$$ and $$t$$ and $$p(s, t|v)$$ the number of those paths  passing through the node $$v$$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
+with $$V$$ being the nodes of the graph G, $$p(s, t)$$ the number of shortest paths between nodes $$s$$ and $$t$$ and $$p(s, t|v)$$ the number of those paths  passing through the node $$v$$. The betweenness centrality is included in networkX as `betweenness_centrality()`.
 
 A variant of the betweenness centrality is **Newman's betweenness centrality**. Whilst the standard betweenness centrality takes into account only shortest paths, Newman's betweenness centrality takes into account all paths via a random walk method with weights assigned according to the path lenghts. Whilst published in 2005 in Elsevier, the publication presenting the metric can also be found on the archive [here](https://arxiv.org/abs/cond-mat/0309045). It is implemented in networkX as `load_centrality()`.
 

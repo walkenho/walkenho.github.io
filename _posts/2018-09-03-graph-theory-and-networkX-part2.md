@@ -9,7 +9,8 @@ excerpt: In order to do some analysis of one of my favourite boardgames, I have 
 ---
 
 In the third post in this series, we will be introducing the concept of **network centrality**, which introduces
-measures of importance for network components. In order to prepare for this, in this post, we will be looking at **network connectivity** and at how to measure **distances** in a graph. 
+measures of importance for network components. In order to prepare for this, in this post, we will be looking at
+**network connectivity** and at how to measure **distances** or **path lengths** in a graph. 
 You can find the full jupyter notebook [here on my github](https://github.com/walkenho/tales-of-1001-data/blob/master/graph-theory/GraphTheoryAndNetworkX-Part2.ipynb).
 
 ## Connectivity
@@ -210,7 +211,8 @@ nx.average_shortest_path_length(G)
 
 Whilst calculating the average shortest path can give us an idea about typical distances, we might often be interested in asking what is the maximum shortest path for a node. Imagine a scenario where you want to build a distribution center. Intuitively it makes sense that this center should be "well connected". What we mean with well connected in this particular scenario is that from the center you should be able to reach all points in the network quickly. 
 
-This is described by the **eccentricity** of a node. The eccentricity is the largest distance between one node $$s$$ and all other nodes $$t$$ of the network:
+This is described by the **eccentricity** of a node. The eccentricity of a node $$s$$ is the longest shortest
+path $$d$$ between this node and all other nodes $$t$$ of the network:
 
 $$\rm{eccentricity(s)} = \max_{t \in V} d(s,t)$$
 
