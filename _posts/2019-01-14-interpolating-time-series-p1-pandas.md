@@ -5,8 +5,7 @@ tags:
   - time series data
   - python
   - pandas
-excerpt: Working with time series data in PySpark I have recently realized that there is no literature documenting
-the end-to-end process of interpolating time series data in PySpark. This mini-series is trying to in-fill this gap.
+excerpt: Working with time series data in PySpark I have recently realized that there is no literature documenting the end-to-end process of interpolating time series data in PySpark. This mini-series is trying to in-fill this gap.
 ---
 
 Note: Pandas version 0.20.1 (May 2017) changed the grouping API. This post reflects the functionality of the updated version.
