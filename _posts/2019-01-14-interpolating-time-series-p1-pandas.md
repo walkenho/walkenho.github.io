@@ -14,7 +14,8 @@ As we have all experienced (and I am sure suffered), real-world data is patchy m
 
 ## Preparing the Data and Initial Visualization
 
-First we generate a pandas data frame df0 with some test data. We create a data set containing two houses and use a $sin$ and a $cos$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries. 
+First we generate a pandas data frame df0 with some test data. We create a data set containing two houses and use a
+$$sin$$ and a $$cos$$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries. 
 
 ```python
 data = {'datetime': pd.date_range(start='1/15/2018', end='02/14/2018', freq='D')\
@@ -29,7 +30,7 @@ random.seed(42)
 df0 = df0.drop(random.sample(range(df0.shape[0]), k=int(df0.shape[0]/2)))
 ```
 
-This is how the data looks like. A $sin$ and a $cos$ with plenty of missing data points.
+This is how the data looks like. A $$sin$$ and a $$cos$$ with plenty of missing data points.
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/interpolating-time-series-p1-pandas-fig1.png" alt="">
@@ -38,7 +39,7 @@ This is how the data looks like. A $sin$ and a $cos$ with plenty of missing data
 
 We will now look at three different methods of interpolating the missing read values: forward-filling, backward-filling and interpolating. Remember that it is crucial to choose the adequate interpolation method for the task at hand. Special care needs to be taken when looking at forecasting tasks (for example if you want to use your interpolated data for forecasting weather than you need to remember that you cannot interpolate the weather of today using the weather of tomorrow since it is still unknown).
 
-In order to interpolate the data, we will make use of the groupby() function followed by resample(). However, first we need to convert the read dates to datetime format and set them as index of our dataframe:
+In order to interpolate the data, we will make use of the *groupby()* function followed by *resample()*. However, first we need to convert the read dates to datetime format and set them as index of our dataframe:
 
 
 ```python
@@ -96,12 +97,12 @@ df.head(1)
 
 ## Interpolation 
 
-Since we want to interpolate for each house separately, we need to group our data by 'house' before we can use the $resample()$ function with the option 'D' to resample the data to daily frequency. 
+Since we want to interpolate for each house separately, we need to group our data by 'house' before we can use the *resample()* function with the option 'D' to resample the data to daily frequency. 
 
 The next step is then to use mean-filling, forward-filling or backward-filling to determine how the newly generated grid is supposed to be filled.
 
 ### mean()
-Since we are strictly upsampling, using the .mean() method, all missing read values are filled with NaNs:
+Since we are strictly upsampling, using the *mean()* method, all missing read values are filled with NaNs:
 
 
 ```python
@@ -161,7 +162,7 @@ df.groupby('house').resample('D').mean().head(4)
 
 
 ### pad() - forward filling
-Using .pad() instead of .mean() forward-fills the NaNs.
+Using *pad()* instead of *mean()* forward-fills the NaNs.
 
 
 ```python
@@ -227,7 +228,7 @@ df_pad.head(4)
 
 
 ### bfill - backward filling
-Using .bfill() instead of .mean() backward-fills the NaNs:
+Using *bfill()* instead of *mean()* backward-fills the NaNs:
 
 
 ```python
@@ -293,7 +294,9 @@ df_bfill.head(4)
 
 
 ### interpolate() - interpolating
-If we want to mean interpolate the missing values, we need to do this in two steps. First, we generate the data grid by using .mean() to generate NaNs. Afterwards we fill the NaNs by interpolated values by calling the interpolate() method on the readvalue column:
+If we want to mean interpolate the missing values, we need to do this in two steps. First, we generate the data grid by
+using *mean()* to generate NaNs. Afterwards we fill the NaNs by interpolated values by calling the
+*interpolate()* method on the readvalue column:
 
 
 ```python
