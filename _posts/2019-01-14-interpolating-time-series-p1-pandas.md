@@ -1,12 +1,21 @@
 ---
 title: >-
-    Interpolating Time Series Data in Apache Spark and Python Pandas - Part 1: Pandas 
+    Graph Theory and NetworkX - Part 1: Loading and Visualization 
 tags:
+  - graph theory
+  - python
+  - networkX
+excerpt: In order to do some analysis of one of my favourite boardgames, I have recently started looking into graph theory. Here, I am writing down some of the basics that I have learned on the way.  
+---
+
+
+
+
+    Interpolating Time Series Data in Apache Spark and Python Pandas - Part 1: Pandas 
   - time series data
   - python
   - pandas
 excerpt: Working with time series data in PySpark I have recently realized that there is no literature documenting the end-to-end process of interpolating time series data in PySpark. This mini-series is trying to in-fill this gap.
----
 
 Note: Pandas version 0.20.1 (May 2017) changed the grouping API. This post reflects the functionality of the updated version.
 
