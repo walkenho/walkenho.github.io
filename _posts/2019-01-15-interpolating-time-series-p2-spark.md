@@ -11,7 +11,7 @@ excerpt: Introducing end-to-end time series interpolation in PySpark.
 This is the second out of two posts about interpolating time series data using PySpark and Python Pandas. Last week, we have 
 covered how to use three different interpolation methods (forward filling, backward filling, interpolation) in Pandas,
 this week, we cover how we can implement the same functionality in PySpark. 
-The full notebook for this post can be found [here in my github].
+The full code for this post can be found [here in my github](https://github.com/walkenho/tales-of-1001-data/blob/master/timeseries-interpolation-in-spark/interpolating_timeseries_p2_pyspark.ipynb).
 
 ## Preparing the Data and Visualization of the Problem
 
