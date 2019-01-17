@@ -225,7 +225,7 @@ An extract of the resulting table looks like this:
     <tr>
       <td>1516924800</td>
       <td>house2</td>
-      <td>0.1654346968</td>
+      <td>0.165435</td>
       <td>1.5169248E9</td>
     </tr>
     <tr>
@@ -237,7 +237,7 @@ An extract of the resulting table looks like this:
     <tr>
       <td>1516665600</td>
       <td>house2</td>
-      <td>0.44773576836617335</td>
+      <td>0.447736</td>
       <td>1.5166656E9</td>
     </tr>
   </tbody>
@@ -351,24 +351,24 @@ This leaves us with a single dataframe containing all of the interpolation metho
     <td>2018-01-16 00:00:00</td>
     <td>null</td>
     <td>0.5</td>
-    <td>0.7938926261462366</td>
-    <td>0.5979642</td>
+    <td>0.793893</td>
+    <td>0.597964</td>
     </tr>
     <tr>
     <td>house1</td>
     <td>2018-01-17 00:00:00</td>
     <td>null</td>
     <td>0.5</td>
-    <td>0.7938926261462366</td>
-    <td>0.6959284</td>
+    <td>0.793893</td>
+    <td>0.695928</td>
     </tr>
     <tr>
     <td>house1</td>
     <td>2018-01-17 00:00:00</td>
-    <td>0.7938926261462366</td>
-    <td>0.7938926261462366</td>
-    <td>0.7938926261462366</td>
-    <td>0.7938926</td>
+    <td>0.793893</td>
+    <td>0.793893</td>
+    <td>0.793893</td>
+    <td>0.793893</td>
     </tr>
   </tbody>
 </table>
