@@ -42,6 +42,8 @@ The function *extractAge()* takes a single input and returns a single output of 
 ```
 extract_age_udf = udf(lambda row: extractAge(row), FloatType())
 ```
+The return type (here FloatType) can be any of the [standard Spark datatypes](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html?highlight=types#module-pyspark.sql.types)
+
 ### Step 3: Usage
 Create a test dataframe:
 ```
