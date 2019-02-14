@@ -21,6 +21,7 @@ If you get the output data types wrong, your udf will return only nulls.
 For both of the examples we need to import the following modules:
 ```
 from pyspark.sql.functions import udf, struct, col
+from pyspark.sql.types import * 
 import pyspark.sql.functions as func
 ```
 
