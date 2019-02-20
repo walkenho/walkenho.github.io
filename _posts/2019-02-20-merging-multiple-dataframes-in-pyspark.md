@@ -47,12 +47,13 @@ df_complete = reduce(DataFrame.unionAll, dfs)
 df_complete.show()
 ```
 returns
-
   
 | f1|      age|  
 |---|---------| 
 |1.0|age 18-25|  
 |2.0|age 26-30|
 |3.0|age 31-35|
+
+A word of caution! *unionAll* does not re-sort columns, so when you apply the procedure described above, make sure that your dataframes have the same order of columns. Otherwise you will end up with your entries in the wrong columns. 
 
 I hope that helps :)
