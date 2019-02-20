@@ -8,11 +8,11 @@ excerpt: How to merge multiple dataframes in PySpark using a combination of unio
 
 Here is another tiny episode in the series "How to do things in PySpark", which I have apparently started.
 
-A colleague recently asked me if I had a good way of merging multiple PySpark dataframes into a single dataframe since the *unionAll()* function
-only accepts two arguments. So, here is a short write-up of an idea that I stolen from 
-[here](https://datascience.stackexchange.com/questions/11356/merging-multiple-data-frames-row-wise-in-pyspark).
+A colleague recently asked me if I had a good way of merging multiple PySpark dataframes into a single dataframe. Since the *unionAll()* function
+only accepts two arguments, a small of a workaround is needed. So, here is a short write-up of an idea that I stolen from 
+[here](https://datascience.stackexchange.com/questions/11356/merging-multiple-data-frames-row-wise-in-pyspark). As always, the code has been tested for Spark 2.1.1.
 
-We idea is to use the *unionAll()* function in combination with the *reduce()* function from the functools module. 
+The idea is to use the *unionAll()* function in combination with the *reduce()* function from the functools module. 
 *reduce()* takes two arguments, a function and the input arguments for the
 function. Instead of two input arguments, we can provide a list. In this case, reduce will apply the function subsequently 
 to the list. An example:
