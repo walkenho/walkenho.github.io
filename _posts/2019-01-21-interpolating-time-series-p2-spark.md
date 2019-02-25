@@ -15,7 +15,7 @@ The full code for this post can be found [here in my github](https://github.com/
 
 ## Preparing the Data and Visualization of the Problem
 
-We follow the same procedure as least week to generate a data set with missing values to interpolate. First we generate a pandas data frame with some test data. The data set contains data for two houses and uses a $sin$ and a $cos$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
+We follow the same procedure as least week to generate a data set with missing values to interpolate. First we generate a pandas data frame with some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
 
 
 ```python
@@ -288,7 +288,7 @@ df_filled = df_all_dates.withColumn('readvalue_ff', read_last)\
 ### Interpolation
 
 Finally we use the forward filled and backwards filled data to interpolate both read datetimes and read values using a simple spline. 
-This can be done using a user-defined function.
+This can be done using a user-defined function (in order to learn more about how to create udfs, you can take a look at my post [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs).
 
 ```python
 # define interpolation function
