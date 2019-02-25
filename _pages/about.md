@@ -5,9 +5,11 @@ title: Out and About
 authorprofile: true
 ---
 
-Hi and welcome to my personal website. I am a theoretical and computational physicist turned data scientist and here I
-write about anything data-related. Sometimes, it might be things that just interest me, sometimes it might be things that I found useful. Sometimes I might write down things mostly to explain them to myself, sometimes I might write things downs for others. Things might vary between anything from writing down an instruction to use a particular piece of code to pieces of analysis or project-write ups. 
+"Ever tried, ever failed, no matter. Try again, fail again, fail better." (Samuel Beckett)
 
-If you are interested in further info, you can also take a look at my [github](https://github.com/walkenho) or at my [LinkedIn](https://www.linkedin.com/in/jessica-walkenhorst-809509a3/) profiles.
+Hi and welcome to my personal website. I am a theoretical and computational physicist turned data scientist and here I write about my experiences in failing and failing better (and more importantly about what I learn on the way). 
 
-Whatever it might be that made you come here, I hope that you will find something of use for you, too. 
+Sometimes, I write about things that just interest me, sometimes I write about things that I found useful. Sometimes I might write down things mostly to get my head around them myself, sometimes I might write things downs for others. Topics might cover anything from 
+code snippets to pieces of analysis or project-write ups. 
+
+If you are interested in more information about my professional life, you can also take a look at my [github](https://github.com/walkenho) and [LinkedIn](https://www.linkedin.com/in/jessica-walkenhorst-809509a3/) profiles.
