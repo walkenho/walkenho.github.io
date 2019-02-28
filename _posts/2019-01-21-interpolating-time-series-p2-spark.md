@@ -8,14 +8,14 @@ tags:
 excerpt: Introducing end-to-end time series interpolation in PySpark.
 ---
 
-This is the second out of two posts about interpolating time series data using PySpark and Python Pandas. Last week, we have 
+This is the second out of two posts about interpolating time series data using PySpark and Python Pandas. In [this post](https://walkenho.github.io/interpolating-time-series-p1-pandas/) last week, we
 covered how to use three different interpolation methods (forward filling, backward filling, interpolation) in Pandas,
-this week, we cover how we can implement the same functionality in PySpark. 
+this week, we will cover how we can implement the same functionality in PySpark. 
 The full code for this post can be found [here in my github](https://github.com/walkenho/tales-of-1001-data/blob/master/timeseries-interpolation-in-spark/interpolating_timeseries_p2_pyspark.ipynb).
 
 ## Preparing the Data and Visualization of the Problem
 
-We follow the same procedure as least week to generate a data set with missing values to interpolate. First we generate a pandas data frame with some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
+We follow the same procedure as last week to generate a data set with missing values to interpolate. First we generate a pandas data frame with some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
 
 
 ```python
@@ -168,9 +168,9 @@ We get a table like this:
 ### Resampling the Read Datetime
 
 As in Pandas, the first step is to resample the time data. However, unfortunately Spark does not provide an equivalent to 
-Pandas *resample()* method. Our workaround is generating an array containing an equally spaced time grid between the mininmum 
+Pandas `resample()` method. Our workaround is generating an array containing an equally spaced time grid between the mininmum 
 and maximum time. The trick here is to first group the read data by house, then create the respective array for each house and 
-use the sql function *explode()* to convert the array into a column. The resulting structure is then used as basis to which we add 
+use the sql function `explode()` to convert the array into a column. The resulting structure is then used as basis to which we add 
 the read value information for the times where it exists using a left outer join. The following code shows how this is done. 
 
 
@@ -248,12 +248,12 @@ As one can see, a null in the readtime_existent column indicates a missing read 
 
 
 ### Forward-fill and Backward-fill Using Window Functions
-When using a forward-fill, we fill-in the missing data with the latest known value before now. In contrast, when using a backwards-fill, we fill-in the data with the next known value. This idea of looking at a subset of data is well known and used in SQL and can be implemented using the *pyspark.sql.Window* function in combination with *last()* and *first()*. The crucial part in both cases is to use the *ignorenulls=True* argument. On the partitioned and sorted data, we look for:
+When using a forward-fill, we fill-in the missing data with the latest known value before now. In contrast, when using a backwards-fill, we fill-in the data with the next known value. This idea of looking at a subset of data is well known and used in SQL and can be implemented using the `pyspark.sql.Window` function in combination with `last()` and `first()`. The crucial part in both cases is to use the `ignorenulls=True` argument. On the partitioned and sorted data, we look for:
 
 * forward-fill: the last not-null value in the window ranging from minus infinity to now
 * backward-fill: the first not-null value in the window ranging from now to plus infinity
 
-Here is how to create the interpolated columns and add them to the data frame. 
+Here is how to create the interpolated columns and add them to the dataframe. 
 We also keep the interpolated read times since we will need them for the interpolation to calculate the time-difference for 
 which we need to interpolate. 
 Looking at the code below, it becomes clear, why we needed to keep the readtime_existent column from the previous steps. If we
@@ -288,7 +288,7 @@ df_filled = df_all_dates.withColumn('readvalue_ff', read_last)\
 ### Interpolation
 
 Finally we use the forward filled and backwards filled data to interpolate both read datetimes and read values using a simple spline. 
-This can be done using a user-defined function (in order to learn more about how to create udfs, you can take a look at my post [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs).
+This can be done using a user-defined function (if you want to learn more about how to create UDFs, you can take a look at my post [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs)).
 
 ```python
 # define interpolation function
@@ -389,7 +389,8 @@ the gaps have been filled with the next value to come and in the bottom figure t
 
 ## Summary and Conclusion
 In this post we have seen how we can use PySpark to perform end-to-end interpolation of time series data. We have demonstrated,
-how we can use resample time series data and how we can use the *Window* function in combination with the *first()* and *last()* 
+how we can use resample time series data and how we can use the 
+`*Window` function in combination with the `first()` and `last()` 
 function to fill-in the generated missing values. We have then seen, how we can use a user-defined function to perform a simple
 spline-interpolation.
 
