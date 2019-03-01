@@ -390,7 +390,7 @@ the gaps have been filled with the next value to come and in the bottom figure t
 ## Summary and Conclusion
 In this post we have seen how we can use PySpark to perform end-to-end interpolation of time series data. We have demonstrated,
 how we can use resample time series data and how we can use the 
-`*Window` function in combination with the `first()` and `last()` 
+`Window` function in combination with the `first()` and `last()` 
 function to fill-in the generated missing values. We have then seen, how we can use a user-defined function to perform a simple
 spline-interpolation.
 
