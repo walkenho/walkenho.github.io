@@ -33,7 +33,7 @@ df0 = df0.drop(random.sample(range(df0.shape[0]), k=int(df0.shape[0]/2)))
 This is how the data looks like. A $$sin$$ and a $$cos$$ with plenty of missing data points.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/interpolating-time-series-p1-pandas-fig1.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/interpolating-timeseries-p1-pandas-fig1.png" alt="">
     <figcaption>Read Data with Missing Entries</figcaption>
 </figure>
 
@@ -367,7 +367,7 @@ Finally we can visualize the three different filling methods to get a better ide
 We can clearly see how in the top figure, the gaps have been filled with the last known value, in the middle figure, the gaps have been filled with the next value to come and in the bottom figure the difference has been interpolated.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/interpolating-time-series-p1-pandas-fig2.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/interpolating-timeseries-p1-pandas-fig2.png" alt="">
     <figcaption>Original data (dark) and interpolated data (light), interpolated using (top) forward filling, (middle)
     backward filling and (bottom) interpolation.</figcaption>
 </figure>
