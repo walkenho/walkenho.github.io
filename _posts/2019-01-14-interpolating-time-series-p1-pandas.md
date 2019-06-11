@@ -11,6 +11,7 @@ caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 actions:
   - label: "More Info"
     url: "https://unsplash.com"
+classes: wide
 excerpt: Introducing time series interpolation in Python Pandas.
 ---
 
