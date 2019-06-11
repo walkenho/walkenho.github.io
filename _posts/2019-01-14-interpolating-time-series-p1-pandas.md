@@ -1,11 +1,10 @@
 ---
 title: >-
     Interpolating Time Series Data in Apache Spark and Python Pandas - Part 1: Pandas
-layout: single
 header:
   overlay_image: /images/interpolating-timeseries-p1-overlay.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  caption: "Photo credit:  Photo by [Jonathan Meyer on Unsplash](https://unsplash.com/@jmeyer1220)"
+  caption: "Photo by [**Jonathan Meyer on Unsplash**](https://unsplash.com/@jmeyer1220)"
   actions:
     - label: "Time Series Interpolation for Pandas: Eating Bamboo Now - Eating Bamboo Earlier"
 classes: wide
