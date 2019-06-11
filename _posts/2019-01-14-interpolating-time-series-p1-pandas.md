@@ -1,17 +1,18 @@
 ---
 title: >-
     Interpolating Time Series Data in Apache Spark and Python Pandas - Part 1: Pandas
+layout: single
+header:
+  overlay_image: /images/interpolating-timeseries-p1-overlay.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
+  actions:
+    - label: "More Info"
+classes: wide
 tags:
   - time series data
   - python
   - pandas
-overlay_image: /images/interpolating-timeseries-p1-overlay.jpg
-overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-actions:
-  - label: "More Info"
-    url: "https://unsplash.com"
-classes: wide
 excerpt: Introducing time series interpolation in Python Pandas.
 ---
 
