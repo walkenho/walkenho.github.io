@@ -173,12 +173,9 @@ We get a table like this:
 ## Interpolation
 ### Resampling the Read Datetime
 
-As in Pandas, the first step is to resample the time data. However, unfortunately Spark does not provide an equivalent to 
-Pandas `resample()` method. Our approach in PySpark is to generate an array containing an equally spaced time grid between the mininmum 
-and maximum time. The trick here is to first group the read data by house, then create the respective array for each house using a udf (if you want to learn more about how to create UDFs, you can take a look [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs/) and 
-use the sql function `explode()` to convert the array into a column. The resulting structure is then used as basis to which we add 
-the read value information for the times where it exists using a left outer join. The following code shows how this is done. Note, that here
-we are using a spark user-defined function. Starting from Spark 2.3, Spark provides a pandas udf, which leverages the performance of Apache Arrow 
+The first step is to resample the time data. If we were working with Pandas, this would be straight forward, we would just use the resample() method. However, Spark works on distributed datasets and therefore does not provide an equivalent method. Obtaining the same functionality in PySpark requires a three-step process. In the first step, we group the data by house and generate an array containing an equally spaced time grid for each house. In the second step, we create one row for each element of the arrays by using the spark sql function explode(). In the third step, the resulting structure is used as a basis to which the existing read value information is joined using an outer left join. The following code shows how this can be done. 
+
+Note, that here we are using a spark user-defined function (if you want to learn more about how to create UDFs, you can take a look [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs/)). Starting from Spark 2.3, Spark provides a pandas udf, which leverages the performance of Apache Arrow 
 to distribute calculations. If you use Spark 2.3, I would recommend looking into this instead of using the (badly performant) in-build udfs. 
 
 
@@ -390,7 +387,7 @@ We can clearly see how in the top figure, the gaps have been filled with the las
 the gaps have been filled with the next value to come and in the bottom figure the difference has been interpolated.
 
 ## Summary and Conclusion
-In this post we have seen how we can use PySpark to perform end-to-end interpolation of time series data. We have demonstrated,
+In this post, we have seen how we can use PySpark to perform end-to-end interpolation of time series data. We have demonstrated,
 how we can use resample time series data and how we can use the 
 `Window` function in combination with the `first()` and `last()` 
 function to fill-in the generated missing values. We have then seen, how we can use a user-defined function to perform a simple
