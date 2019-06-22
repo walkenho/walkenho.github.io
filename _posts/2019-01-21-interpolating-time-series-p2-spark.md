@@ -175,9 +175,9 @@ We get a table like this:
 
 As in Pandas, the first step is to resample the time data. However, unfortunately Spark does not provide an equivalent to 
 Pandas `resample()` method. Our approach in PySpark is to generate an array containing an equally spaced time grid between the mininmum 
-and maximum time. The trick here is to first group the read data by house, then create the respective array for each house and 
+and maximum time. The trick here is to first group the read data by house, then create the respective array for each house using a udf (if you want to learn more about how to create UDFs, you can take a look [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs/) and 
 use the sql function `explode()` to convert the array into a column. The resulting structure is then used as basis to which we add 
-the read value information for the times where it exists using a left outer join. The following code shows how this is done. Note, that 
+the read value information for the times where it exists using a left outer join. The following code shows how this is done. Note, that here
 we are using a spark user-defined function. Starting from Spark 2.3, Spark provides a pandas udf, which leverages the performance of Apache Arrow 
 to distribute calculations. If you use Spark 2.3, I would recommend looking into this instead of using the (badly performant) in-build udfs. 
 
