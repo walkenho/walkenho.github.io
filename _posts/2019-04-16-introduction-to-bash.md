@@ -1,5 +1,5 @@
 ---
-title: How to Find the Time to Spend More Time on the Beach - An Introduction to the Magic of the Shell
+title: How to Spend More Time on the Beach - The Magic of the Shell
 tags:
   - bash
 excerpt: A comprehensive introduction to shell scripting.
