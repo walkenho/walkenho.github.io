@@ -258,16 +258,8 @@ As one can see, a null in the readtime_existent column indicates a missing read 
 
 
 ### Forward-fill and Backward-fill Using Window Functions
-When using a forward-fill, we fill in the missing data with the latest known value before now. In contrast, when using a backwards-fill, we fill-in the data with the next known value. This idea of looking at a subset of data is well known and used in SQL and can be implemented using the `pyspark.sql.Window` function in combination with `last()` and `first()`. The crucial part in both cases is to use the `ignorenulls=True` argument. On the partitioned and sorted data, we look for:
-
-* forward-fill: the last not-null value in the window ranging from minus infinity to now
-* backward-fill: the first not-null value in the window ranging from now to plus infinity
-
-Here is how to create the interpolated columns and add them to the dataframe. 
-We also keep the interpolated read times since we will need them for the interpolation to calculate the time-difference for 
-which we need to interpolate. 
-Looking at the code below, it becomes clear, why we needed to keep the readtime_existent column from the previous steps. If we
-only had the interpolated read times, we could not figure out how big this gap was.
+When using a forward-fill, we infill the missing data with the latest known value. In contrast, when using a backwards-fill, we infill the data with the next known value. This can be achieved using an SQL window function in combination with last() and first(). To make sure that we don't infill the missing values with another missing value, use the ignorenulls=True argument. We also need to make sure that we set the correct window ranges. For the forward-fill, we restrict the window to values between minus infinity and now (we only look into the past, not into the future), for the backward-fill we restrict the window to values between now and infinity (we only look into the future, we don't look into the past). The code below shows how to implement this. 
+Note, that if we want to use interpolation instead of forward or backward fill, we need to know the time difference between the previous, existing and the next, existing read value. Therefore, we need to keep the readtime_existent column.
 
 ```python
 from pyspark.sql import Window
@@ -297,7 +289,7 @@ df_filled = df_all_dates.withColumn('readvalue_ff', read_last)\
 
 ### Interpolation
 
-Finally we use the forward filled and backwards filled data to interpolate both read datetimes and read values using a simple spline. 
+Finally, we use the forward filled and backwards filled data to interpolate both read datetimes and read values using a simple spline. 
 This can be done using a user-defined function (if you want to learn more about how to create UDFs, you can take a look at my post [here](https://walkenho.github.io/how-to-convert-python-functions-into-pyspark-UDFs)).
 
 ```python
@@ -385,7 +377,7 @@ This leaves us with a single dataframe containing all of the interpolation metho
 </div>
 
 
-Finally we can visualize the results to observe the differences between the interpolation techniques. 
+Finally, we can visualize the results to observe the differences between the interpolation techniques. 
 The opaque dots show the interpolated values.
 
 <figure class="align-center">
