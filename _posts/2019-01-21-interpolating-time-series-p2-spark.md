@@ -23,7 +23,7 @@ The full code for this post can be found [here in my github](https://github.com/
 
 ## Preparing the Data and Visualization of the Problem
 
-In order to demonstrate the procedure, first we generate some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some sensor read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
+In order to demonstrate the procedure, first, we generate some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some sensor read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
 
 ```python
 import pandas as pd
@@ -187,18 +187,20 @@ from pyspark.sql.types import *
 
 # define function to create date range
 def date_range(t1, t2, step=60*60*24):
-    """Returns a list of equally spaced points between t1 and t2 with stepsize step."""
+    """Return a list of equally spaced points between t1 and t2 with stepsize step."""
     return [t1 + step*x for x in range(int((t2-t1)/step)+1)]
 
 # define udf
 date_range_udf = func.udf(date_range, ArrayType(LongType()))
 
-# group data by house, obtain min and max time by house, create time arrays and explode them
-df_base = \
-    df.groupBy('house')\
-        .agg(func.min('readtime').cast('integer').alias('readtime_min'), func.max('readtime').cast('integer').alias('readtime_max'))\
-        .withColumn("readtime", func.explode(date_range_udf("readtime_min", "readtime_max")))\
-        .drop('readtime_min', 'readtime_max')
+# obtain min and max of time period for each house
+df_base = df.groupBy('house')\
+            .agg(func.min('readtime').cast('integer').alias('readtime_min'), 
+                 func.max('readtime').cast('integer').alias('readtime_max'))
+
+# generate timegrid and explode
+df_base = df_base.withColumn("readtime", func.explode(date_range_udf("readtime_min", "readtime_max")))\
+        	 .drop('readtime_min', 'readtime_max')
 
 # left outer join existing read values
 df_all_dates = df_base.join(df, ["house", "readtime"], "leftouter")
