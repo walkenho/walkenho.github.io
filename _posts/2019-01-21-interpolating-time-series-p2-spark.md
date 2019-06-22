@@ -17,7 +17,7 @@ excerpt: Introducing end-to-end time series interpolation in PySpark.
 
 
 Anyone working with data knows that real-world data is often patchy and cleaning it takes up a considerable amount of your time (80/20 rule anyone?). Having recently moved from Pandas to Pyspark, I was used to the conveniences that Pandas offers and that Pyspark sometimes lacks due to its distributed nature. One of the features I have been particularly missing recently is a straight-forward way of interpolating (or in-filling) time series data. Whilst the problem of in-filling missing values has been covered a few times (e.g. [here](https://johnpaton.net/posts/forward-fill-spark/)), I was not able to find a source, which detailed the end-to-end process of generating the underlying time-grid and then subsequently filling in the missing values. This post tries to close this gap. Starting from a time-series with missing entries, I will show how we can leverage PySpark to first generate the missing time-stamps and then fill-in the missing values using forward 
-three different interpolation methods (forward filling, backward filling and interpolation). This is demonstrated using the example of sensor read data collected in a set of houses.
+three different interpolation methods (forward filling, backward filling and interpolation). This is demonstrated using the example of sensor read data collected in a set of houses. Note that this post follows closely the structure of last week's post, where I demonstrated how to do the end-to-end procedure in Pandas.
 The full code for this post can be found [here in my github](https://github.com/walkenho/tales-of-1001-data/blob/master/timeseries-interpolation-in-spark/interpolating_timeseries_p2_pyspark.ipynb).
 
 
@@ -109,7 +109,7 @@ The following graph shows the data with the missing values clearly visible.
     <figcaption>Read Data with Missing Entries</figcaption>
 </figure>
 
-In order to work with PySpark, we convert the Pandas data frame into a Spark data frame. We need to divide the datetime by 10^9 since the unit of time is different for pandas datetime and spark. We also add the column 'readtime_existent' to keep track of which values are missing and which are not.
+To parallelize the data set, we convert the Pandas data frame into a Spark data frame. Note, that we need to divide the datetime by 10^9 since the unit of time is different for pandas datetime and spark. We also add the column 'readtime_existent' to keep track of which values are missing and which are not.
 
 
 ```python
@@ -174,7 +174,7 @@ We get a table like this:
 ### Resampling the Read Datetime
 
 As in Pandas, the first step is to resample the time data. However, unfortunately Spark does not provide an equivalent to 
-Pandas `resample()` method. Our workaround is generating an array containing an equally spaced time grid between the mininmum 
+Pandas `resample()` method. Our approach in PySpark is to generate an array containing an equally spaced time grid between the mininmum 
 and maximum time. The trick here is to first group the read data by house, then create the respective array for each house and 
 use the sql function `explode()` to convert the array into a column. The resulting structure is then used as basis to which we add 
 the read value information for the times where it exists using a left outer join. The following code shows how this is done. Note, that 
