@@ -15,15 +15,15 @@ tags:
 excerpt: Introducing end-to-end time series interpolation in PySpark.
 ---
 
-This is the second out of two posts about interpolating time series data using PySpark and Python Pandas. In [this post](https://walkenho.github.io/interpolating-time-series-p1-pandas/) last week, we
-covered how to use three different interpolation methods (forward filling, backward filling, interpolation) in Pandas,
-this week, we will cover how we can implement the same functionality in PySpark. 
+
+Anyone working with data knows that real-world data is often patchy and cleaning it takes up a considerable amount of your time (80/20 rule anyone?). Having recently moved from Pandas to Pyspark, I was used to the conveniences that Pandas offers and that Pyspark sometimes lacks due to its distributed nature. One of the features I havebeen particularly missing recently is a straight-forward way of interpolating (or in-filling) time series data. Whilst the problem of in-filling missing values has been covered a few times (e.g. [here](https://johnpaton.net/posts/forward-fill-spark/)), I was not able to find a source, which detailed the end-to-end process of generating the underlying time-grid and then subsequently filling in the missing values. This post tries to close this gap. Starting from a time-series with missing entries, I will show how we can leverage PySpark to first generate the missing time-stamps and then fill-in the missing values using forward 
+three different interpolation methods (forward filling, backward filling and interpolation). This is demonstrated using the example of sensor read data collected in a set of houses.
 The full code for this post can be found [here in my github](https://github.com/walkenho/tales-of-1001-data/blob/master/timeseries-interpolation-in-spark/interpolating_timeseries_p2_pyspark.ipynb).
+
 
 ## Preparing the Data and Visualization of the Problem
 
-We follow the same procedure as last week to generate a data set with missing values to interpolate. First we generate a pandas data frame with some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
-
+In order to demonstrate the procedure, first we generate some test data. The data set contains data for two houses and uses a $$sin()$$ and a $$cos()$$ function to generate some sensor read data for a set of dates. To generate the missing values, we randomly drop half of the entries.
 
 ```python
 import pandas as pd
@@ -109,7 +109,6 @@ The following graph shows the data with the missing values clearly visible.
     <figcaption>Read Data with Missing Entries</figcaption>
 </figure>
 
-
 In order to work with PySpark, we convert the Pandas data frame into a Spark data frame. We need to divide the datetime by 10^9 since the unit of time is different for pandas datetime and spark. We also add the column 'readtime_existent' to keep track of which values are missing and which are not.
 
 
@@ -178,7 +177,9 @@ As in Pandas, the first step is to resample the time data. However, unfortunatel
 Pandas `resample()` method. Our workaround is generating an array containing an equally spaced time grid between the mininmum 
 and maximum time. The trick here is to first group the read data by house, then create the respective array for each house and 
 use the sql function `explode()` to convert the array into a column. The resulting structure is then used as basis to which we add 
-the read value information for the times where it exists using a left outer join. The following code shows how this is done. 
+the read value information for the times where it exists using a left outer join. The following code shows how this is done. Note, that 
+we are using a spark user-defined function. Starting from Spark 2.3, Spark provides a pandas udf, which leverages the performance of Apache Arrow 
+to distribute calculations. If you use Spark 2.3, I would recommend looking into this instead of using the (badly performant) in-build udfs. 
 
 
 ```python
