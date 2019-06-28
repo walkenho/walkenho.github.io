@@ -1,6 +1,6 @@
 ---
 title: >-
-    How I Used Python and Open Data to Build a Map of Edinburgh's Beergardens
+    How I Used Python and Open Data to Build an Interactive Map of Edinburgh's Beergardens
 header:
   overlay_image: /images/beergarden-happiness-overlay.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
