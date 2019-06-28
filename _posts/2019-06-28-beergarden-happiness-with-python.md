@@ -458,6 +458,6 @@ In this post we downloaded an open data set containing chair and table permits f
 We now have a working beer garden and open air coffee shop map of Edinburgh and can enjoy the summer sitting outside with a nice iced-coffee or an ice-cold beer - Prost! :)
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/beergarden-happiness-drink.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/beergarden-happiness-drink.jpg" alt="" width="50%">
     <figcaption>Map put to good use: A chilled post-work drink in the sun :)</figcaption>
 </figure>
