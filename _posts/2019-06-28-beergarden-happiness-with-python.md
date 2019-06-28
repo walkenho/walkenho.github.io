@@ -461,6 +461,3 @@ We now have a working beer garden and open air coffee shop map of Edinburgh and 
   <img src="{{ site.url }}{{ site.baseurl }}/images/beergarden-happiness-drink.jpg" alt="">
     <figcaption>Map put to good use: A chilled post-work drink in the sun :)</figcaption>
 </figure>
-
-
-<img style="float:left;transform: rotate(90deg); width:500px" src='../images/beergarden-happiness-drink.jpg' />
