@@ -398,9 +398,9 @@ df2.loc[df2.is_restaurant, 'category'] = 2
 df2.loc[df2.is_coffeeshop, 'category'] = 1
 ```
 
-## Step 4: Visualization
+## Step 4: Visualizationhttps://nbviewer.jupyter.org/github/walkenho/tales-of-1001-data/blob/master/beergarden_happiness_with_python/beergarden_happiness_with_python.ipynb
 
-Finally, we use Python's Folium package to visualize our results as markers on a map. Adding the individual points to MarkerClusters allows us to summarize the symbols into groups if too many symbols are in the same region. Creating a separate cluster for each category allows us to use the LayerControl option to toogle each of the categories individually. We use the 'fa' prefix to use the font-awesome (instead of the standard glyphicon) symbols. Note that Folium does not natively display on GitHub. You can look at the notebook including the interactive map [here](https://nbviewer.jupyter.org/github/walkenho/tales-of-1001-data/blob/master/beergarden_happiness_with_python/beergarden_happiness_with_python.ipynb).
+Finally, we use Python's Folium package to visualize our results as markers on a map. Adding the individual points to MarkerClusters allows us to summarize the symbols into groups if too many symbols are in the same region. Creating a separate cluster for each category allows us to use the LayerControl option to toogle each of the categories individually. We use the 'fa' prefix to use the font-awesome (instead of the standard glyphicon) symbols.
 
 
 ```python
