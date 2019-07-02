@@ -237,8 +237,8 @@ I am mostly interested in distinguishing between two types of premises: the ones
 
 To do this I have two sources of information: the premise name and the type returned by OpenStreetMap. 
 Looking at the data, we find that the type is good first indicator, but also that many places are labeled incorrectly or not at all. I therefor apply a two-step approach: 
-a) Assign the category based on the OpenStreetMap type
-b) Clean up the data using its name, where this steps overwrites step b). 
+i) Assign the category based on the OpenStreetMap type
+ii) Clean up the data using its name, where this steps overwrites step i). 
 To clean up the data, I decided to overrule the OpenStreetMap classification if the premise name contains certain key elements (such as 'cafe', 'coffee' or similar for coffee shops and 'restaurant', 'inn' or similar for restaurant and pubs). This misclassifies for example Cafe Andaluz as coffee shop, but works decently well in most cases. Particularly it seems to most keep to the pattern of classifying as coffee shops places, which are likely to be open during the day, so it works for my purpose. Of course, with fewer than 400 entries, one could manually go through the list and assign the correct category to each and every one of the entries. However, I am interested in creating a process, which can be easily transfered to other places, therefore a manual intervention specifically taylored to Edinburgh's scenery is not suitable.
 
 #### Step 3a: Assigning Premise Categories According to OpenStreetMap Type
@@ -299,7 +299,7 @@ df2['is_coffeeshop'] = df2['Premises Name'].map(lambda x: flag_premise(x, catego
 df2['is_restaurant'] = df2['Premises Name'].map(lambda x: flag_premise(x, category='restaurant'))
 ```
 
-A quick inspection shows that the re-assignement seems reasonable:
+A quick inspection shows that the reassignement seems reasonable:
 
 
 ```python
@@ -389,7 +389,7 @@ df2.loc[(df2.is_coffeeshop) & (df2.type != 'cafe'), ['Premises Name', 'type']].h
 
 
 
-Re-assign the category for the premises flagged as restaurant or coffee-shop. Should a premise have been flagged as both, we want the coffee shop category to take precedence:
+I reassign the category for the premises flagged as restaurant or coffee-shop. Should a premise have been flagged as both, the coffee shop category takes precedence:
 
 
 ```python
@@ -398,9 +398,9 @@ df2.loc[df2.is_restaurant, 'category'] = 2
 df2.loc[df2.is_coffeeshop, 'category'] = 1
 ```
 
-## Step 4: Visualizationhttps://nbviewer.jupyter.org/github/walkenho/tales-of-1001-data/blob/master/beergarden_happiness_with_python/beergarden_happiness_with_python.ipynb
+## Step 4: Visualization
 
-Finally, we use Python's Folium package to visualize our results as markers on a map. Adding the individual points to MarkerClusters allows us to summarize the symbols into groups if too many symbols are in the same region. Creating a separate cluster for each category allows us to use the LayerControl option to toogle each of the categories individually. We use the 'fa' prefix to use the font-awesome (instead of the standard glyphicon) symbols.
+Finally, we use Python's Folium package to visualize our results as markers on a map. Adding the individual points to `MarkerClusters` allows us to summarize the symbols into groups if too many symbols are in the same region. Creating a separate cluster for each category allows us to use the `LayerControl` option to toggle each of the categories individually. We use the 'fa' prefix to use the font-awesome (instead of the standard glyphicon) symbols.
 
 
 ```python
