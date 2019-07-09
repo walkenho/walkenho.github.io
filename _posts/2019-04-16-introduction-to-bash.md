@@ -114,21 +114,22 @@ mv old_folder new_folder
 ### Interacting with Text Files
 Now that we know how to move files around, we also want to do sth useful with them. 
 
-There are four main options to access the content of a text file. I recommend just trying them out to see what they do and how they behave differently. These are the commands:
+There are four main options to access the content of a text file. I recommend just trying them out to see what they do and how they behave differently. 
 ```
-# print whole text file to screen
+# prints whole file to screen
 cat mytextfile
 
-# print text file to screen one screenful at a time
+# prints file to screen one screenful at a time
 more mytextfile
 
-# print text file allowing for backwards movement returning to previous screen view after finishing
+# prints file to screen, allowing for backwards movement and returns to previous screen view after finishing
 # note: less does not require the whole text to be read and therefore will start faster on large text files then more or text-editors
 less mytextfile
 
-# use a text editor (for example vi)
+# use a text editor (for example nano or here vi)
 vi mytextfile
 ```
+About the choice of editor: Personally, I am a big fan of Vim. However, I do admit that it does have the kind of learning curve which can be a bit intimidating at first. If you feel like starting out with sth a bit more beginner-friendly, you could take a look at nano. However, keep VIM in mind for the future, the speed-up for textprocessing is amazing once you know your way around. 
 
 You can also show only the first or last n rows of a document
 ```
@@ -151,34 +152,35 @@ grep -i python mytextfile
 grep -n python mytextfile
 
 # search for a filename ("mybadfilename" in the example) (case insensitive) in all files with the ending *.py and return the occurences together with the line number
-grep -in mybadfilename *.sas
+grep -in mybadfilename *.py
 ```
 
-In the last example, we have seen an example of a place holder. \*.sas denotes all files with a .sas ending. 
+In the last example, we have seen an example of a place holder. \*.py denotes all files with a .py ending. 
 
 ### Redirecting Output
-Some commands print an output to the screen. We might want to re-direct this output to a file. This can be done using `>` and `>>`. `>` creates a new file, `>>` appends to an existing file (or creates a new file if the file does not exist). For example we might want to re-direct the output of the `grep -in mybadfilename *.sas` command into a file:
+Some commands print to the screen. To re-direct the output to a file we can use `>` and `>>`. `>>` appends the output an existing file or creates a new file if the file does not exist. In contrast, `>` always creates a new file. If a file with the same name already exists, it overwrites it. Here is an example of how to re-direct the output of the `grep -in mybadfilename *.py` command to a file:
 ```
 # creates new file; if file exists, overwrites it
 mycommand > mytextfile
 # example:
-grep -in mybadfilename *.sas > myoutputfile
+grep -in mybadfilename *.py > myoutputfile
 
-# appends to file; if myoutputfile does not exists, it creates it
+# appends output to file; if myoutputfile does not exist yet, creates it
 mycommand >> mytextfile
 # exammple:
-grep -in mybadfilename *.sas >> myoutputfile
+grep -in mybadfilename *.py >> myoutputfile
 ```
-If in addition to re-directing the output to the file, we also want to have the output on the screen, we can use `| tee`. Note, that the complete command needs to appear before the `|`. 
+If in addition to re-directing the output to the file, we **also** want to print the output to the screen, we can use `| tee`. Note, that the complete command needs to appear before the `|`. 
 ```
 # print output to screen plus re-direct to file
 mycommand | tee myoutputfile
 
 # example:
-grep -in mybadfilename *.sas | tee myoutputfile
+grep -in mybadfilename *.py | tee myoutputfile
 ```
 
-`|` let's you re-direct output into functions which expect their input to come after the function call. An example: Calling `grep` on a filename requires the syntax `grep sth filename`. But you might have a programm returning output and want to grep for sth in this output. You can do this by using the `|`. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch_. 
+In the previous example, we have seen the usage of the pipe (|) command. What does it do?
+`|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for sth in this output. This is where the '|' comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
 ```
 # grep for the string launch_ in the output of ps aux
 ps aux | grep launch_
@@ -200,18 +202,20 @@ echo $mynewvariable
 Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put {} around the variable names.
 ```
 In order to print the content of the variable mynewvariable, followed by _1, use {} around the variable name:
-# incorrect
+# incorrect (bash will think that the variable is called "mynewvariable_1"):
 echo $mynewvariable_1
 
-# correct
+# instead use:
 echo ${mynewvariable}_1
 ```
+In the second example, bash resolves the reference to mynewvariable and then appends a _1 to the resulting string.
 
 ### Loops
 Bash uses the for ... do ... done syntax for looping:
 ```
-# loop over the filenames myfilename1 and myfilename2 and rename them to myfilename1.bac and myfilename2.bac
-for myfilename in myfilename1, myfilename2;
+# loop over the filenames myfilename1 and myfilename2 and rename them to myfilename1.bac and myfilename2.bac.
+# Note that there is no comma separating the elements of a list.
+for myfilename in myfilename1 myfilename2;
 do
   mv $filename ${filename}.bac;
 done
@@ -261,7 +265,7 @@ echo $1
 
 exit 0
 ```
-`$1` refers to the first input variable after the filename. So if you now run the script and pass a word to it, it prints the word on the screen.
+`$1` refers to the first input variable after the filename. So if you now run the script and pass a string to it, it prints the string on the screen.
 ```
 # run script myfirstbashscript.sh with input "hello world"
 ./myfirstbashscript.sh "hello world"
