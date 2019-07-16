@@ -1,5 +1,13 @@
 ---
 title: How to Spend More Time on the Beach - The Magic of the Shell
+header:
+  overlay_image: /images/introduction-to-bash-overlay.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo by [**Athena Lam on Unsplash**](https://unsplash.com/@thecupandtheroad)"
+  actions:
+    - label: "Enjoying the Beach in San Sebastian"
+classes: wide
+
 tags:
   - bash
 excerpt: A comprehensive introduction to shell scripting.
