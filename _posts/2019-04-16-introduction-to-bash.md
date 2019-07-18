@@ -1,5 +1,5 @@
 ---
-title: How to Spend More Time on the Beach - The Magic of the Shell
+title: How to Spend More Time on the Beach - The Magic of Shell Scripting
 header:
   overlay_image: /images/introduction-to-bash-overlay.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -10,26 +10,28 @@ classes: wide
 
 tags:
   - bash
-excerpt: A comprehensive introduction to shell scripting.
+excerpt: A comprehensive introduction to the shell.
 ---
 
-The more I program, the more lazy I become. I just can't see, why I should be doing something that a computer can do so much better, faster and more reliably on its own. On my way to the lazy worker, I have found shell scripting to be a great friend and helper. I still fondly remember my PhD times when I had set up my computer to automatically generate a huge amount of input files for calculations, submit the calculations to the supercomputing center, wait for them to complete, extract the relevant data from the output, visualize the results, create a whole hierarchy of webpages and push all of this to a webserver, so the results could be viewed by multiple people collaborating from all over the world. It did all of this fully automatically on the push of a button while I was out enjoying my lunch at San Sebastian's famous "La Concha"-beach. The best: It did so reliably and never made any mistakes. Because, deep down in our hearts, we are all a bit lazy (or so I believe), here is an introduction to my personal essentials of the shell. Hopefully, it can help make your life a bit easier (and spend more time at the beach if you wish to do so), too :). 
+The more I program, the lazier I become. I just can't see, why I should be doing something that a computer can do so much better, faster and more reliably on its own. On my way to the lazy worker, I have found shell scripting to be a great friend and helper. Whilst in the past, you could often get away using Windows (if you wanted), in a time, where more and more computing is outsourced to the cloud and servers are mostly Linux based, in my mind every data scientist and data engineer should have at least a basic understanding of shell scripting. I still fondly remember my PhD project when I had set up my computer to automatically generate a huge amount of input files for calculations, submit the calculations to the supercomputing center, wait for them to complete, extract the relevant data from the output, visualize the results, create a whole hierarchy of webpages and push all of this to a webserver, so the results could be viewed by multiple people collaborating from all over the world. It did all of this fully automatically on the push of a button while I was out enjoying my lunch at San Sebastian's famous "La Concha"-beach. The best: It did so reliably and never made any mistakes. Since I believe that deep down we all want to spend our time doing other things than manually moving files around, I thought I would share with you an introduction to my personal essentials of the shell. Hopefully, it can help make your life a bit easier (and spend more time at the beach if you wish to do so), too :). 
 
 ## Basics: Moving Around and Basic File Manipulations
 ### Moving Around
-If you log on, the first thing you probably want to know is where you are (you will probably be in your homedirectory). You can find this out by printing the name of your current working directory onto the screen
+If you log on, the first thing you probably want to know is where you are (hint: You will probably be in your homedirectory). You can find this out by printing your current working directory to the screen:
 ```
 # print working directory
 pwd
 ```
 
-You can find out what is in this directory by listing its contents. Many bash commands allow for modifiers to be added, so-called flags. They most commonly consist of a single letter, which is appened to the command by a "-". You can combine multiple flags by just writing them one behind the other. For example the command `ls` lists the contents of a directory. It has a multitude of possible flags. Here are some examples
-
-Print content directories:
+Next, you should list its contents by typing
 ```
-# list current directory
-ls 
+# list contents of current directory
+ls
+```
 
+Many bash commands allow for modifiers, so-called flags. They mostly consist of a single letter, which is appended to the command by a "-". You can combine multiple flags by writing them one behind the other. `ls` has a multitude of possible flags. Here are some examples
+
+```
 # include hidden files
 ls -a
 
@@ -40,7 +42,7 @@ ls -la
 ls -1d directoryname
 ```
 
-You can find info on a bash command and its modifiers by using the `man` command.
+In order to find out more about a command use the manual (man pages): 
 ```
 # print manual for mycommand
 man mycommand
@@ -49,9 +51,7 @@ man mycommand
 man ls
 ```
 
-In order to move around, you you the `cd` (change directory) command:
-
-Change directory to directory newdirectory inside the current directory: 
+In order to move around, you use the `cd` (change directory) command:
 ```
 # change to directory called mydirectory inside current directory
 cd mydirectory
@@ -59,7 +59,7 @@ cd mydirectory
 # change to directory above
 cd ..
 
-# chaining these together to move into directory which is also inside the directory above (basically into a "parallel" directory)
+# move to directory which is also inside the directory above (basically a "parallel" directory)
 cd ../mydirectory
 
 # change into previous work directory
@@ -67,16 +67,16 @@ cd -
 ```
 
 ### Advanced Moving Around
-You can use pushd/popd to add/delete directories from/to a stack. Once added to the stack, you can jump between the directories. Note that when building up the stack, you need to add the final directory twice, since the final position will always get overwritten (it sounds more complicated than it is, just try it out and you will see what I mean).
+You can use pushd/popd to add/delete directories from/to the stack. Once added to the stack, you can jump between the directories in the stack. Note that when building your stack, you need to add the final directory twice, since the final position will always get overwritten (it sounds more complicated than it is, just try it out and you will see what I mean).
 ```
 # add mydirectory to stack
 pushd mydirectory
 
-# delete upmost repository from stack
-popd 
-
 # show directories in stack
 dirs -v 
+
+# delete top repository from stack
+popd 
 
 # change to directory numbered n (eg 2) in the stack
 cd ~2
@@ -89,7 +89,7 @@ You can create a simple text file by
 touch mynewtextfile.txt
 ```
 
-This file can then be copied, moved or deleted:
+Files are copied, moved or deleted by:
 ```
 # copy file
 cp oldfilename newfilename
@@ -114,15 +114,15 @@ cp -r folder_old folder_new
 # delete directory
 rm –r folder_to_remove
 
-# rename directory (without -r flag)
+# rename directory (does not require -r flag)
 mv old_folder new_folder
 ```
 
 ## Interacting with Files and Chaining Commands Together - Slightly Less Basic
 ### Interacting with Text Files
-Now that we know how to move files around, we also want to do sth useful with them. 
+Now that we know how to move files around, we also want to do something useful with them. 
 
-There are four main options to access the content of a text file. I recommend just trying them out to see what they do and how they behave differently. 
+There are four main options to access the contents of a text file. I recommend just trying them out to see what they do and how they behave differently. 
 ```
 # prints whole file to screen
 cat mytextfile
@@ -137,9 +137,9 @@ less mytextfile
 # use a text editor (for example nano or here vi)
 vi mytextfile
 ```
-About the choice of editor: Personally, I am a big fan of Vim. However, I do admit that it does have the kind of learning curve which can be a bit intimidating at first. If you feel like starting out with sth a bit more beginner-friendly, you could take a look at nano. However, keep VIM in mind for the future, the speed-up for textprocessing is amazing once you know your way around. 
+About the choice of editor: Personally, I am a big fan of Vim. However, I do admit that it does have a bit of a steep learning curve at first. If you feel like starting out with sth a bit more beginner-friendly, you could take a look at nano. However, keep VIM in mind for the future, the speed-up for textprocessing is amazing once you know your way around. 
 
-You can also show only the first or last n rows of a document
+You can also return the first or last n rows of a document
 ```
 # show first 10 rows of a document
 head -10 mytextfile
@@ -166,7 +166,7 @@ grep -in mybadfilename *.py
 In the last example, we have seen an example of a place holder. \*.py denotes all files with a .py ending. 
 
 ### Redirecting Output
-Some commands print to the screen. To re-direct the output to a file we can use `>` and `>>`. `>>` appends the output an existing file or creates a new file if the file does not exist. In contrast, `>` always creates a new file. If a file with the same name already exists, it overwrites it. Here is an example of how to re-direct the output of the `grep -in mybadfilename *.py` command to a file:
+Some commands print to the screen. To re-direct the output to a file we can use `>` and `>>`. `>>` appends the output to an existing file or creates a new file if the file does not exist yet. In contrast, `>` always creates a new file. If a file with the same name already exists, it overwrites it. Here is an example of how to re-direct the output of the `grep -in mybadfilename *.py` command to a file:
 ```
 # creates new file; if file exists, overwrites it
 mycommand > mytextfile
@@ -180,15 +180,15 @@ grep -in mybadfilename *.py >> myoutputfile
 ```
 If in addition to re-directing the output to the file, we **also** want to print the output to the screen, we can use `| tee`. Note, that the complete command needs to appear before the `|`. 
 ```
-# print output to screen plus re-direct to file
+# print output to screen plus re-direct it to file
 mycommand | tee myoutputfile
 
 # example:
 grep -in mybadfilename *.py | tee myoutputfile
 ```
 
-In the previous example, we have seen the usage of the pipe (|) command. What does it do?
-`|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for sth in this output. This is where the '|' comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
+In the previous example, we have seen the usage of the pipe (|) command. How does it work?
+`|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for something in this output. This is where the '|' comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
 ```
 # grep for the string launch_ in the output of ps aux
 ps aux | grep launch_
@@ -199,92 +199,93 @@ Bash uses variables. You define variables by using the = sign. There must not be
 
 ### Variables
 ```
-# define variable
-mynewvariable="this_is_a_string"
+# define string variable
+my_string_variable="this_is_a_string"
+
+# define numeric variable
+my_numeric_variable=3
 
 # print variable to screen
 # (will print this_is_a_string to the screen)
-echo $mynewvariable
+echo $my_string_variable
 ```
 
-Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put {} around the variable names.
+Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put {} around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable mynewvariable, followed by \_1, use {} around the variable name:
 ```
-In order to print the content of the variable mynewvariable, followed by _1, use {} around the variable name:
-# incorrect (bash will think that the variable is called "mynewvariable_1"):
-echo $mynewvariable_1
+# incorrect (bash will think that the variable is called "my_string_variable_1"):
+echo $my_string_variable_1
 
 # instead use:
-echo ${mynewvariable}_1
+echo ${my_string_variable}_1
 ```
-In the second example, bash resolves the reference to mynewvariable and then appends a _1 to the resulting string.
+In the second example, bash resolves the reference to this\_is\_a\_string and then appends a \_1 to the resulting string.
 
 ### Loops
-Bash uses the for ... do ... done syntax for looping:
+Bash uses the for ... do ... done syntax for looping. The example shows how to use a loop to rename the files myfilename1 and myfilename2 to myfilename1.bac and myfilename2.bac. Note that there is no comma separating the elements of a list.
 ```
-# loop over the filenames myfilename1 and myfilename2 and rename them to myfilename1.bac and myfilename2.bac.
-# Note that there is no comma separating the elements of a list.
-for myfilename in myfilename1 myfilename2;
+# rename files by appending a .bac to every filename
+# no comma between list elements!
+for myfilename in myfilename1 myfilename2
 do
   mv $filename ${filename}.bac;
 done
 ```
-If you want to loop over an integer, you can use the sequence generator: 
+In order to loop over a list of integers, use the sequence generator to generate a list first:
 ```
-for i in $(seq 1 3);
+for i in $(seq 1 3)
 do
  echo $i
 done
 ```
-Note that $() opens a new sub-shell, where it resolves the content of () and then passes the output back to the outer shell (here: seq 1 3 produces the sequence 1 2 3 and passes it back to the outer shell, where it is then looped over. This can be very useful to loop for example over files containing a certain pattern:
+Note: $() opens a sub-shell, where the content of () is resolved. The results are then returned to the outer shell. In the example above `seq 1 3` produces the sequence 1 2 3 which is passed back to the outer shell, where it is then looped over. This behaviour can be used to for example loop over files containing a certain pattern:
 ```
-for myfile in $(ls *somepattern*);
+for myfile in $(ls *somepattern*)
 do
   cp myfile myfile.bac
 done
 ```
 
-### Writing a (Very) Basic Script
-You can create a text file containing bash syntax, make it executable and then run it. For example you can create a text file containing the following code snippet:
+### Writing and Executing a (Very) Basic Script
+To create a script, create a text file containing bash syntax, make it executable and run it. Let's look at a very basic (and admittedly very useless) example. Create a file containing the following content: 
 ```
-#!/usr/bin/bash
+#!/bin/bash
 
 # print myfilename.txt
-echo myfilename.txt
+echo "Hello World!"
 
 exit 0
 ```
-and save it as myfirstbashscript.sh . (This file does not do anything interesting, it just prints myfilename.txt to the screen). You then need to make it executable by typing 
+and save it as print\_hello\_world.sh. Note the first line of the file which tells the shell which interpreter to use. 
+You make it executable by adding execution rights for the owner and run it by ./scriptname:
 ``` 
 # add execution rights for file myfirstbashscript.sh for the owner of the file
-chmod u+x myfirstbashscript.sh
-```
-You can then run it by typing
-```
-# run script myfirstbashscript.sh
-./myfirstbashscript.sh
+chmod u+x print_hello_world.sh
+
+# run 
+./print_hello_world.sh
 ```
 
-If instead of hard-coding myfilename.txt, you want to be able to pass this as a variable to the script, you can write it like this:
+If instead of hard-coding "Hello World!", you want the user to pass the to-be-greeted to the script, you can pass this as a variable to the script. Let's create a new file print_hello_user.sh with the following content:
 ```
-#!/usr/bin/bash
+#!/bin/bash
 
-# print user-input to the screen
-echo $1
+# print "Hello " + user-input 
+echo "Hello " $1
 
 exit 0
 ```
-`$1` refers to the first input variable after the filename. So if you now run the script and pass a string to it, it prints the string on the screen.
+If we give it execution rights and execute it like this
 ```
-# run script myfirstbashscript.sh with input "hello world"
-./myfirstbashscript.sh "hello world"
+./print_hello_user.sh "Universe"
 ```
+it will print "Hello Universe" to the screen. Why? "Universe" as the first input variable after the filename gets passed to the script as variable with name 1, which isthen refered to through the $1 command in the print statement. 
 
-## Miscellaneous Useful Stuff
-* Use tab-completion whenever possible: To autocomplete, press the "Tab" key. If there are multiple options, press it twice to display all options.
-* `ESC + .` will bring back the last token from the previous line (eg: `cp filea fileb`; then in the next line `ESC + .` will produce fileb)
-* brace-completion: You can use `{}` to shorten your code sometimes. For example if you want to rename a file, you can type `mv myfilename{,.bac}`. This does the same as `mv myfilename myfilename.bac`.
+## Final Tips and Tricks
+* Use tab-completion whenever possible: To autocomplete, press the "Tab" key. If there are multiple options, press "Tab" twice to display all options.
+* `ESC + .` will bring back the last token from the previous line. Example: `cp file_a file_b`; then in the next line `ESC + .` will produce file_b.
+* brace-completion: You can use `{}` to shorten your code. For example if you want to rename a file, you can type `mv myfilename{,.bac}`. This executes as `mv myfilename myfilename.bac`. Very useful for interactive work (I would not use it in scripts though).
 * `tail -f myfilename`: `tail filename` produces the tail at the point of execution. However, you might want to be able to follow output scripts while they are being written. `tail -f` starts of as normal `tail`, but then keeps on appending when new lines appear at the end of the output  file.
-* `watch -n somenumber command` executes the command every somenumber seconds. Great in order to watch files being transfered.
+* `watch -n somenumber command` executes the command every somenumber seconds. For example `watch -n 2 ls` runs ls every 2 seconds. Great to watch files being transfered.
 
 ## Conclusion
-This was only a small introduction into the weird and wonderful world of shell scripting. If you found this interesting and are curious to try out more, [here](https://devhints.io/bash) is a good and extensive cheat-sheet for scripting, which might help you get going. For a complete coverage of the topic check out Mendel Cooper's [An in-depth exploration of the art of shell scripting](http://tldp.org/LDP/abs/html/index.html). As always, [stackoverflow](https://stackoverflow.com/) also has plenty of advice and help to offer. Or ask me :)
+In this blog we have looked at a basic introduction to using the shell. We have seen how to orient yourself in a shell environment, how to move around and some basic interactions with files. Finally we have created and ran our first script and looked at some of my favourite tricks. While this should give you a good start, this was only a small introduction into the weird and wonderful world of shell scripting. If you are curious to learn more, [here](https://devhints.io/bash) is a good and extensive cheat-sheet for scripting, which might help you further. For a complete coverage of the topic check out Mendel Cooper's [An in-depth exploration of the art of shell scripting](http://tldp.org/LDP/abs/html/index.html). As always, [stackoverflow](https://stackoverflow.com/) also has plenty of advice and help to offer :) Have fun! 
