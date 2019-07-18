@@ -1,5 +1,5 @@
 ---
-title: How to Spend More Time on the Beach - The Magic of the Shell
+title: How to Replace Computer by Beach Time - The Magic of the Shell
 header:
   overlay_image: /images/introduction-to-bash-overlay.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
