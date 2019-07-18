@@ -1,5 +1,5 @@
 ---
-title: How to Spend More Time on the Beach - The Magic of Shell Scripting
+title: How to Spend More Time on the Beach - The Magic of the Shell
 header:
   overlay_image: /images/introduction-to-bash-overlay.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -10,7 +10,7 @@ classes: wide
 
 tags:
   - bash
-excerpt: A comprehensive introduction to the shell.
+excerpt: A comprehensive introduction to shell scripting.
 ---
 
 The more I program, the lazier I become. I just can't see, why I should be doing something that a computer can do so much better, faster and more reliably on its own. On my way to the lazy worker, I have found shell scripting to be a great friend and helper. Whilst in the past, you could often get away using Windows (if you wanted), in a time, where more and more computing is outsourced to the cloud and servers are mostly Linux based, in my mind every data scientist and data engineer should have at least a basic understanding of shell scripting. I still fondly remember my PhD project when I had set up my computer to automatically generate a huge amount of input files for calculations, submit the calculations to the supercomputing center, wait for them to complete, extract the relevant data from the output, visualize the results, create a whole hierarchy of webpages and push all of this to a webserver, so the results could be viewed by multiple people collaborating from all over the world. It did all of this fully automatically on the push of a button while I was out enjoying my lunch at San Sebastian's famous "La Concha"-beach. The best: It did so reliably and never made any mistakes. Since I believe that deep down we all want to spend our time doing other things than manually moving files around, I thought I would share with you an introduction to my personal essentials of the shell. Hopefully, it can help make your life a bit easier (and spend more time at the beach if you wish to do so), too :). 
