@@ -13,11 +13,13 @@ tags:
 excerpt: A comprehensive introduction to shell scripting.
 ---
 
-The more I program, the lazier I become. I just can't see, why I should be doing something that a computer can do so much better, faster and more reliably on its own. On my way to the lazy worker, I have found shell scripting to be a great friend and helper. Whilst in the past, you could often get away using Windows (if you wanted), in a time, where more and more computing is outsourced to the cloud and servers are mostly Linux based, in my mind every data scientist and data engineer should have at least a basic understanding of shell scripting. I still fondly remember my PhD project when I had set up my computer to automatically generate a huge amount of input files for calculations, submit the calculations to the supercomputing center, wait for them to complete, extract the relevant data from the output, visualize the results, create a whole hierarchy of webpages and push all of this to a webserver, so the results could be viewed by multiple people collaborating from all over the world. It did all of this fully automatically on the push of a button while I was out enjoying my lunch at San Sebastian's famous "La Concha"-beach. The best: It did so reliably and never made any mistakes. Since I believe that deep down we all want to spend our time doing other things than manually moving files around, I thought I would share with you an introduction to my personal essentials of the shell. Hopefully, it can help make your life a bit easier (and spend more time at the beach if you wish to do so), too :). 
+The more I program, the lazier I become. I just can't see, why I should be doing something that a computer can do so much better, faster and more reliably on its own. On my way to the lazy worker, I have found shell scripting to be a great friend and helper. Whilst in the past, you could often get away using Windows (if you wanted), in a time, where more and more computing is outsourced to the cloud and servers are mostly Linux based, in my mind every data scientist and data engineer should have at least a basic understanding of shell scripting.
+(Bonus: \*See the appendix at the bottom for my favourite time, when shell scripting actually made me happy. Hint: It did involve plenty of beach time)
+Since I believe that deep down we all want to spend our time doing other things than manually moving files around, I thought I would share with you an introduction to my personal essentials of the shell. Hopefully, it can help make your life a bit easier (and spend more time at the beach if you wish to do so), too :). 
 
 ## Basics: Moving Around and Basic File Manipulations
 ### Moving Around
-If you log on, the first thing you probably want to know is where you are (hint: You will probably be in your homedirectory). You can find this out by printing your current working directory to the screen:
+If you log on, the first thing you probably want to know is where you are (hint: You will probably be in your home directory). You can find this out by printing your current working directory to the screen:
 ```
 # print working directory
 pwd
@@ -195,9 +197,9 @@ ps aux | grep launch_
 ```
 
 ## Variables and Scripting
-Bash uses variables. You define variables by using the = sign. There must not be any whitespace between the variable name, the = sign and the value. You can access the content of a variable using `$` followed by the variablename. You can use `echo` to print to the screen. 
-
 ### Variables
+Bash is a scripting language and not typed. Variables are defined and assigned using the `=` sign. There must not be any whitespace between the variable name, the = sign and the value. You can access the content of a variable using `$` followed by the variablename. You can use `echo` to print to the screen. 
+
 ```
 # define string variable
 my_string_variable="this_is_a_string"
@@ -210,7 +212,7 @@ my_numeric_variable=3
 echo $my_string_variable
 ```
 
-Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put `{}` around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable mynewvariable, followed by \_1, use {} around the variable name:
+Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put `{}` around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable my_string_variable, followed by \_1, use {} around the variable name:
 ```
 # incorrect (bash will think that the variable is called "my_string_variable_1"):
 echo $my_string_variable_1
@@ -278,14 +280,17 @@ If we give it execution rights and execute it like this
 ```
 ./print_hello_user.sh "Universe"
 ```
-it will print "Hello Universe" to the screen. Why? "Universe" as the first input variable after the filename gets passed to the script as variable with name 1, which isthen refered to through the $1 command in the print statement. 
+it will print "Hello Universe" to the screen. Why? "Universe" as the first input variable after the filename gets passed to the script as a variable with name 1, which is then referred to through the $1 command in the print statement. 
 
 ## Final Tips and Tricks
 * Use tab-completion whenever possible: To autocomplete, press the "Tab" key. If there are multiple options, press "Tab" twice to display all options.
 * `ESC + .` will bring back the last token from the previous line. Example: `cp file_a file_b`; then in the next line `ESC + .` will produce file_b.
 * brace-completion: You can use `{}` to shorten your code. For example if you want to rename a file, you can type `mv myfilename{,.bac}`. This executes as `mv myfilename myfilename.bac`. Very useful for interactive work (I would not use it in scripts though).
 * `tail -f myfilename`: `tail filename` produces the tail at the point of execution. However, you might want to be able to follow output scripts while they are being written. `tail -f` starts of as normal `tail`, but then keeps on appending when new lines appear at the end of the output  file.
-* `watch -n somenumber command` executes the command every somenumber seconds. For example `watch -n 2 ls` runs ls every 2 seconds. Great to watch files being transfered.
+* `watch -n somenumber command` executes the command every somenumber seconds. For example, `watch -n 2 ls` runs ls every 2 seconds. Great to watch files being transferred.
 
 ## Conclusion
-In this blog we have looked at a basic introduction to using the shell. We have seen how to orient yourself in a shell environment, how to move around and some basic interactions with files. Finally we have created and ran our first script and looked at some of my favourite tricks. While this should give you a good start, this was only a small introduction into the weird and wonderful world of shell scripting. If you are curious to learn more, [here](https://devhints.io/bash) is a good and extensive cheat-sheet for scripting, which might help you further. For a complete coverage of the topic check out Mendel Cooper's [An in-depth exploration of the art of shell scripting](http://tldp.org/LDP/abs/html/index.html). As always, [stackoverflow](https://stackoverflow.com/) also has plenty of advice and help to offer :) Have fun! 
+In this post, we have looked at a basic introduction to using the shell. We have seen how to orient yourself in a shell environment, how to move around and some basic interactions with files. Finally, we have created and ran our first script and looked at some of my favourite tricks. While this should give you a good start, this was only a small introduction into the weird and wonderful world of shell scripting. If you are curious to learn more, [here](https://devhints.io/bash) is a good and extensive cheat-sheet for scripting, which might help you further. For a complete coverage of the topic check out Mendel Cooper's [An in-depth exploration of the art of shell scripting](http://tldp.org/LDP/abs/html/index.html). As always, [StackOverflow](https://stackoverflow.com/) also has plenty of advice and help to offer :) Have fun! 
+
+## \*Appendix: How Shell Scripting Actually Allowed Me to Spend More Time on the Beach
+I did my PhD in San Sebastian, the capital of the Basque Country and home of the famous "La Concha" beach. My thesis was very computationally focused and required orchestrating lots of different technologies. I still fondly remember setting up my computer to automatically generate a huge amount of input files for calculations, submit the calculations to the supercomputing center, wait for them to complete, extract the relevant data from the output, visualize the results, create a whole hierarchy of webpages and push all of this to a web server, so the results could be viewed by multiple people collaborating from all over the world. It did all of this fully automatically on the push of a button and did so reliably without ever making a mistake. And I? I was enjoying my lunch at the beach :) 
