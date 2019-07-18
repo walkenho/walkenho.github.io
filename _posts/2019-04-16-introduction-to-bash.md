@@ -67,7 +67,7 @@ cd -
 ```
 
 ### Advanced Moving Around
-You can use pushd/popd to add/delete directories from/to the stack. Once added to the stack, you can jump between the directories in the stack. Note that when building your stack, you need to add the final directory twice, since the final position will always get overwritten (it sounds more complicated than it is, just try it out and you will see what I mean).
+You can use `pushd`/`popd` to add/delete directories from/to the stack. Once added to the stack, you can jump between the directories in the stack. Note that when building your stack, you need to add the final directory twice, since the final position will always get overwritten (it sounds more complicated than it is, just try it out and you will see what I mean).
 ```
 # add mydirectory to stack
 pushd mydirectory
@@ -106,7 +106,7 @@ In order to create (make) a new directory:
 mkdir mynewdirectory
 ```
 
-Directories are copied, moved and deleted like files. However, copying and deleting requires the -r (recursive) flag:
+Directories are copied, moved and deleted like files. However, copying and deleting requires the `-r` (recursive) flag:
 ```
 # copy directory
 cp -r folder_old folder_new
