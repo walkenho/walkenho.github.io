@@ -188,7 +188,7 @@ grep -in mybadfilename *.py | tee myoutputfile
 ```
 
 In the previous example, we have seen the usage of the pipe (|) command. How does it work?
-`|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for something in this output. This is where the '|' comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
+`|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for something in this output. This is where the `|` comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
 ```
 # grep for the string launch_ in the output of ps aux
 ps aux | grep launch_
@@ -210,7 +210,7 @@ my_numeric_variable=3
 echo $my_string_variable
 ```
 
-Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put {} around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable mynewvariable, followed by \_1, use {} around the variable name:
+Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put `{}` around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable mynewvariable, followed by \_1, use {} around the variable name:
 ```
 # incorrect (bash will think that the variable is called "my_string_variable_1"):
 echo $my_string_variable_1
@@ -221,7 +221,7 @@ echo ${my_string_variable}_1
 In the second example, bash resolves the reference to this\_is\_a\_string and then appends a \_1 to the resulting string.
 
 ### Loops
-Bash uses the for ... do ... done syntax for looping. The example shows how to use a loop to rename the files myfilename1 and myfilename2 to myfilename1.bac and myfilename2.bac. Note that there is no comma separating the elements of a list.
+Bash uses the `for ... do ... done` syntax for looping. The example shows how to use a loop to rename the files myfilename1 and myfilename2 to myfilename1.bac and myfilename2.bac. Note that there is no comma separating the elements of a list.
 ```
 # rename files by appending a .bac to every filename
 # no comma between list elements!
@@ -237,7 +237,7 @@ do
  echo $i
 done
 ```
-Note: $() opens a sub-shell, where the content of () is resolved. The results are then returned to the outer shell. In the example above `seq 1 3` produces the sequence 1 2 3 which is passed back to the outer shell, where it is then looped over. This behaviour can be used to for example loop over files containing a certain pattern:
+Note: `$()` opens a sub-shell, where the content of () is resolved. The results are then returned to the outer shell. In the example above `seq 1 3` produces the sequence 1 2 3 which is passed back to the outer shell, where it is then looped over. This behaviour can be used to for example loop over files containing a certain pattern:
 ```
 for myfile in $(ls *somepattern*)
 do
