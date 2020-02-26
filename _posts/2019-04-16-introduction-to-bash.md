@@ -20,20 +20,20 @@ Since I believe that deep down we all want to spend our time doing other things 
 ## Basics: Moving Around and Basic File Manipulations
 ### Moving Around
 If you log on, the first thing you probably want to know is where you are (hint: You will probably be in your home directory). You can find this out by printing your current working directory to the screen:
-```
+```bash
 # print working directory
 pwd
 ```
 
 Next, you should list its contents by typing
-```
+```bash
 # list contents of current directory
 ls
 ```
 
 Many bash commands allow for modifiers, so-called flags. They mostly consist of a single letter, which is appended to the command by a "-". You can combine multiple flags by writing them one behind the other. `ls` has a multitude of possible flags. Here are some examples
 
-```
+```bash
 # include hidden files
 ls -a
 
@@ -45,7 +45,7 @@ ls -1d directoryname
 ```
 
 In order to find out more about a command use the manual (man pages): 
-```
+```bash
 # print manual for mycommand
 man mycommand
 
@@ -54,7 +54,7 @@ man ls
 ```
 
 In order to move around, you use the `cd` (change directory) command:
-```
+```bash
 # change to directory called mydirectory inside current directory
 cd mydirectory
 
@@ -70,7 +70,7 @@ cd -
 
 ### Advanced Moving Around
 You can use `pushd`/`popd` to add/delete directories from/to the stack. Once added to the stack, you can jump between the directories in the stack. Note that when building your stack, you need to add the final directory twice, since the final position will always get overwritten (it sounds more complicated than it is, just try it out and you will see what I mean).
-```
+```bash
 # add mydirectory to stack
 pushd mydirectory
 
@@ -86,13 +86,13 @@ cd ~2
 
 ### Basic Interaction with Files and Folders
 You can create a simple text file by 
-```
+```bash
 # create a text file called mynewtextfile.txt
 touch mynewtextfile.txt
 ```
 
 Files are copied, moved or deleted by:
-```
+```bash
 # copy file
 cp oldfilename newfilename
 
@@ -104,12 +104,12 @@ rm oldfilename
 ```
 
 In order to create (make) a new directory:
-```
+```bash
 mkdir mynewdirectory
 ```
 
 Directories are copied, moved and deleted like files. However, copying and deleting requires the `-r` (recursive) flag:
-```
+```bash
 # copy directory
 cp -r folder_old folder_new
 
@@ -125,7 +125,7 @@ mv old_folder new_folder
 Now that we know how to move files around, we also want to do something useful with them. 
 
 There are four main options to access the contents of a text file. I recommend just trying them out to see what they do and how they behave differently. 
-```
+```bash
 # prints whole file to screen
 cat mytextfile
 
@@ -142,7 +142,7 @@ vi mytextfile
 About the choice of editor: Personally, I am a big fan of Vim. However, I do admit that it does have a bit of a steep learning curve at first. If you feel like starting out with sth a bit more beginner-friendly, you could take a look at nano. However, keep VIM in mind for the future, the speed-up for textprocessing is amazing once you know your way around. 
 
 You can also return the first or last n rows of a document
-```
+```bash
 # show first 10 rows of a document
 head -10 mytextfile
 
@@ -151,7 +151,7 @@ tail -10 mytextfile
 ```
 
 In order to find pieces of text in a document use `grep`
-```
+```bash
 # look for the string python in mytextfile
 grep python mytextfile
 
@@ -169,7 +169,7 @@ In the last example, we have seen an example of a place holder. \*.py denotes al
 
 ### Redirecting Output
 Some commands print to the screen. To re-direct the output to a file we can use `>` and `>>`. `>>` appends the output to an existing file or creates a new file if the file does not exist yet. In contrast, `>` always creates a new file. If a file with the same name already exists, it overwrites it. Here is an example of how to re-direct the output of the `grep -in mybadfilename *.py` command to a file:
-```
+```bash
 # creates new file; if file exists, overwrites it
 mycommand > mytextfile
 # example:
@@ -181,7 +181,7 @@ mycommand >> mytextfile
 grep -in mybadfilename *.py >> myoutputfile
 ```
 If in addition to re-directing the output to the file, we **also** want to print the output to the screen, we can use `| tee`. Note, that the complete command needs to appear before the `|`. 
-```
+```bash
 # print output to screen plus re-direct it to file
 mycommand | tee myoutputfile
 
@@ -191,7 +191,7 @@ grep -in mybadfilename *.py | tee myoutputfile
 
 In the previous example, we have seen the usage of the pipe (|) command. How does it work?
 `|` re-directs output into functions which normally take their input "from the right", so expect the input to come after the function call. An example: As demonstrated previously, `grep` requires the syntax `grep sth filename`. However you might have a programm returning output and want to grep for something in this output. This is where the `|` comes into play. For example, `ps aux` shows all processes running on your system. You might want to search for a process containing a certain string, e.g. launch\_. This is how you do it: 
-```
+```bash
 # grep for the string launch_ in the output of ps aux
 ps aux | grep launch_
 ```
@@ -200,7 +200,7 @@ ps aux | grep launch_
 ### Variables
 Bash is a scripting language and not typed. Variables are defined and assigned using the `=` sign. There must not be any whitespace between the variable name, the = sign and the value. You can access the content of a variable using `$` followed by the variablename. You can use `echo` to print to the screen. 
 
-```
+```bash
 # define string variable
 my_string_variable="this_is_a_string"
 
@@ -213,7 +213,7 @@ echo $my_string_variable
 ```
 
 Variables are often used to define paths and filenames. When variables are re-solved within text, it is required to put `{}` around the variable names. As an example consider the just created variable my_string_variable. Assume you want to print 'this_is_a_string_1'. In order to print the content of the variable my_string_variable, followed by \_1, use {} around the variable name:
-```
+```bash
 # incorrect (bash will think that the variable is called "my_string_variable_1"):
 echo $my_string_variable_1
 
@@ -224,7 +224,7 @@ In the second example, bash resolves the reference to this\_is\_a\_string and th
 
 ### Loops
 Bash uses the `for ... do ... done` syntax for looping. The example shows how to use a loop to rename the files myfilename1 and myfilename2 to myfilename1.bac and myfilename2.bac. Note that there is no comma separating the elements of a list.
-```
+```bash
 # rename files by appending a .bac to every filename
 # no comma between list elements!
 for myfilename in myfilename1 myfilename2
@@ -233,14 +233,14 @@ do
 done
 ```
 In order to loop over a list of integers, use the sequence generator to generate a list first:
-```
+```bash
 for i in $(seq 1 3)
 do
  echo $i
 done
 ```
 Note: `$()` opens a sub-shell, where the content of () is resolved. The results are then returned to the outer shell. In the example above `seq 1 3` produces the sequence 1 2 3 which is passed back to the outer shell, where it is then looped over. This behaviour can be used to for example loop over files containing a certain pattern:
-```
+```bash
 for myfile in $(ls *somepattern*)
 do
   cp myfile myfile.bac
@@ -249,7 +249,7 @@ done
 
 ### Writing and Executing a (Very) Basic Script
 To create a script, create a text file containing bash syntax, make it executable and run it. Let's look at a very basic (and admittedly very useless) example. Create a file containing the following content: 
-```
+```bash
 #!/bin/bash
 
 # print myfilename.txt
@@ -268,7 +268,7 @@ chmod u+x print_hello_world.sh
 ```
 
 If instead of hard-coding "Hello World!", you want the user to pass the to-be-greeted to the script, you can pass this as a variable to the script. Let's create a new file print_hello_user.sh with the following content:
-```
+```bash
 #!/bin/bash
 
 # print "Hello " + user-input 
@@ -277,7 +277,7 @@ echo "Hello " $1
 exit 0
 ```
 If we give it execution rights and execute it like this
-```
+```bash
 ./print_hello_user.sh "Universe"
 ```
 it will print "Hello Universe" to the screen. Why? "Universe" as the first input variable after the filename gets passed to the script as a variable with name 1, which is then referred to through the $1 command in the print statement. 
