@@ -34,12 +34,7 @@ output_notebook()
 
 
 
-    <div class="bk-root">
-        <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-        <span id="1001">Loading BokehJS ...</span>
-    </div>
-
-
+    
 
 
 ## Obtaining and Loading the Data
@@ -303,9 +298,6 @@ for _ in range(n_rounds):
 
 
 {% include ../images/beating-child-mortality-bokeh.html %}
-  <div class="bk-root" id="36b8230d-6842-40b0-b5ff-4f96597368d6" data-root-id="1004"></div>
-
-
 
 
 
@@ -325,8 +317,6 @@ _ = interact(update, year=(year_start,year_end))
 
 
 
-
-  <div class="bk-root" id="8bb71548-7aeb-4e18-86ae-890da2acb33a" data-root-id="1004"></div>
 
 
 
