@@ -314,7 +314,7 @@ for _ in range(n_rounds):
 
 
 
-{% include ../images/beating-child-mortality-bokeh.html %}
+{% include_relative include/beating-child-mortality-bokeh.html %}
 
 
 
