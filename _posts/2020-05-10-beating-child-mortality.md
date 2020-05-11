@@ -1,4 +1,21 @@
-# We Are Beating Child Mortality - How to Create Interactive and Animated Visualizations in Python 
+---
+title: >-
+    We Are Beating Child Mortality - How to Create Interactive and Animated Visualizations in Python 
+header:
+  overlay_image: /images/beergarden-happiness-overlay.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo by [**Tomasz Rynkiewicz on Unsplash**](https://unsplash.com/@thmsr)"
+  actions:
+    - label: "Enjoying a Drink Outside"
+classes: wide
+tags:
+  - python
+  - visualization
+  - open data
+excerpt: sth sth 
+---
+
+
 In 2009 Hans Rosling -founder of [Gapminder](https://www.gapminder.org/)- gave a [TED talk](https://www.ted.com/talks/hans_rosling_the_good_news_of_the_decade_we_re_winning_the_war_against_child_mortality) about the world-wide evolution of child mortality since the 1960s. He came to the conclusion that at that time, we were on a good way to beating child mortality, even though we were not quite there yet. He evidenced his statements by showing the evolution of child mortality vs female fertility using his famous bubble graphs. 
 
 Being the amazing storyteller, he is, Rosling's talk left me wondering where we were on our journey in 2019, 10 years later. So I decided to figure out the next chapter in the story, revise where we were with respect to child mortality and hone my visualization skills by learning how to do animated graphs in Python. This post describes my findings. As always, the full notebook is available on [my GitHub](https://github.com/walkenho/tales-of-1001-data/tree/master/child-mortality).
