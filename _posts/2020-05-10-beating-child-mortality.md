@@ -308,15 +308,14 @@ for _ in range(n_rounds):
             time.sleep(0.1)
 ```
 
-
-
-
-
-
-
-{% include_relative include/beating-child-mortality-bokeh.html %}
-
-
+<iframe src="include/beating-child-mortality-bokeh.html"
+    sandbox="allow-same-origin allow-scripts"
+    width="100%"
+    height="500"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 ## Creating an Interactive Graph
 The second option I wanted to explore was how to create interactive graphs. This can be achieved with the help of the `interact` method. `interact()` takes a function as argument and allows the user to change its input parameters using a widget. In the following, we allow the user to change the input parameter year of the function update between the limits 1960 and 2017.
