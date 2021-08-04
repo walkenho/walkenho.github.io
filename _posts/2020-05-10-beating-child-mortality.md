@@ -12,7 +12,7 @@ tags:
   - python
   - visualization
   - open data
-excerpt: sth sth 
+excerpt: Recreating Hans Rosling's famous bubble charts in Python
 ---
 
 
@@ -172,7 +172,7 @@ colour_dict = {'Latin America & Caribbean':'green',
 c = [colour_dict[region] for region in countryfilter['Region']]
 ```
 
-Now that we have sourced the data, we are going to explore how we can create both an animation as well as an interactive graph on top of it. There are multiple libraries out there to achieve this. Here, we will look at [`Bokeh`](https://docs.bokeh.org/en/latest/), a library that provides a python wrapper around the JavaScript library [d3.js] (https://d3js.org/). When creating a Bokeh visualization, the user creates a base figure and attaches a handle. This handle can then be used (implicitly or explicitly) to update the figure in-situ. We can update figure properties as well as the underlying data.
+Now that we have sourced the data, we are going to explore how we can create both an animation as well as an interactive graph on top of it. There are multiple libraries out there to achieve this. Here, we will look at [`Bokeh`](https://docs.bokeh.org/en/latest/), a library that provides a python wrapper around the JavaScript library [d3.js](https://d3js.org/). When creating a Bokeh visualization, the user creates a base figure and attaches a handle. This handle can then be used (implicitly or explicitly) to update the figure in-situ. We can update figure properties as well as the underlying data.
 
 ## Creating the Base Figure
 To make it easier to update the underlying data, we first create a function that takes a year as input and creates a Bokeh ColumnDataSource containing all the relevant data for this year. This ColumnDataSource can then be used to update the Bokeh figure either interactively through the use of a user-operated widget or dynamically through a loop creating an animation.
