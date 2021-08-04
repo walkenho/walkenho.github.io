@@ -12,7 +12,7 @@ tags:
   - python
   - visualization
   - open data
-excerpt: Recreating Hans Rosling's famous bubble charts in Python
+excerpt: Recreating Hans Rosling's famous bubble charts in Python.
 ---
 
 
