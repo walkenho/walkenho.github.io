@@ -308,7 +308,7 @@ for _ in range(n_rounds):
             time.sleep(0.1)
 ```
 
-<iframe src="include/beating-child-mortality-bokeh.html"
+<iframe src="/images/beating-child-mortality-bokeh.html"
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="500"
