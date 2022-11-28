@@ -103,7 +103,7 @@ author:
   name             : "Jessica Walkenhorst"
   avatar           : "/images/me.JPG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Ever tried, ever failed, no matter. Try again, fail again, fail better."
-  location         : "Edinburgh, Scotland"
+  location         : "London, UK"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
