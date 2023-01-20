@@ -1,4 +1,19 @@
-# How to Create a Computer Vision Model to Save the Ugly Duckling from a Youth of Misery in Less Than 30 Lines of  Code
+---
+title: >-
+    Saving the Ugly Duckling from a Youth of Misery using CV
+header:
+  overlay_image: 
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo by [**Tomasz Rynkiewicz on Unsplash**](https://unsplash.com/@thmsr)"
+  actions:
+    - label: "Enjoying a Drink Outside"
+classes: wide
+tags:
+  - python
+  - visualization
+  - open data
+excerpt: How to create and deploy a CV classifier in less than 30 lines of code
+---
 
 ## Introduction
 
@@ -17,9 +32,11 @@ To follow along, find the complete code in [my GitHub respository Tales-of-1001-
 
 So let's get started, so that the ugly duckling can finally ask the magical question
 
-**"Mirror, mirror on the wall, am I a duckling or a cygnet after all?"**
-
-<img src="mirror-mirror.png" alt="**Mirror, mirror on the wall, am I a duckling or a cygnet after all?**" width="15%" align="middle"/>
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." width="50%">
+    <figcaption>"Mirror, mirror on the wall, am I a duckling or a cygnet after all?"</figcaption>
+</figcaption>
+</figure>
 
 ## Preparations
 
@@ -35,33 +52,6 @@ I have run this notebook on Google Colab (because yeah, free GPUs!), which comes
 ```python
 ! pip install -U duckduckgo_search
 ```
-
-    Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-    Collecting duckduckgo_search
-      Downloading duckduckgo_search-2.8.0-py3-none-any.whl (34 kB)
-    Collecting requests>=2.28.1
-      Downloading requests-2.28.1-py3-none-any.whl (62 kB)
-    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m62.8/62.8 KB[0m [31m5.9 MB/s[0m eta [36m0:00:00[0m
-    [?25hCollecting click>=8.1.3
-      Downloading click-8.1.3-py3-none-any.whl (96 kB)
-    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m96.6/96.6 KB[0m [31m9.9 MB/s[0m eta [36m0:00:00[0m
-    [?25hRequirement already satisfied: urllib3<1.27,>=1.21.1 in /usr/local/lib/python3.8/dist-packages (from requests>=2.28.1->duckduckgo_search) (1.24.3)
-    Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.8/dist-packages (from requests>=2.28.1->duckduckgo_search) (2022.12.7)
-    Requirement already satisfied: charset-normalizer<3,>=2 in /usr/local/lib/python3.8/dist-packages (from requests>=2.28.1->duckduckgo_search) (2.1.1)
-    Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.8/dist-packages (from requests>=2.28.1->duckduckgo_search) (2.10)
-    Installing collected packages: requests, click, duckduckgo_search
-      Attempting uninstall: requests
-        Found existing installation: requests 2.25.1
-        Uninstalling requests-2.25.1:
-          Successfully uninstalled requests-2.25.1
-      Attempting uninstall: click
-        Found existing installation: click 7.1.2
-        Uninstalling click-7.1.2:
-          Successfully uninstalled click-7.1.2
-    [31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
-    flask 1.1.4 requires click<8.0,>=5.1, but you have click 8.1.3 which is incompatible.[0m[31m
-    [0mSuccessfully installed click-8.1.3 duckduckgo_search-2.8.0 requests-2.28.1
-
 
 ### Importing Modules
 
@@ -279,9 +269,12 @@ dls.train.show_batch(max_n=6, nrows=1)
 ```
 
 
-    
-![png](output_30_0.png)
-    
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" alt="" width="50%">
+    <figcaption>"Inspecting some batch images"</figcaption>
+</figcaption>
+</figure>
+
 
 
 Looking good :)
@@ -302,12 +295,6 @@ learn = vision_learner(dls, resnet18, metrics=error_rate)
 # 5 is a good number of steps, afterwards the validation loss starts increasing
 learn.fine_tune(5)
 ```
-
-    /usr/local/lib/python3.7/dist-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and will be removed in 0.15, please use 'weights' instead.
-      f"The parameter '{pretrained_param}' is deprecated since 0.13 and will be removed in 0.15, "
-    /usr/local/lib/python3.7/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and will be removed in 0.15. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
-      warnings.warn(msg)
-
 
 
 
@@ -458,12 +445,6 @@ interp.plot_confusion_matrix()
 
 
 
-
-
-
-
-
-
 <style>
     /* Turns off some styling */
     progress {
@@ -481,15 +462,12 @@ interp.plot_confusion_matrix()
 </style>
 
 
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" alt="" width="50%">
+    <figcaption>"Confusion Matrix"</figcaption>
+</figcaption>
+</figure>
 
-
-
-
-
-
-    
-![png](output_35_4.png)
-    
 
 
 #### Largest Losses
@@ -523,12 +501,12 @@ interp.plot_top_losses(10, nrows=2)
 
 
 
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png" alt="Top losses" width="50%">
+    <figcaption>"Showing the top losses"</figcaption>
+</figcaption>
+</figure>
 
-
-
-    
-![png](output_37_2.png)
-    
 
 
 The two highest loss values are produced by the misclassified ducklings, in order of descending certainty, followed by correctly classified images, but with less certainty. 
@@ -542,9 +520,6 @@ Assuming that you would like to delete all non-Mallard ducklings from the datase
 # items=True returns the file paths
 interp.top_losses(items=True)
 ```
-
-
-
 
     (TensorBase([4.0928e+00, 1.0488e+00, 2.4337e-01, 1.5965e-01, 7.6476e-02,
                  3.3652e-02, 1.8994e-02, 1.2116e-02, 8.2581e-03, 4.4039e-03,
@@ -592,13 +567,6 @@ cleaner
 </style>
 
 
-
-
-
-
-
-
-
 <style>
     /* Turns off some styling */
     progress {
@@ -614,12 +582,6 @@ cleaner
         background: #F44336;
     }
 </style>
-
-
-
-
-
-
 
 
     VBox(children=(Dropdown(options=('herring', 'iceland', 'lesser_black-backed'), value='herring'), Dropdown(opti…
@@ -743,18 +705,15 @@ im_duckling
 
 
 
-
-    
-![png](output_55_0.png)
-    
-
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_55_0.png" alt="Duckling" width="50%">
+</figcaption>Image of a duckling</figure>
 
 
 
 ```python
 learn.predict(im_duckling)
 ```
-
 
 
 <style>
@@ -772,14 +731,6 @@ learn.predict(im_duckling)
         background: #F44336;
     }
 </style>
-
-
-
-
-
-
-
-
 
 
     ('duckling', TensorBase(1), TensorBase([0.0242, 0.9758]))
@@ -838,7 +789,7 @@ With that being said, I will leave you to marvel at these results that one of my
 </figure>
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina" width="50%">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina" width="250%">
     <figcaption>Clearly a Swan ;)</figcaption>
 </figure>
 
