@@ -35,7 +35,6 @@ So let's get started, so that the ugly duckling can finally ask the magical ques
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." width="50%">
     <figcaption>"Mirror, mirror on the wall, am I a duckling or a cygnet after all?"</figcaption>
-</figcaption>
 </figure>
 
 ## Preparations
@@ -162,7 +161,11 @@ To ensure that you download a useful dataset, it helps to start the process by m
 
 For this project, I found that searching for "cygnet" not only found images of actual cygnets, but also returned images of a brand of the same name, which we don't want to include in our data set. 
 
-![Not the type of cygnet we were looking for](wrong-type-of-cygnets.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/wrong-type-of-cygnets.png" alt="" width="100%">
+    <figcaption>Not the type of cygnet we were looking for</figcaption>
+</figure>
+
 
 There are technical ways of dealing with this problem, but the most straight forward solution is to simply change the search string to "baby swan", which solved the issue perfectly. In a similar project, I wanted to get photos in different lighting conditions, but realized that whilst looking for "objectname sun" returned useful results, looking for "objectname shade" did mostly return undesired results, so was not recommendable. These issues can be addressed a lot easier by doing a quick manual search upfront than by cleaning up your data set afterwards.
 
@@ -271,7 +274,7 @@ dls.train.show_batch(max_n=6, nrows=1)
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" alt="" width="50%">
-    <figcaption>"Inspecting some batch images"</figcaption>
+    <figcaption>Batch images of our input data</figcaption>
 </figcaption>
 </figure>
 
@@ -426,46 +429,9 @@ interp.plot_confusion_matrix()
 ```
 
 
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" alt="" width="50%">
-    <figcaption>"Confusion Matrix"</figcaption>
-</figcaption>
+    <figcaption>Confusion Matrix</figcaption>
 </figure>
 
 
@@ -478,27 +444,6 @@ For a more detailed view, let's go back to the losses. Using `interp.plot_top_lo
 ```python
 interp.plot_top_losses(10, nrows=2)
 ```
-
-
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-
 
 
 <figure class="align-center">
@@ -549,45 +494,10 @@ cleaner
 ```
 
 
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png" alt="Duckling" width="50%">
+</figcaption>Using the `ImageClassifierCleaner`</figure>
 
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-    VBox(children=(Dropdown(options=('herring', 'iceland', 'lesser_black-backed'), value='herring'), Dropdown(opti…
-
-
-![ImageClassifierCleaner](data-cleaning.png)
 
 Note that the above only provides the graphical interface, you still need to relabel and/or delete the actual images. You can do this by using the following code. You need to run it for each combination of drop-downs that you want to treat.
 
@@ -635,7 +545,11 @@ Some options to serve your interface are:
 
 I decided to build my app using Gradio and host it on Hugging Face Community. This was mostly because I had not used either of them before and wanted to give them a spin. Either of the options above will serve you well. This is how my app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
-<img src="app-screenshot.png" alt="**Gradio App on HuggingFace?**" width="75%" align="middle"/>
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png" alt="" width="100%">
+    <figcaption>My Gradio App</figcaption>
+</figure>
+
 
 In order to build this and host it on HuggingFace, you need six files: 
 
@@ -789,7 +703,7 @@ With that being said, I will leave you to marvel at these results that one of my
 </figure>
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina" width="250%">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina" width="25%">
     <figcaption>Clearly a Swan ;)</figcaption>
 </figure>
 
@@ -799,6 +713,5 @@ Or if you are feeling adventurous test it out for yourself...
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/jessica-duckling.png" alt="Apparantly I am a duckling..." width="50%">
-    <figcaption>Apparently I am more of a duckling than Huey, Dewey and Louie together. Not sure what my self-esteem has to say to that ... :-/
-</figcaption>
+    <figcaption>Apparently I am more of a duckling than Huey, Dewey and Louie together. Not sure what my self-esteem has to say to that ... :-/</figcaption>
 </figure>
