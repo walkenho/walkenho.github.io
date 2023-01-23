@@ -17,20 +17,20 @@ excerpt: How to create and deploy a CV classifier in less than 30 lines of code
 
 ## Introduction
 
-No New Year without its resolution. So how about diving into computer vision, learning a new library that allows you to train a computer vision model in less than 30 lines of code and revisiting some good old fairy tales all at once?
+No New Year without its New Year resolution. So how about diving into computer vision, learning a new library that allows you to train a computer vision model in less than 30 lines of code and revisiting some good old fairy tales? And all at once?
 
 Hans Christian Andersen's [tale of the ugly duckling](https://americanliterature.com/author/hans-christian-andersen/short-story/the-ugly-duckling) tells us about a cygnet (i.e. a baby swan) brought up as part of a family of ducks and being bullied by its siblings and everybody else for being ugly (read *different to them*). If only the poor cygnet had had somebody to tell it that it in fact was a swan instead! Entering Our Hero, Machine Learning to the rescue!
 
-In this project, we will learn how to use fastai, Gradio and HuggingFace to build a magic mirror that can distinguish a duckling from a cygnet in four main steps. We will learn how to:
+In this project, we will learn how to use fastai, Gradio and HuggingFace to build a magic mirror that can distinguish a duckling from a cygnet in four main steps. Then we will deploy it to the internet for all ducklings out there to use. We will learn how to:
 
 1. Create a dataset from scratch, using a duckduckgo image search.
 2. Train a train a computer vision model using [fastai](https://www.fast.ai/).
 3. Build a magic mirror app using [Gradio](https://www.gradio.app/).
-4. Deploy the magic mirror on [HuggingFace](https://huggingface.co/).
+4. Deploy the magic mirror for free on [HuggingFace](https://huggingface.co/).
 
-To follow along, find the complete code in [my GitHub respository Tales-of-1001-Data]().
+If you want to follow along, you can find the complete code on [Tales-of-1001-Data]().
 
-So let's get started, so that the ugly duckling can finally ask the magical question
+So let's get started to help the duckling answer the magical question...
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." width="50%">
@@ -42,20 +42,15 @@ So let's get started, so that the ugly duckling can finally ask the magical ques
 ### Installing Libraries
 
 The training part of this notebook requires two non-standard libraries:
-* We use `duckduckgo_search` to search for cygnet and duckling images to create the dataset. 
-* We use `fastai` for training the computer vision model. [fastai](https://docs.fast.ai/), a higher-level interface to PyTorch, allows users to train state-of-the-art deep learning models in very few lines of code with the shortest being [four lines of code from zero to image-classifier](https://www.fast.ai/posts/2021-08-02-fastdownload.html).
 
-I have run this notebook on Google Colab (because yeah, free GPUs!), which comes with fastai pre-installed, so the only thing required to install is `duckduckgo_search`. If you are running this somewhere else, you might have to install the `fastai` library, too. At the time of writing, `mamba` is the recommended way of doing so, however check the [fastai homepage](https://docs.fast.ai/) for up-to-date instructions. Let's go ahead and install `duckduckgo_search`.
+* We use `duckduckgo_search` to search for cygnet and duckling images to create the dataset.
+* We use `fastai` for training the computer vision model. [fastai](https://docs.fast.ai/). Fastai is a higher-level interface to PyTorch that allows users to train to train deep learning models in very few lines of code ([here is an example of four lines of code from zero to image-classifier](https://www.fast.ai/posts/2021-08-02-fastdownload.html)).
 
-
-```python
-! pip install -U duckduckgo_search
-```
+If you run your code on Google Colab (because yeah, free GPUs!), you don't need need to worry about installing fastai, just run `! pip install duckduck-go` to install the duckduck-go library. Anywhere else, you might have to install `fastai`, too. At the time of writing, the [fastai homepage](https://docs.fast.ai/) recommends `mamba` for installation, but it's worth checking again.
 
 ### Importing Modules
 
-Library imports should happen at the top of your code, so as always let's start with importing the required libraries.
-
+Library imports should happen at the top of your code, so let's import the required libraries.
 
 ```python
 from pathlib import Path
@@ -74,7 +69,7 @@ from fastai.metrics import error_rate
 from fastai.vision.augment import Resize, RandomResizedCrop, aug_transforms
 from fastai.vision.core import DataBlock
 from fastai.vision.data import CategoryBlock, ImageBlock
-from fastai.vision.all import vision_learner
+from fastai.vision.all import vision_learner # import from vision.all due to patching
 from fastai.vision.utils import download_images, get_image_files, verify_images
 
 from fastcore.foundation import L
@@ -82,28 +77,17 @@ from fastcore.foundation import L
 from torchvision.models.resnet import resnet18
 ```
 
-Note that the recommended way of importing fastai libraries is to use
-
-`from fastai import *`
-
-or at least
-
-`from fastai.vision.all import *`.
-
-This is partially due to the [large number of required imports](https://forums.fast.ai/t/cnn-learner-returning-a-sequential-object-with-missing-methods/90378) and partially due to the [extensive monkey patching in the library](https://forums.fast.ai/t/cnn-learner-returning-a-sequential-object-with-missing-methods/90378). To get an impression of how a one-by-one import looks like (including comments on patched functions), take a look at [walk-with-fastai's first lesson](https://walkwithfastai.com/Pets).
-
-However, since in software engineering, wildcard imports are typically dicouraged (with exceptions for ad-hoc work), I import the needed libraries one by one and resolve [issues](https://stackoverflow.com/questions/65128126/fast-ai-attributeerror-learner-object-has-no-attribute-fine-tune) as they appear. This also forces me to become more familiar with the internal organization of the library itself, which I appreciate. When running into issues I find the following steps helpful.
+Note that due to the [large number of required imports](https://forums.fast.ai/t/cnn-learner-returning-a-sequential-object-with-missing-methods/90378) and the [extensive monkey patching in the library](https://forums.fast.ai/t/cnn-learner-returning-a-sequential-object-with-missing-methods/90378) the recommended way of importing fastai libraries is to use `from fastai import *` or `from fastai.vision.all import *` (take a look at [walk-with-fastai's first lesson](https://walkwithfastai.com/Pets) to get an impression of the extend of both).
+However, since wildcard imports are typically discouraged (with exceptions for ad-hoc work), I tend to import the libraries one by one and resolve [issues as they appear](https://stackoverflow.com/questions/65128126/fast-ai-attributeerror-learner-object-has-no-attribute-fine-tune). This also forces me to become more familiar with the internal organization of the library itself, something I appreciate. When running into issues I find the following steps helpful.
 
 ### How to troubleshoot imports
 
 1. Run `from fastai import *` to see if this solves your issue.
 2. If so, use `which functionname` to find out from where you should be actually importing your library
-3. Adapt your import statement accordingly. 
+3. Adapt your import statement accordingly.
 
-An example where this has helped me was in finding out that `vision_learner` should be imported from `fastai.vision.all` instead of from `fastai.vision.learner`.
-If you don't want to go into too many details with your imports, you can also import the modules from `fastai.vision.all` (e.g. `from fastai.vision.all import RandomSplitter`).
-
-Finally, in addition to the data crunching and general learning modules, we import the resnet18 model which is the architecture we will be using for our learning task. More on resnet18 below.
+An example of one of these patching issues is that `vision_learner` should be imported from `fastai.vision.all` instead of from `fastai.vision.learner`.
+If you in general don't want to go into too many details with your imports, you can also strike a happy medium by importing modules from `fastai.vision.all`.  
 
 ## Creating the Dataset
 
@@ -115,7 +99,6 @@ No machine learning without data. To create our dataset, we implement the follow
 * Delete images which are not ok.
 
 Once we have built the dataset, we will use it to train a classifier. A common image classification folder structure is to save the images in folders named according to their label. To decouple the label from the actual searchterm and create more flexibility in setting up our search, we create a `Searchterm` dataclass that holds both the search term and the label.
-
 
 ```python
 IMAGEPATH = Path().cwd()/'images'
@@ -157,23 +140,20 @@ def download_search_data(terms: List[Searchterm], n_searches) -> None:
 
 ### On Finding the Right Search Terms
 
-To ensure that you download a useful dataset, it helps to start the process by manually running a few searches and having a look at the images you find with your query strings. Doing this process manually allows you to quickly tweak your query string so that it returns useful images and avoid the [garbage in - garbage out problem](https://en.wikipedia.org/wiki/Garbage_in,_garbage_out).
+To make sure that one downloads a useful dataset, it helps to start the process by manually running a few searches and having a look at the general results of the query. Doing this process manually allows you to quickly tweak your query string till it returns useful images and helps to avoid the [garbage in - garbage out problem](https://en.wikipedia.org/wiki/Garbage_in,_garbage_out).
 
-For this project, I found that searching for "cygnet" not only found images of actual cygnets, but also returned images of a brand of the same name, which we don't want to include in our data set. 
+For this project, I found that searching for "cygnet" not only returned images of actual cygnets, but also returned images wool and alcohol bottles (both of brands with "cygnet" in the name). There are technical ways of dealing with this problem, but the most straight forward solution is to simply change the search string to "baby swan", which solved the issue perfectly. In a similar project, I wanted to get photos in different lighting conditions, but realized that whilst looking for "objectname sun" returned useful results, looking for "objectname shade" did mostly return undesired results, so was not recommendable.
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/wrong-type-of-cygnets.png" alt="" width="100%">
     <figcaption>Not the type of cygnet we were looking for</figcaption>
 </figure>
 
-
-There are technical ways of dealing with this problem, but the most straight forward solution is to simply change the search string to "baby swan", which solved the issue perfectly. In a similar project, I wanted to get photos in different lighting conditions, but realized that whilst looking for "objectname sun" returned useful results, looking for "objectname shade" did mostly return undesired results, so was not recommendable. These issues can be addressed a lot easier by doing a quick manual search upfront than by cleaning up your data set afterwards.
-
-Once we have found good search terms, we can run our search and download some images! Remember to start from a clean directory structure to avoid potential issues with unbalanced data sets (in case you have run your code before, but interrupted it for some reason or similar). 
-
+Once we have found good search strings, we can run our search and download some images!
+The following code downloads 100 images for "baby swan" and "duckling" each, checks them and deletes broken images. In my experience, about 2-3 images are typically broken, so afterwards we are left with a little under 100 actual images.
 
 ```python
-# Clean folder structure
+# Clean folder structure to avoid imbalanced data sets
 IMAGEPATH.delete()
 
 download_search_data([Searchterm(searchstring='baby swan', label='cygnet'),
@@ -181,18 +161,46 @@ download_search_data([Searchterm(searchstring='baby swan', label='cygnet'),
                      n_searches=100)
 ```
 
-    Downloading 100 images for baby swan into folder cygnet.
-    Deleted 3 invalid images for baby swan
-    Downloading 100 images for duckling into folder duckling.
-    Deleted 2 invalid images for duckling
-
-
-Nice! 
-
 ### Training the Image Classifier
 
-Now that we have some data, we are ready to train the classifier. The first step is to convert the images in their folders into a structure that fastai models, which are called learners, can understand. fastai learners expect the data to come in the shape of a `DataLoaders` object. One way to create a `DataLoaders` object is to specify a `DataBlock` first, then call the `dataloaders()` method on it. This is how this looks like for our case.
+#### Setting up the DataLoader
 
+Next, we need to tell fastai how to convert the images in their folders into image batches that it can train the classifier on. fastai loads data using a `Dataloaders` object, so we need to tell it how to create one. One way to create a `DataLoaders` object is to first create a `DataBlock`, then call the `dataloaders()` method on it. The five things we need to tell fastai when creating a `DataLoaders` object are:
+
+* What type of data are input and output data?
+* How should it load the data?
+* For a classification task: How can it determine the labels?
+* How should it create a validation set?
+* Which data transformations should it apply? Are these individual or batch transformations?
+
+##### Data Transformations: Image Resizing and Augmentation
+
+Data transformations come in two flavours, individual and batch transformations. Individual transformations are applied to each image individually, batch transformations are applied to a whole batch in parallel at the same time (making them a lot faster).
+
+Typical data transformations for image data are resizing and image augmenation tasks. In order to train a neural network on image data, the images need to be of the same size. We can achieve this through:
+
+* cropping
+* squishing
+* padding
+  
+All of these have their drawbacks. Cropping might delete important parts of the image, squishing distorts the image and padding introduces useless data points thereby unnecessarily increasing computational costs.
+
+In order to prevent overfitting (especially when dealing with small datasets), we might also apply augmentations to our image dataset. Augmentations can happen on an image or on a pixel level. Examples of augmentations on an image level are:
+
+* flipping
+* rotation
+* perspective warping
+
+Examples of pixel augmentations are changes to:
+
+* brightness
+* saturation
+* hue
+* contrast
+  
+Different augmentations are applied in each batch.
+
+Here is how this can look like for our example:
 
 ```python
 birds = DataBlock(blocks=(ImageBlock, CategoryBlock),
@@ -205,72 +213,35 @@ birds = DataBlock(blocks=(ImageBlock, CategoryBlock),
 dls = birds.dataloaders(IMAGEPATH, bs=64)
 ```
 
-Let's look a bit closer at the inputs to the `DataBlock`.
-
-The five questions you need to answer when creating a `DataLoaders` object are:
-
-* What type of data is the input data? What type of data is the output data?
-* How do we load the data?
-* For a classification task: How do we find the data labels?
-* How do we create a validation set?
-* Which data transformations do we apply? Are they individual or batch transformations?
-
-  (Data transformations, which will be applied before the data is fed into the training algorithm, come in two flavours, individual and batch transformations. Individual transformations are, as the name implies, run for each image individually, whilst batch transformations are applied to a whole batch in parallel at the same time, making them significantly faster.)
-
-
-From the code above, we can find the answers to our questions.
+Let's look at the inputs to `DataBlock` in more detail.
 
 * `blocks=(ImageBlock, CategoryBlock)`
 
-   Train an image classifier. Use images as input and output categories. 
+   Trains an image classifier: images as input, categories as output.
 * `get_items=get_image_files`
-    
-   Load the images by applying the `get_image_files` function to the path specified as input to the `dataloaders` function.
+
+   Loads the images by applying the `get_image_files` function to the path specified as input to the `dataloaders` function.
 * `get_y=parent_label`
-   
-   Get the labels by using the `parent_label` function, which extracts the label from the folder name.
+
+   Gets the image labels by using the `parent_label` function, which extracts the label from the folder name.
 * `splitter=RandomSplitter(valid_pct=0.2, seed=42)`
 
-  Split the data into training and validation sets by randomly assigning 20% of the data to the validation set. Seed the random number generator to 42. Note that `Dataloaders` forces you to adhere to best practice and create a validation set. Here, we seed the random number generator to make the split reproducible across multiple runs. As always, which seed you choose is completely up to you (even though [42 is often used](https://medium.com/geekculture/the-story-behind-random-seed-42-in-machine-learning-b838c4ac290a)).
-
-#### Data Transformations: Image Resizing and Augmentation
-The final question deals with data transformations. Typical data transformations to apply to image data are resizing and image augmenation tasks. In order to feed images into a neural network, they need to be of the same size. We can achieve this by:
-
-  * cropping
-  * squishing
-  * padding
-  
-All of these have their drawbacks. Cropping might delete important parts of the image, squishing distorts the image, padding introduces useless data thereby unnecessarily increasing computational costs. We choose
+  Splits the data into training and validation sets by randomly assigning 20% of the data to the validation set. Seeds the random number generator to 42. Note that `Dataloaders` forces you to adhere to best practice and create a validation set. Here, we seed the random number generator to make the split reproducible across multiple runs. As always it's completely up to you which seed you choose (even though [42 is often used](https://medium.com/geekculture/the-story-behind-random-seed-42-in-machine-learning-b838c4ac290a)).
 
 * `item_tfms=[RandomResizedCrop(256, min_scale=0.8)]`
 
-   Randomly crop a part of the image (keep at least 80% of the original image), then scale it to 256x256 pixels. A different random crop is selected for each batch. 
-
-In order to prevent overfitting (especially when dealing with small datasets), we might also introduce augmentations to our image dataset. Augmentations can happen on an image or on a pixel level. Examples of augmentation on an image level are:
-  * flipping
-  * rotation
-  * perspective warping
-
-  Examples of pixel augmentations are changes to:
-  * brightness
-  * saturation
-  * hues
-  * contrast
-  
-Different augmentations are applied in each batch.
+   Applies the item transformation `RandomResizedCrop()`. Randomly crops a part of the image (keeping at least 80% of the original image), then scales it to 256x256 pixels. A different random crop is selected for each batch.
   
 * `batch_tfms=aug_transforms()`
 
-  Here, we use a set of transformations designed by fastai to work well for natural photos. 
+  Applies the batch transformation `aug_transforms()`, which is a set of transformations designed by fastai to work well for natural photos.
 
-Now that we have created our ML data set (including introducing image augmentations), let's inspect some images as they might be fed into the algorithm.
-
+Having created our data set batches, let's inspect a few of the resulting images (including their augmentations).
 
 ```python
 # Inspect some images
 dls.train.show_batch(max_n=6, nrows=1)
 ```
-
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" alt="" width="50%">
@@ -278,35 +249,29 @@ dls.train.show_batch(max_n=6, nrows=1)
 </figcaption>
 </figure>
 
-
-
 Looking good :)
 
-Next, we set up the learning part. We use fastai's `vision_learner` to train a ResNet-18 model- a [Residual Neural Network (ResNet)](https://arxiv.org/abs/1512.03385) with 18 hidden layers. ResNets include skip-layers into their architecture, which allow gradient information to propagate through the network more easily by adding the output of previous layers to layers deeper in the network. This counteracts the [problem of vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem), which again allows for the training of deeper networks (the original paper demonstrated the successful training of a 152 layer network and even experimented with up to 1002 layers). The ResNet-18 architecture is the smallest ResNet architecture, making it quite fast to train. Whilst smaller networks can result in lower prediction accuracy, for our small toy problem a ResNet18 archicture is perfectly suitable.
+#### Setting up the Learner
 
-To train our network, we use a technique called transfer learning. In transfer learning, we use weights that have been pretrained on a large corpus of data and only slightly adapt ("fine-tune") some of them (often only the weights of the actual classification layer) to our specific problem. By default, fastai uses weights which are pre-trained on the [ImageNet dataset](http://www.image-net.org).
+Next, we set up the learning part. We use fastai's `vision_learner()` function to create a [Residual Neural Network (ResNet)](https://arxiv.org/abs/1512.03385) with 18 hidden layers. ResNets counteract the [problem of vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) by including skip-layers in their architecture. Skip-layers allow gradient information to propagate through the network more easily by adding the output of previous layers to layers deeper in the network. This allows for the training of deeper networks (the original paper demonstrated the successful training of a 152-layer network and even experimented with up to 1002 layers). The ResNet-18 architecture is the smallest ResNet architecture, making it quite fast to train. Whilst smaller networks can result in lower prediction accuracy, a ResNet-18 archicture is perfectly suitable for our toy problem.
 
+In order to achieve good results with few training iterations and a small dataset, we take advantage of transfer learning. In transfer learning, we initialize the model weights with weights that have been trained on a large corpus of data and fine-tune only some of them to our specific problem (often we might change only the weights of the actual classification layer). By default, fastai uses weights which were pre-trained using the [ImageNet corpus](http://www.image-net.org).
 
-To find a good number of fine-tuning steps (good accuracy without overfitting), we experiment with the number of steps whilst observing the training and validation loss. Whilst the training loss will continue to go down with more training steps, the validation loss will first decrease, then at some point start to increase again. The number of steps after which the validation loss starts increasing is a good number of training steps. In our case, this is 5.
+To find a good number of fine-tuning steps (good accuracy without overfitting), we train the model while we observe training and validation losses. While the training loss will continue to go down with more training steps, the validation loss will first decrease, then eventually start increasing again when the model starts overfitting to the training data. This point of onsetting overfitting gives as a good number of training steps. In our case, this is about 5.
 
-So let's train the model!
-
+Let's train the model!
 
 ```python
 learn = vision_learner(dls, resnet18, metrics=error_rate)
-
-# 5 is a good number of steps, afterwards the validation loss starts increasing
 learn.fine_tune(5)
 ```
 
-
-
 <style>
-    /* Turns off some styling */
+    /*Turns off some styling*/
     progress {
-        /* gets rid of default border in Firefox and Opera. */
+        /*gets rid of default border in Firefox and Opera.*/
         border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        /*Needs to be in here for Safari polyfill so background images work as expected.*/
         background-size: auto;
     }
     progress:not([value]), progress:not([value])::-webkit-progress-bar {
@@ -316,9 +281,6 @@ learn.fine_tune(5)
         background: #F44336;
     }
 </style>
-
-
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -341,15 +303,12 @@ learn.fine_tune(5)
   </tbody>
 </table>
 
-
-
-
 <style>
-    /* Turns off some styling */
+    /*Turns off some styling*/
     progress {
-        /* gets rid of default border in Firefox and Opera. */
+        /*gets rid of default border in Firefox and Opera.*/
         border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        /*Needs to be in here for Safari polyfill so background images work as expected.*/
         background-size: auto;
     }
     progress:not([value]), progress:not([value])::-webkit-progress-bar {
@@ -359,9 +318,6 @@ learn.fine_tune(5)
         background: #F44336;
     }
 </style>
-
-
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -412,39 +368,31 @@ learn.fine_tune(5)
   </tbody>
 </table>
 
-
 ### Evaluating Your Model
 
-Now that we have a trained model, let's evaluate its performance. Loss is the algorithm's metric of driving the optimization to better results, but it's not a very humanly understandable metric. So let's look at the confusion matrix instead to see how our model is doing.
-
+Having trained the model, let's evaluate its performance. Whilst loss is the algorithm's metric of driving the optimization to better results, it's not a very humanly understandable metric. So let's look at the confusion matrix instead to see how well our model is performing.
 
 #### Confusion Matrix
 
-The confusion matrix compares the predictions and actual class of each image and shows us the results for all images in the validation set. In the confusion matrix below, we see that all cygnets in the validation set were correctly classified as such, whilst two of the ducklings were misclassified as cygnets. Overall not too bad an outcome. 
-
+The confusion matrix compares the predicted with the true class for each image and shows us a summary for all images in the validation set. Below, we see that all cygnets in the validation set were correctly classified as such, whilst two of the ducklings were misclassified as cygnets. Overall not too bad an outcome.
 
 ```python
 interp = ClassificationInterpretation.from_learner(learn)
 interp.plot_confusion_matrix()
 ```
 
-
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" alt="" width="50%">
     <figcaption>Confusion Matrix</figcaption>
 </figure>
 
-
-
 #### Largest Losses
 
-For a more detailed view, let's go back to the losses. Using `interp.plot_top_losses()` function, we can display the images with the highest losses. A higher loss means that either the algorithm has correctly predicted the class of an image, but is not very certain of it or it has incorrectly predicted the class of an image (the more certain of an incorrect prediction the higher the loss). 
-
+For a more detailed view, let's go back to the losses. Using `interp.plot_top_losses()`, we can display the images with the highest losses. A higher loss means that either the algorithm has correctly predicted the class of an image, but is not very certain of it or it has incorrectly predicted the class of an image (the more certain of an incorrect prediction it is, the higher is the loss).
 
 ```python
 interp.plot_top_losses(10, nrows=2)
 ```
-
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png" alt="Top losses" width="50%">
@@ -452,39 +400,13 @@ interp.plot_top_losses(10, nrows=2)
 </figcaption>
 </figure>
 
+The two largest contributions to the loss are the two misclassified ducklings, which we have already encountered in teh classification matrix, followed by correctly classified images, but with less certainty. We see that image with the largest loss is an image of a duckling that looks very different from most of the other ducklings in the dataset. Without being a ornithologist, my impression is that most of the ducklings in the dataset are Mallard ducklings, whilst this one might not be. Unfortunately I could not find which type of duck this might be (any ornithologist willing to help?). This is a good demonstration that it is always worth to keep track of where your data is coming from (in this case URLs, image captions, etc). It makes these type of investigations a lot easier. Going back to the original task, if we were serious about good performance, it might be beneficial to deal with these dataset outliers by for example eliminating everything which isn't a Mallard duckling from our dataset (assuming that our users are only interested in classifying Mallards that is) or adding more ducklings of other types to the data.
 
+To find the associated files to your losses, use `interp.top_losses(items=True)` to display all losses together with the associated file paths.
 
-The two highest loss values are produced by the misclassified ducklings, in order of descending certainty, followed by correctly classified images, but with less certainty. 
+### More Data Cleaning Options
 
-An observation: It is noticable that the image with the highest loss is an image of a duckling that looks very different from most of the other ducklings in the dataset. My impression is that most of the ducklings in the dataset are Mallard ducklings, whilst this one is not. Unfortunately I could not find which type of duck this might be (any ornithologists in the audience willing to help out?). This is a good demonstration of why when building datasets from searches it is a good idea to save the URLs and potentially the names of the retrieved files. It makes these type of investigations a lot easier to conduct. Going back to the original task, if we were serious about good performance, it might be beneficial to deal with these dataset outliers by for example eliminating everything which isn't a Mallard duckling from our dataset (assuming that our users are only interested in classifying Mallards that is) or adding more ducklings of other types to the data. 
-
-Assuming that you would like to delete all non-Mallard ducklings from the dataset, you can use the `interp.top_losses(items=True)` to display all losses together with the associated file paths and then use the filepaths to purge the images from your dataset.
-
-
-```python
-# items=True returns the file paths
-interp.top_losses(items=True)
-```
-
-    (TensorBase([4.0928e+00, 1.0488e+00, 2.4337e-01, 1.5965e-01, 7.6476e-02,
-                 3.3652e-02, 1.8994e-02, 1.2116e-02, 8.2581e-03, 4.4039e-03,
-                 2.3067e-03, 1.1670e-03, 1.0680e-03, 3.9296e-04, 1.9465e-04,
-                 1.7105e-04, 1.6032e-04, 1.5162e-04, 1.2433e-04, 1.0645e-04,
-                 9.7032e-05, 8.8569e-05, 6.5563e-05, 6.4609e-05, 5.8292e-05,
-                 5.4239e-05, 4.1842e-05, 3.9338e-05, 3.0517e-05, 2.6583e-05,
-                 1.7047e-05, 1.4305e-05, 3.5763e-06, 1.5497e-06, 1.0729e-06,
-                 4.7684e-07, 2.3842e-07]),
-     TensorBase([ 2,  6, 18, 12, 32, 11,  8, 17, 31, 26,  3, 22, 14,  7, 34, 20, 24,
-                 33, 36,  4, 16, 29, 21, 15, 13, 10, 35,  1, 19,  9, 23, 27, 28, 30,
-                 25,  0,  5]),
-     (#37) [Path('/content/images/duckling/2f13f591-286d-4f14-afd2-20aa4ba8d852.jpg'),Path('/content/images/duckling/6fce9794-6570-4be0-afd9-8b4db5eb77d0.jpg'),Path('/content/images/duckling/e0951cbb-726c-4f12-9259-6f24f7981504.jpg'),Path('/content/images/duckling/54388c76-bf64-4751-96a9-0624c0139719.JPG'),Path('/content/images/duckling/cab54506-2346-47d1-9490-bab31df5e02a.jpg'),Path('/content/images/cygnet/620949d6-bc01-40ff-a6ef-f6b45744e43d.jpg'),Path('/content/images/cygnet/95d585bd-5c02-4fa9-a3ad-fb958100f98f.jpeg'),Path('/content/images/cygnet/2f4d4c09-e296-4066-9fb6-6db37eb8ce0d.jpg'),Path('/content/images/duckling/3b9c58ba-7962-41b6-b763-cc880b5b1929.jpg'),Path('/content/images/duckling/248f87be-2c00-4e7a-8e05-9fafd0b40eb9.jpg')...])
-
-
-
-### Other Options for Data Cleaning
-
-Another handy tool for image data cleaning is the `ImageClassifierCleaner`, which is explained best by demonstrating its function. Just run it on your learner to get a drop-down interface allowing you to easily relabel or delete images from your dataset. 
-
+Another handy tool for image data cleaning is the `ImageClassifierCleaner()` function. Apply it to a learner to get a drop-down interface allowing you to easily relabel or delete images from your dataset.
 
 ```python
 from fastai.vision.widgets import ImageClassifierCleaner
@@ -493,79 +415,72 @@ cleaner = ImageClassifierCleaner(learn)
 cleaner
 ```
 
-
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png" alt="Duckling" width="50%">
 </figcaption>Using the `ImageClassifierCleaner`</figure>
 
-
-Note that the above only provides the graphical interface, you still need to relabel and/or delete the actual images. You can do this by using the following code. You need to run it for each combination of drop-downs that you want to treat.
-
+Note that this only provides the graphical interface, you still need to perform the actual relabeling/deleting. You can do this by using the following code. Run it for each combination of drop-downs that you want to treat.
 
 ```python
 import shutil
 
 def execute_cleaning(cleaner):
-    # Run this for every combination of category and validity, it does not save!
+    """Applies deletion/renaming operations to files"""
 
-    # delete the ones to be deleted
     for idx in cleaner.delete():
        cleaner.fns[idx].unlink()
 
-    # move the ones to be relabeled into their new folders
     for idx, category in cleaner.change():
        shutil.move(str(cleaner.fnx[idx], IMAGEPATH/category))
 ```
 
 ### Export Model
 
-Finally we can export the model for later use. In the next step, we will see how to export it to HuggingFace to deploy it!app
-
+Finally we export the model for later use. In the next step, we will see how to export it to HuggingFace to deploy it.
 
 ```python
 learn.export('duckling_learner.pkl')
 ```
 
-## Interface Developing and Deployment using Gradio on HuggingFace
+## Building a Gradio Interface on HuggingFace
 
-Now that we have a trained model, we want to host it somewhere and share it with the world (and all the cygnets and ugly ducklings of course!). Nowadays, there are plenty of options to publicly host a model serving app for free. 
-There are two aspects of serving an app - building the interface and hosting it. Where you can host your interface partially depends on how you decide to implement it.
+Now that we have a trained model, we want to wrap it in a user interface and host it to share it with all the cygnets and ugly ducklings out there. Luckily, there are plenty of options to host ML based apps for free. Where you can do so, will also depend on how you decide to implement the interface.
 
-Some easy, low-code (or at least purely Python) options for building graphical model interfaces are:
+Some easy, straight-forward, python based options for building graphical model interfaces are:
 
 * Gradio
 * Streamlit
 * Voila
 
-Some options to serve your interface are:
+Depending on your choice of GUI, some options to serve your interface are:
 
 * Gradio: Hugging Face
 * Streamlit: Hugging Face, Streamlit Community
 * Voila: GitHub, Binder
 
-I decided to build my app using Gradio and host it on Hugging Face Community. This was mostly because I had not used either of them before and wanted to give them a spin. Either of the options above will serve you well. This is how my app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
+Here, I will show how to build an app using Gradio and host it on HuggingFace. This is mostly because I had used some of the other ones in the past and wanted to try out something new. Either of the options above will serve you well.
+
+This is how my Gradio app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png" alt="" width="100%">
     <figcaption>My Gradio App</figcaption>
 </figure>
 
+In order to host a Gradio app like the one shown above on HuggingFace, you need six files:
 
-In order to build this and host it on HuggingFace, you need six files: 
+1. the main file defining the Gradio app
+2. the ML model for scoring
+3. a `README.md` defining the app's metadata (eg its title)
+4. a `requirements.txt` file defining extra packages that need to be installed
+5. a `.gitignore` file (telling HuggingFace's git which files to ignore and which to handle using `git-lfs`)
+6. (optional) the example images that the user can click on
 
-* the main file defining the Gradio app
-* the ML model for scoring
-* a `README.md` defining the app's metadata (eg its title)
-* a `requirements.txt` file defining extra packages that need to be installed
-* a `.gitignore` file (telling HuggingFace's git which files to ignore and which to handle using `git-lfs`)
-* (optional) the example images that the user can click on
-
-You can find all the files on [my HuggingFace account](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/tree/main).
+Let's go through the files one-by-one. If you want to check out the exact files, you can find them in [my ugly-duckling HuggingFace space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/tree/main).
 
 ### File 1: Main File - Gradio App
 
-This is the complete code for the main Gradio App:
-
+This is the complete code for the Gradio interface:
 
 ```python
 from pathlib import Path
@@ -574,12 +489,11 @@ import gradio as gr
 
 MODELPATH='cygnet-vs-duckling.pkl'
 
-learn = load_learner(MODELPATH)
-categories = learn.dls.vocab
+LEARN = load_learner(MODELPATH)
 
 def classify_image(image):
-    _, _, probs = learn.predict(image)
-    return dict(zip(categories, map(float, probs)))
+    _, _, probs = LEARN.predict(image)
+    return dict(zip(LEARN.dls.vocab, map(float, probs)))
 
 title = 'Mirror, Mirror on the Wall, am I a Duckling or a Cygnet after all?'
 description = """Hans Christian Andersen's tale of the ugly duckling tells us about the sad youth of a cygnet which is accidentally brought up in a family of ducks and is ostrized on the account of it being different. But what if the cygnet had had a magic mirror to tell it that it had been a young swan all along? Machine learning to the rescue!"""
@@ -600,102 +514,35 @@ app = gr.Interface(fn=classify_image,
 app.launch()
 ```
 
-Easy, right? But what does it do? Let's start by looking at the `Interface` function. 
+Easy, right? But what does it do? Let's start by looking at the `Interface` function.
 
-The parameters of the `Interface` function tell gradio that it is to take an image as an input and generate a label as output using the scoring function `classify_image`, which we defined above. Gradio expects the scoring function to output a dictionary with the labels as keys and the probabilities as values. 
-
-The probabilities we get from the `predict` function called on the previously loaded model, the labels come from the `dls.vocab` attribute. One final thing to note is that `predict` returns the probabilities as tensors. This means that we need to convert the tensors to floats for gradio to be able to handle them. 
-
-To show this, here is an example of how to use `predict` and its output format. Below, we load an image from disk, convert it into a pillow file and score it using the previously loaded model. Note how the returned probabilities are tensors? 
-
-
-```python
-from fastai.vision.all import PILImage
-
-im_duckling = PILImage.create('/content/images/duckling/54388c76-bf64-4751-96a9-0624c0139719.JPG')
-im_duckling.thumbnail((192, 192))
-im_duckling
-```
-
-
-
-<figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_55_0.png" alt="Duckling" width="50%">
-</figcaption>Image of a duckling</figure>
-
-
-
-```python
-learn.predict(im_duckling)
-```
-
-
-<style>
-    /* Turns off some styling */
-    progress {
-        /* gets rid of default border in Firefox and Opera. */
-        border: none;
-        /* Needs to be in here for Safari polyfill so background images work as expected. */
-        background-size: auto;
-    }
-    progress:not([value]), progress:not([value])::-webkit-progress-bar {
-        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
-    }
-    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-        background: #F44336;
-    }
-</style>
-
-
-    ('duckling', TensorBase(1), TensorBase([0.0242, 0.9758]))
-
-
-
-Now that we have the main interface, let's have a quick look at the additional files. 
+The parameters of the `Interface` function tell Gradio that it should take an image as an input and generate a label as output using the scoring function `classify_image`. Gradio expects the scoring function to output a dictionary with the labels as keys and the associated probabilities as values. Note that `predict` returns the probabilities as tensors, which means that we need to convert them to floats for gradio to be able to handle.
 
 ### File 2: ML Model
 
-We need to upload the previously saved model to HuggingFace. In order to do this, you need to have [Git LFS](https://www.atlassian.com/git/tutorials/git-lfs) installed and enabled in your repository. Git LFS (Large File Storage) is a Git extension that allows you download large files in your repository lazily, reducing their impact on your repository handling. 
+We need to upload the previously saved model to HuggingFace so that we can use it for scoring. In order to be able to upload the model, you need to have [Git-LFS](https://www.atlassian.com/git/tutorials/git-lfs) installed and enabled in your repository. Git-LFS (Large File Storage) is a Git extension that allows you to download large files in your repository lazily, which makes them easier to handle and reduces your repository size.
 
 ### File 3: Metadata - Readme.md
 
-The Readme.md contains the metadata for the app. For the app above, it looks like this.
-
-```
-title: Magic Mirror
-emoji: 🪞🦢
-colorFrom: purple
-colorTo: blue
-sdk: gradio
-sdk_version: 3.10.1
-app_file: app.py
-pinned: false
-```
+The Readme.md contains the metadata for the app. For the full details, see [the ugly ducklings Readme on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/blob/main/README.md).
 
 ### File 4: Dependencies - Requirements.txt
 
-Since we told HuggingFace to use gradio in the Readme, gradio is already installed. However, we still need to install fastai, which leaves the requirements file with a single line:
-```
-fastai
-```
+Since we have already told HuggingFace to use Gradio in the Readme, gradio get automatically installed in the workspace. So the only external library to install is fastai, leaving the requirements file with a single line, reading `fastai`.
 
 ### File 5: Handling Files in Git: .gitignore
 
-The `.gitignore` file comes with the HuggingFace repository. You can use it as it is. 
-
+The `.gitignore` file comes with the HuggingFace repository. You can use it as it is.
 
 ### File(s) 6 (optional): Example Images
 
-Just upload the images. Again, you need to have Git LFS installed.
+If you have specified example images, you need to upload them. Again, Git-LFS is required.
 
-And that's it! Upload everything to Hugging Face and tell all your friends about your awesome classifier! :) 
+And that's it! Upload everything to HuggingFace and tell your friends! :)
 
 ## Final Comment(s)
 
-The model produced here is a toy model to demonstrate how to quickly build a prototype using fastai. There are many short-comings to it, including the fact that it is a binary classifier for two categories that do not span the entire space. This means that for any image that you submit, it can only decide if it thinks that the image resembles a duckling more than a cygnet or vice versa. Saying "Don't be silly, this image is clearly neither!" is just not an option. So always be suspicious of unexpected accuracy.
-
-With that being said, I will leave you to marvel at these results that one of my friends produced with it.
-
+The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that for any image that you submit, it has to decide if it thinks that the image resembles more a duckling or more a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/huey-dewey-louie.png" alt="Life is like a Hurrican..." width="50%">
@@ -707,9 +554,7 @@ With that being said, I will leave you to marvel at these results that one of my
     <figcaption>Clearly a Swan ;)</figcaption>
 </figure>
 
-
-Or if you are feeling adventurous test it out for yourself...
-
+And finally, I tried it out on myself...
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/jessica-duckling.png" alt="Apparantly I am a duckling..." width="50%">
