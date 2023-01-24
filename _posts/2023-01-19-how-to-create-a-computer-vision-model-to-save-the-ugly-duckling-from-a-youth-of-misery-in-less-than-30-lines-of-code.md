@@ -1,18 +1,18 @@
 ---
 title: >-
-    Saving the Ugly Duckling from a Youth of Misery using CV
+    How to Use fastai, Gradio and HuggingFace to Save the Ugly Duckling from a Youth of Misery
 header:
-  overlay_image: 
+  overlay_image: /images/ducklings.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
-  caption: "Photo by [**Tomasz Rynkiewicz on Unsplash**](https://unsplash.com/@thmsr)"
+  caption: "Photo by [**Andrea Lightfoot**](https://unsplash.com/@andreaelphotography) on [Unsplash](https://unsplash.com/photos/-ZP9Lhz3N_g)"
   actions:
-    - label: "Enjoying a Drink Outside"
+    - label: ""
 classes: wide
 tags:
   - python
   - visualization
   - open data
-excerpt: How to create and deploy a CV classifier in less than 30 lines of code
+excerpt: How to train and deploy an image classifier in less than 30 lines of code
 ---
 
 ## Introduction
@@ -33,9 +33,10 @@ If you want to follow along, you can find the complete code on [Tales-of-1001-Da
 So let's get started to help the duckling answer the magical question...
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." style="max-width: 50%" class="center"/>
-    <figcaption>"Mirror, mirror on the wall, am I a duckling or a cygnet after all?"</figcaption>
+  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." style="max-width: 25%" class="center"/>
 </figure>
+
+**Mirror, mirror on the wall, am I a duckling or a cygnet after all?**
 
 ## Preparations
 
@@ -244,9 +245,8 @@ dls.train.show_batch(max_n=6, nrows=1)
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" style="max-width: 50%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" style="max-width: 100%" class="center">
     <figcaption>Batch images of our input data</figcaption>
-</figcaption>
 </figure>
 
 Looking good :)
@@ -382,7 +382,7 @@ interp.plot_confusion_matrix()
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" style="max-width: 50%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" style="max-width: 25%" class="center">
     <figcaption>Confusion Matrix of the duckling-cygnet classification.</figcaption>
 </figure>
 
@@ -396,8 +396,6 @@ interp.plot_top_losses(10, nrows=2)
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png" style="max-width: 100%" class="center">
-    <figcaption>"The images with the largest losses."</figcaption>
-</figcaption>
 </figure>
 
 The two largest contributions to the loss are the two misclassified ducklings, which we have already encountered in teh classification matrix, followed by correctly classified images, but with less certainty. We see that image with the largest loss is an image of a duckling that looks very different from most of the other ducklings in the dataset. Without being a ornithologist, my impression is that most of the ducklings in the dataset are Mallard ducklings, whilst this one might not be. Unfortunately I could not find which type of duck this might be (any ornithologist willing to help?). This is a good demonstration that it is always worth to keep track of where your data is coming from (in this case URLs, image captions, etc). It makes these type of investigations a lot easier. Going back to the original task, if we were serious about good performance, it might be beneficial to deal with these dataset outliers by for example eliminating everything which isn't a Mallard duckling from our dataset (assuming that our users are only interested in classifying Mallards that is) or adding more ducklings of other types to the data.
