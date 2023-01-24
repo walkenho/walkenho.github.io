@@ -10,8 +10,8 @@ header:
 classes: wide
 tags:
   - python
-  - visualization
-  - open data
+  - machine learning
+  - computer vision
 excerpt: Training and deploying an image classifier in less than 30 lines of code
 ---
 
@@ -19,7 +19,7 @@ excerpt: Training and deploying an image classifier in less than 30 lines of cod
 
 No New Year without its New Year resolution. So how about diving into computer vision, learning a new library that allows you to train a computer vision model in less than 30 lines of code and revisiting some good old fairy tales? And all at once?
 
-Hans Christian Andersen's [tale of the ugly duckling](https://americanliterature.com/author/hans-christian-andersen/short-story/the-ugly-duckling) tells us about a cygnet (i.e. a baby swan) brought up as part of a family of ducks and being bullied by its siblings and everybody else for being ugly (read *different to them*). If only the poor cygnet had had somebody to tell it that it in fact was a swan instead! Entering Our Hero, Machine Learning to the rescue!
+Hans Christian Andersen's [tale of the ugly duckling](https://americanliterature.com/author/hans-christian-andersen/short-story/the-ugly-duckling) tells us about a cygnet (i.e. a baby swan) brought up as part of a family of ducks and being bullied by its siblings and everybody else for being ugly (read _different to them_). If only the poor cygnet had had somebody to tell it that it in fact was a swan instead! Entering Our Hero, Machine Learning to the rescue!
 
 In this project, we will learn how to use fastai, Gradio and HuggingFace to build a magic mirror that can distinguish a duckling from a cygnet in four main steps. Then we will deploy it to the internet for all ducklings out there to use. We will learn how to:
 
@@ -146,7 +146,7 @@ To make sure that one downloads a useful dataset, it helps to start the process 
 For this project, I found that searching for "cygnet" not only returned images of actual cygnets, but also returned images wool and alcohol bottles (both of brands with "cygnet" in the name). There are technical ways of dealing with this problem, but the most straight forward solution is to simply change the search string to "baby swan", which solved the issue perfectly. In a similar project, I wanted to get photos in different lighting conditions, but realized that whilst looking for "objectname sun" returned useful results, looking for "objectname shade" did mostly return undesired results, so was not recommendable.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/wrong-type-of-cygnets.png" style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/wrong-type-of-cygnets.png">
     <figcaption>Not the type of cygnet we were looking for</figcaption>
 </figure>
 
@@ -245,7 +245,7 @@ dls.train.show_batch(max_n=6, nrows=1)
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png" style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png">
     <figcaption>Batch images of our input data</figcaption>
 </figure>
 
@@ -395,7 +395,7 @@ interp.plot_top_losses(10, nrows=2)
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png" style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png">
   <figcaption>Top 10 images ranked by their contribution to the validation loss</figcaption>
 </figure>
 
@@ -415,7 +415,7 @@ cleaner
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png" style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png">
   <figcaption>Using the ImageClassifierCleaner to clean up your image data</figcaption>
 </figure>
 
@@ -463,7 +463,7 @@ Here, I will show how to build an app using Gradio and host it on HuggingFace. T
 This is how my Gradio app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png" style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png">
     <figcaption>Final version of the Ugly-Duckling Magic Mirror Gradio App</figcaption>
 </figure>
 
@@ -545,11 +545,11 @@ And that's it! Upload everything to HuggingFace and tell your friends! :)
 The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that the classifier has to decide if it thinks that the image is more likely a duckling or more likely a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/huey-dewey-louie.png"  style="max-width: 100%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/huey-dewey-louie.png">
 </figure>
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina"  style="max-width: 50%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina">
 </figure>
 
 And finally, I tried it out on myself... Apparently I am more of a duckling than Huey, Dewey and Louie together. Not sure what my self-esteem has to say to that ... 
