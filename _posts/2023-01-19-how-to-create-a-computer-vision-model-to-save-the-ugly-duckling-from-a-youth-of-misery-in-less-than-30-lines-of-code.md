@@ -1,6 +1,6 @@
 ---
 title: >-
-    How to Use fastai, Gradio and HuggingFace to Save the Ugly Duckling from a Youth of Misery
+    How to use fastai, Gradio and HuggingFace to save an ugly duckling from a youth of misery
 header:
   overlay_image: /images/ducklings.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -12,7 +12,7 @@ tags:
   - python
   - visualization
   - open data
-excerpt: How to train and deploy an image classifier in less than 30 lines of code
+excerpt: Training and deploying an image classifier in less than 30 lines of code
 ---
 
 ## Introduction
@@ -249,11 +249,11 @@ dls.train.show_batch(max_n=6, nrows=1)
     <figcaption>Batch images of our input data</figcaption>
 </figure>
 
-Looking good :)
+Looking good :) Next, we set up the learning part.
 
 #### Setting up the Learner
 
-Next, we set up the learning part. We use fastai's `vision_learner()` function to create a [Residual Neural Network (ResNet)](https://arxiv.org/abs/1512.03385) with 18 hidden layers. ResNets counteract the [problem of vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) by including skip-layers in their architecture. Skip-layers allow gradient information to propagate through the network more easily by adding the output of previous layers to layers deeper in the network. This allows for the training of deeper networks (the original paper demonstrated the successful training of a 152-layer network and even experimented with up to 1002 layers). The ResNet-18 architecture is the smallest ResNet architecture, making it quite fast to train. Whilst smaller networks can result in lower prediction accuracy, a ResNet-18 archicture is perfectly suitable for our toy problem.
+We use fastai's `vision_learner()` function to create a [Residual Neural Network (ResNet)](https://arxiv.org/abs/1512.03385) with 18 hidden layers. ResNets counteract the [problem of vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) by including skip-layers in their architecture. Skip-layers allow gradient information to propagate through the network more easily by adding the output of previous layers to layers deeper in the network. This allows for the training of deeper networks (the original paper demonstrated the successful training of a 152-layer network and even experimented with up to 1002 layers). The ResNet-18 architecture is the smallest ResNet architecture, making it quite fast to train. Whilst smaller networks can result in lower prediction accuracy, a ResNet-18 archicture is perfectly suitable for our toy problem.
 
 In order to achieve good results with few training iterations and a small dataset, we take advantage of transfer learning. In transfer learning, we initialize the model weights with weights that have been trained on a large corpus of data and fine-tune only some of them to our specific problem (often we might change only the weights of the actual classification layer). By default, fastai uses weights which were pre-trained using the [ImageNet corpus](http://www.image-net.org).
 
@@ -382,8 +382,8 @@ interp.plot_confusion_matrix()
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" style="max-width: 25%" class="center">
-    <figcaption>Confusion Matrix of the duckling-cygnet classification.</figcaption>
+  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" style="max-width: 35%" class="center">
+  <figcaption>Duckling-Cygnet classifier confusion matrix</figcaption>
 </figure>
 
 #### Largest Losses
@@ -396,6 +396,7 @@ interp.plot_top_losses(10, nrows=2)
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png" style="max-width: 100%" class="center">
+  <figcaption>Top 10 images ranked by their contribution to the validation loss</figcaption>
 </figure>
 
 The two largest contributions to the loss are the two misclassified ducklings, which we have already encountered in teh classification matrix, followed by correctly classified images, but with less certainty. We see that image with the largest loss is an image of a duckling that looks very different from most of the other ducklings in the dataset. Without being a ornithologist, my impression is that most of the ducklings in the dataset are Mallard ducklings, whilst this one might not be. Unfortunately I could not find which type of duck this might be (any ornithologist willing to help?). This is a good demonstration that it is always worth to keep track of where your data is coming from (in this case URLs, image captions, etc). It makes these type of investigations a lot easier. Going back to the original task, if we were serious about good performance, it might be beneficial to deal with these dataset outliers by for example eliminating everything which isn't a Mallard duckling from our dataset (assuming that our users are only interested in classifying Mallards that is) or adding more ducklings of other types to the data.
@@ -415,6 +416,7 @@ cleaner
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png" style="max-width: 100%" class="center">
+  <figcaption>Using the ImageClassifierCleaner to clean up your image data</figcaption>
 </figure>
 
 Note that this only provides the graphical interface, you still need to perform the actual relabeling/deleting. You can do this by using the following code. Run it for each combination of drop-downs that you want to treat.
@@ -462,7 +464,7 @@ This is how my Gradio app looks like. To try it out for yourselve, find its [liv
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png" style="max-width: 100%" class="center">
-    <figcaption>The ugly-duckling magic mirror - find the [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror)</figcaption>
+    <figcaption>Final version of the Ugly-Duckling Magic Mirror Gradio App</figcaption>
 </figure>
 
 In order to host a Gradio app like the one shown above on HuggingFace, you need six files:
