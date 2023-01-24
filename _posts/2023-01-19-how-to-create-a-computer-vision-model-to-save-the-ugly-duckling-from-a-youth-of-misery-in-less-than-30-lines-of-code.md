@@ -33,7 +33,7 @@ If you want to follow along, you can find the complete code on [Tales-of-1001-Da
 So let's get started to help the duckling answer the magical question...
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." width="50%">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." style="max-width: 50%"/>
     <figcaption>"Mirror, mirror on the wall, am I a duckling or a cygnet after all?"</figcaption>
 </figure>
 
