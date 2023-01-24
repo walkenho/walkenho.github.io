@@ -480,7 +480,7 @@ Let's go through the files one-by-one. If you want to check out the exact files,
 
 ### File 1: Main File - Gradio App
 
-This is the complete code for the Gradio interface:
+This is the complete code for the Gradio interface (with texts abbreviated for shortness):
 
 ```python
 from pathlib import Path
@@ -496,11 +496,11 @@ def classify_image(image):
     return dict(zip(LEARN.dls.vocab, map(float, probs)))
 
 title = 'Mirror, Mirror on the Wall, am I a Duckling or a Cygnet after all?'
-description = """Hans Christian Andersen's tale of the ugly duckling tells us about the sad youth of a cygnet which is accidentally brought up in a family of ducks and is ostrized on the account of it being different. But what if the cygnet had had a magic mirror to tell it that it had been a young swan all along? Machine learning to the rescue!"""
+description = """Hans Christian Andersen's tale of ..."""
 
 examples = ['duckling.jpg', 'cygnet.jpg']
 
-article = '**Technical Details**: The classification model was build using a resnet-18 architecture. Training was done using a transfer learning approach. I took the publicly available weights that were pre-trained on the ImageNet data set and fine-tuned them using about 80 images of ducklings and cygnets each.\nNote that it is binary classifier and will therefore only output "cygnet" or "duckling", "other" is not an option.' 
+article = '**Technical Details**: The classification model was build using ...'
 
 app = gr.Interface(fn=classify_image,
                    inputs=gr.components.Image(),
@@ -542,7 +542,7 @@ And that's it! Upload everything to HuggingFace and tell your friends! :)
 
 ## Final Comment(s)
 
-The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that for any image that you submit, it has to decide if it thinks that the image resembles more a duckling or more a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
+The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that the classifier has to decide if it thinks that the image is more likely a duckling or more likely a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/huey-dewey-louie.png" alt="Life is like a Hurrican..." width="50%">
