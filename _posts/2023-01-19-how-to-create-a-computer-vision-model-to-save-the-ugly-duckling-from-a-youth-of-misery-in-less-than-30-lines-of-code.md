@@ -26,7 +26,7 @@ In this project, we will learn how to use fastai, Gradio and HuggingFace to buil
 3. Build a magic mirror app using [Gradio](https://www.gradio.app/).
 4. Deploy the magic mirror for free on [HuggingFace](https://huggingface.co/).
 
-If you want to follow along, you can find the complete code on [Tales-of-1001-Data]().
+If you want to follow along, you can find the complete code in the Github repository [Tales-of-1001-Data]().
 
 So let's get started to help the duckling answer the magical question...
 
