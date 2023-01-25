@@ -162,9 +162,9 @@ download_search_data([Searchterm(searchstring='baby swan', label='cygnet'),
                      n_searches=100)
 ```
 
-### Training the Image Classifier
+## Training the Image Classifier
 
-#### Setting up the DataLoader
+### Setting up the DataLoader
 
 Next, we need to tell fastai how to convert the images in their folders into image batches that it can train the classifier on. fastai loads data using a `Dataloaders` object, so we need to tell it how to create one. One way to create a `DataLoaders` object is to first create a `DataBlock`, then call the `dataloaders()` method on it. The five things we need to tell fastai when creating a `DataLoaders` object are:
 
@@ -174,7 +174,7 @@ Next, we need to tell fastai how to convert the images in their folders into ima
 * How should it create a validation set?
 * Which data transformations should it apply? Are these individual or batch transformations?
 
-##### Data Transformations: Image Resizing and Augmentation
+#### Data Transformations: Image Resizing and Augmentation
 
 Data transformations come in two flavours, individual and batch transformations. Individual transformations are applied to each image individually, batch transformations are applied to a whole batch in parallel at the same time (making them a lot faster).
 
@@ -251,7 +251,7 @@ dls.train.show_batch(max_n=6, nrows=1)
 
 Looking good :) Next, we set up the learning part.
 
-#### Setting up the Learner
+### Setting up the Learner
 
 We use fastai's `vision_learner()` function to create a [Residual Neural Network (ResNet)](https://arxiv.org/abs/1512.03385) with 18 hidden layers. ResNets counteract the [problem of vanishing gradients](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) by including skip-layers in their architecture. Skip-layers allow gradient information to propagate through the network more easily by adding the output of previous layers to layers deeper in the network. This allows for the training of deeper networks (the original paper demonstrated the successful training of a 152-layer network and even experimented with up to 1002 layers). The ResNet-18 architecture is the smallest ResNet architecture, making it quite fast to train. Whilst smaller networks can result in lower prediction accuracy, a ResNet-18 archicture is perfectly suitable for our toy problem.
 
@@ -368,11 +368,11 @@ learn.fine_tune(5)
   </tbody>
 </table>
 
-### Evaluating Your Model
+## Evaluating Your Model
 
 Having trained the model, let's evaluate its performance. Whilst loss is the algorithm's metric of driving the optimization to better results, it's not a very humanly understandable metric. So let's look at the confusion matrix instead to see how well our model is performing.
 
-#### Confusion Matrix
+### Confusion Matrix
 
 The confusion matrix compares the predicted with the true class for each image and shows us a summary for all images in the validation set. Below, we see that all cygnets in the validation set were correctly classified as such, whilst two of the ducklings were misclassified as cygnets. Overall not too bad an outcome.
 
@@ -386,7 +386,7 @@ interp.plot_confusion_matrix()
   <figcaption>Duckling-Cygnet classifier confusion matrix</figcaption>
 </figure>
 
-#### Largest Losses
+### Largest Losses
 
 For a more detailed view, let's go back to the losses. Using `interp.plot_top_losses()`, we can display the images with the highest losses. A higher loss means that either the algorithm has correctly predicted the class of an image, but is not very certain of it or it has incorrectly predicted the class of an image (the more certain of an incorrect prediction it is, the higher is the loss).
 
@@ -434,7 +434,7 @@ def execute_cleaning(cleaner):
        shutil.move(str(cleaner.fnx[idx], IMAGEPATH/category))
 ```
 
-### Export Model
+## Exporting the Model
 
 Finally we export the model for later use. In the next step, we will see how to export it to HuggingFace to deploy it.
 
@@ -540,7 +540,7 @@ If you have specified example images, you need to upload them. Again, Git-LFS is
 
 And that's it! Upload everything to HuggingFace and tell your friends! :)
 
-## Final Comment(s)
+## Final Thoughts
 
 The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that the classifier has to decide if it thinks that the image is more likely a duckling or more likely a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
 
