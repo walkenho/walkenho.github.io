@@ -26,7 +26,7 @@ In this project, we will learn how to use fastai, Gradio and HuggingFace to buil
 3. Build a magic mirror app using [Gradio](https://www.gradio.app/).
 4. Deploy the magic mirror for free on [HuggingFace](https://huggingface.co/).
 
-If you want to follow along, you can find the complete code in the Github repository [Tales-of-1001-Data]().
+If you want to follow along, you can find the complete code in the Github repository [Tales-of-1001-Data](https://github.com/walkenho/tales-of-1001-data/tree/master/the-story-of-the-ugly-duckling). If you want to try out the app, find it deployed on my [ugly-duckling-magic-mirror Hugging Face space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 So let's get started to help the duckling answer the magical question...
 
