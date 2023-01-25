@@ -1,6 +1,6 @@
 ---
 title: >-
-    How to use fastai, Gradio and HuggingFace to Save an Ugly Duckling from a Youth of Misery
+    How to use fastai, Gradio and Hugging Face to Save an Ugly Duckling from a Youth of Misery
 header:
   overlay_image: /images/ducklings.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -24,9 +24,9 @@ In this project, we will learn how to use fastai, Gradio and HuggingFace to buil
 1. Create a dataset from scratch, using a duckduckgo image search.
 2. Train a train a computer vision model using [fastai](https://www.fast.ai/).
 3. Build a magic mirror app using [Gradio](https://www.gradio.app/).
-4. Deploy the magic mirror for free on [HuggingFace](https://huggingface.co/).
+4. Deploy the magic mirror for free on [Hugging Face](https://huggingface.co/).
 
-If you want to follow along, you can find the complete code in the Github repository [Tales-of-1001-Data](https://github.com/walkenho/tales-of-1001-data/tree/master/the-story-of-the-ugly-duckling). If you want to try out the app, find it deployed on my [ugly-duckling-magic-mirror Hugging Face space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
+If you want to follow along, you can find the complete code in the [GitHub repository Tales-of-1001-Data](https://github.com/walkenho/tales-of-1001-data/tree/master/the-story-of-the-ugly-duckling). If you want to try out the app, find it deployed on my [ugly-duckling-magic-mirror Hugging Face space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 So let's get started to help the duckling answer the magical question...
 
@@ -97,7 +97,7 @@ No machine learning without data. To create our dataset, we implement the follow
 * Check if the downloaded images are ok using fastai's `verify_images()`.
 * Delete images which are not ok.
 
-Once we have built the dataset, we will use it to train a classifier. A common image classification folder structure is to save the images in folders named according to their label. To decouple the label from the actual searchterm and create more flexibility in setting up our search, we create a `Searchterm` dataclass that holds both the search term and the label.
+Once we have built the dataset, we will use it to train a classifier. A common image classification folder structure is to save the images in folders named according to their label. To decouple the label from the actual search term and create more flexibility in setting up our search, we create a `Searchterm` dataclass that holds both the search term and the label.
 
 ```python
 IMAGEPATH = Path().cwd()/'images'
@@ -176,7 +176,7 @@ Next, we need to tell fastai how to convert the images in their folders into ima
 
 Data transformations come in two flavours, individual and batch transformations. Individual transformations are applied to each image individually, batch transformations are applied to a whole batch in parallel at the same time (making them a lot faster).
 
-Typical data transformations for image data are resizing and image augmenation tasks. In order to train a neural network on image data, the images need to be of the same size. We can achieve this through:
+Typical data transformations for image data are resizing and image augmentation tasks. In order to train a neural network on image data, the images need to be of the same size. We can achieve this through:
 
 * cropping
 * squishing
@@ -184,7 +184,7 @@ Typical data transformations for image data are resizing and image augmenation t
   
 All of these have their drawbacks. Cropping might delete important parts of the image, squishing distorts the image and padding introduces useless data points thereby unnecessarily increasing computational costs.
 
-In order to prevent overfitting (especially when dealing with small datasets), we might also apply augmentations to our image dataset. Augmentations can happen on an image or on a pixel level. Examples of augmentations on an image level are:
+In order to prevent over-fitting (especially when dealing with small datasets), we might also apply augmentations to our image dataset. Augmentations can happen on an image or on a pixel level. Examples of augmentations on an image level are:
 
 * flipping
 * rotation
@@ -417,7 +417,7 @@ cleaner
   <figcaption>Using the ImageClassifierCleaner to clean up your image data</figcaption>
 </figure>
 
-Note that this only provides the graphical interface, you still need to perform the actual relabeling/deleting. You can do this by using the following code. Run it for each combination of drop-downs that you want to treat.
+Note that this only provides the graphical interface, you still need to perform the actual relabelling/deleting. You can do this by using the following code. Run it for each combination of drop-downs that you want to treat.
 
 ```python
 import shutil
@@ -434,7 +434,7 @@ def execute_cleaning(cleaner):
 
 ## Exporting the Model
 
-Finally we export the model for later use. In the next step, we will see how to export it to HuggingFace to deploy it.
+Finally we export the model for later use. In the next step, we will see how to export it to Hugging Face to deploy it.
 
 ```python
 learn.export('duckling_learner.pkl')
@@ -456,25 +456,25 @@ Depending on your choice of GUI, some options to serve your interface are:
 * Streamlit: Hugging Face, Streamlit Community
 * Voila: GitHub, Binder
 
-Here, I will show how to build an app using Gradio and host it on HuggingFace. This is mostly because I had used some of the other ones in the past and wanted to try out something new. Either of the options above will serve you well.
+Here, I will show how to build an app using Gradio and host it on Hugging Face. This is mostly because I had used some of the other ones in the past and wanted to try out something new. Either of the options above will serve you well.
 
-This is how my Gradio app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
+This is how my Gradio app looks like. To try it out for yourself, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig7.png">
     <figcaption>Final version of the Ugly-Duckling Magic Mirror Gradio App</figcaption>
 </figure>
 
-In order to host a Gradio app like the one shown above on HuggingFace, you need six files:
+In order to host a Gradio app like the one shown above on Hugging Face, you need six files:
 
 1. the main file defining the Gradio app
 2. the ML model for scoring
 3. a `README.md` defining the app's metadata (eg its title)
 4. a `requirements.txt` file defining extra packages that need to be installed
-5. a `.gitignore` file (telling HuggingFace's git which files to ignore and which to handle using `git-lfs`)
+5. a `.gitignore` file (telling Hugging Face's git which files to ignore and which to handle using `git-lfs`)
 6. (optional) the example images that the user can click on
 
-Let's go through the files one-by-one. If you want to check out the exact files, you can find them in [my ugly-duckling HuggingFace space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/tree/main).
+Let's go through the files one-by-one. If you want to check out the exact files, you can find them in [my ugly-duckling Hugging Face space](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/tree/main).
 
 ### File 1: Main File - Gradio App
 
@@ -514,19 +514,19 @@ app.launch()
 
 Easy, right? But what does it do? Let's start by looking at the `Interface` function.
 
-The parameters of the `Interface` function tell Gradio that it should take an image as an input and generate a label as output using the scoring function `classify_image`. Gradio expects the scoring function to output a dictionary with the labels as keys and the associated probabilities as values. Note that `predict` returns the probabilities as tensors, which means that we need to convert them to floats for gradio to be able to handle.
+The parameters of the `Interface` function tell Gradio that it should take an image as an input and generate a label as output using the scoring function `classify_image`. Gradio expects the scoring function to output a dictionary with the labels as keys and the associated probabilities as values. Note that `predict` returns the probabilities as tensors, which means that we need to convert them to floats for Gradio to be able to handle.
 
 ### File 2: ML Model
 
-We need to upload the previously saved model to HuggingFace so that we can use it for scoring. In order to be able to upload the model, you need to have [Git-LFS](https://www.atlassian.com/git/tutorials/git-lfs) installed and enabled in your repository. Git-LFS (Large File Storage) is a Git extension that allows you to download large files in your repository lazily, which makes them easier to handle and reduces your repository size.
+We need to upload the previously saved model to Hugging Face so that we can use it for scoring. In order to be able to upload the model, you need to have [Git-LFS](https://www.atlassian.com/git/tutorials/git-lfs) installed and enabled in your repository. Git-LFS (Large File Storage) is a Git extension that allows you to download large files in your repository lazily, which makes them easier to handle and reduces your repository size.
 
 ### File 3: Metadata - Readme.md
 
-The Readme.md contains the metadata for the app. For the full details, see [the ugly ducklings Readme on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/blob/main/README.md).
+The Readme.md contains the metadata for the app. For the full details, see [the ugly ducklings Readme on Hugging Face](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror/blob/main/README.md).
 
 ### File 4: Dependencies - Requirements.txt
 
-Since we have already told HuggingFace to use Gradio in the Readme, gradio get automatically installed in the workspace. So the only external library to install is fastai, leaving the requirements file with a single line, reading `fastai`.
+Since we have already told Hugging Face to use Gradio in the Readme, gradio get automatically installed in the workspace. So the only external library to install is fastai, leaving the requirements file with a single line, reading `fastai`.
 
 ### File 5: Handling Files in Git: .gitignore
 
@@ -536,7 +536,7 @@ The `.gitignore` file comes with the HuggingFace repository. You can use it as i
 
 If you have specified example images, you need to upload them. Again, Git-LFS is required.
 
-And that's it! Upload everything to HuggingFace and tell your friends! :)
+And that's it! Upload everything to Hugging Face and tell your friends! :)
 
 ## Final Thoughts
 
