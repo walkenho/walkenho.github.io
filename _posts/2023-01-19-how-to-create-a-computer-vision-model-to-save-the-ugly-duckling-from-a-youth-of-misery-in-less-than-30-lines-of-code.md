@@ -1,6 +1,6 @@
 ---
 title: >-
-    How to use fastai, Gradio and HuggingFace to save an ugly duckling from a youth of misery
+    How to use fastai, Gradio and HuggingFace to Save an Ugly Duckling from a Youth of Misery
 header:
   overlay_image: /images/ducklings.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
