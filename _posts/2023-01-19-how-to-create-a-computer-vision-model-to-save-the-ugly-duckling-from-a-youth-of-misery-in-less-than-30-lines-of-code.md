@@ -33,7 +33,7 @@ If you want to follow along, you can find the complete code on [Tales-of-1001-Da
 So let's get started to help the duckling answer the magical question...
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/mirror-mirror.png" alt="Mirror, mirror on the wall ...." style="max-width: 25%" class="center"/>
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig1.png" alt="Mirror, mirror on the wall ...." style="max-width: 25%" class="center"/>
 </figure>
 
 **Mirror, mirror on the wall, am I a duckling or a cygnet after all?**
@@ -146,7 +146,7 @@ To make sure that one downloads a useful dataset, it helps to start the process 
 For this project, I found that searching for "cygnet" not only returned images of actual cygnets, but also returned images wool and alcohol bottles (both of brands with "cygnet" in the name). There are technical ways of dealing with this problem, but the most straight forward solution is to simply change the search string to "baby swan", which solved the issue perfectly. In a similar project, I wanted to get photos in different lighting conditions, but realized that whilst looking for "objectname sun" returned useful results, looking for "objectname shade" did mostly return undesired results, so was not recommendable.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/wrong-type-of-cygnets.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig2.png">
     <figcaption>Not the type of cygnet we were looking for</figcaption>
 </figure>
 
@@ -245,7 +245,7 @@ dls.train.show_batch(max_n=6, nrows=1)
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_30_0.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig3.png">
     <figcaption>Batch images of our input data</figcaption>
 </figure>
 
@@ -382,7 +382,7 @@ interp.plot_confusion_matrix()
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_35_4.png" style="max-width: 35%" class="center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig4.png" style="max-width: 35%" class="center">
   <figcaption>Duckling-Cygnet classifier confusion matrix</figcaption>
 </figure>
 
@@ -395,7 +395,7 @@ interp.plot_top_losses(10, nrows=2)
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/output_37_2.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig5.png">
   <figcaption>Top 10 images ranked by their contribution to the validation loss</figcaption>
 </figure>
 
@@ -415,7 +415,7 @@ cleaner
 ```
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/data-cleaning.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig6.png">
   <figcaption>Using the ImageClassifierCleaner to clean up your image data</figcaption>
 </figure>
 
@@ -463,7 +463,7 @@ Here, I will show how to build an app using Gradio and host it on HuggingFace. T
 This is how my Gradio app looks like. To try it out for yourselve, find its [live version on HuggingFace](https://huggingface.co/spaces/walkenho/ugly-duckling-magic-mirror).
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/app-screenshot.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig7.png">
     <figcaption>Final version of the Ugly-Duckling Magic Mirror Gradio App</figcaption>
 </figure>
 
@@ -545,14 +545,14 @@ And that's it! Upload everything to HuggingFace and tell your friends! :)
 The model produced here is a toy model to demonstrate the overall workflow with many short-comings. One of them is that it is a binary classifier, where the categories do not span the entire possible space. This means that the classifier has to decide if it thinks that the image is more likely a duckling or more likely a cygnet. Saying "Don't be silly, this image is clearly a pineapple!" is just not an option. With that being said, I will leave you to marvel (or maybe chuckle?) at the following...
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/huey-dewey-louie.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig8.png">
 </figure>
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/swanlake.png" alt="Swanlake Ballerina">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig9.png" alt="Swanlake Ballerina">
 </figure>
 
 And finally, I tried it out on myself... Apparently I am more of a duckling than Huey, Dewey and Louie together. Not sure what my self-esteem has to say to that ... 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/jessica-duckling.png">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/the-ugly-duckling-fig10.png">
 </figure>
