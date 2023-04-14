@@ -1,6 +1,6 @@
 ---
 title: >-
-    Excuse-Me Streamlit Cloud, You Want WHAT???
+    Why I won't deploy Streamlit applications from my main GitHub account and neither should you
 header:
   overlay_image: /images/shocked_monkey.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -12,7 +12,8 @@ tags:
   - streamlit
   - web deployment
   - rant
-excerpt: Why I won't deploy Streamlit applications from my main GitHub account and neither should you
+excerpt: 
+    Excuse-Me Streamlit Cloud, You Want WHAT???
 ---
 
 I love [Streamlit](https://streamlit.io/). It is easy to use and gets you what you want (i.e. a running app) really quickly. And since its execution flow is straight-forward top-to-bottom and everything gets re-run every time, there is no need to worry about what you can and cannot updated and when (in contrast to Ipywidgets+Voila).
