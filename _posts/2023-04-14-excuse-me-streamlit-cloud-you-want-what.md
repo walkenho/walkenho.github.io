@@ -12,10 +12,10 @@ tags:
   - streamlit
   - web deployment
   - rant
-excerpt: Why I won't deploy streamlit applications from my GitHub account and neither should you
+excerpt: Why I won't deploy Streamlit applications from my main GitHub account and neither should you
 ---
 
-I love [Streamlit](https://streamlit.io/). It is ridiculously easy to use and gets you where you want to be really fast. And since its execution flow is straight-forward top-to-bottom and everything gets re-run every time, there is no need to worry about what you can and cannot updated and when (in contrast to Ipywidgets+Voila).
+I love [Streamlit](https://streamlit.io/). It is easy to use and gets you what you want (i.e. a running app) really quickly. And since its execution flow is straight-forward top-to-bottom and everything gets re-run every time, there is no need to worry about what you can and cannot updated and when (in contrast to Ipywidgets+Voila).
 
 So what's the fuss about?
 
@@ -29,11 +29,12 @@ Now, apparently this is not Streamlit's fault, but [an issue with GitHub itself]
 
 So what are potential solutions here? At this point, [options are two](https://www.tor.com/2008/10/30/not-only-science-fiction-but-more-science-fictional-than-anything-else-rosemary-kirsteins-steerswoman-books/):
 
-1. Don't use Streamlit Cloud Community.
+1. Don't use Streamlit Cloud Community, but deploy your app somewhere else instead.
 
-   Deploy your app somewhere else instead. Free options include [Hugging Face Spaces](https://huggingface.co/spaces), where you can either directly deploy a Streamlit space or you can deploy a Docker container containing your Streamlit application (if you choose the latter, remember to re-route the port!). More about how to make this a smooth workflow in a post to come.
+    Free options include [Hugging Face Spaces](https://huggingface.co/spaces), where you can either directly deploy a Streamlit space or you can deploy a Docker container containing your Streamlit application (if you choose the latter, remember to re-route the port!). More about how to make this a smooth workflow in a post to come.
+
 2. Do use Streamlit Cloud Community, but create an additional GitHub account exclusively for your Streamlit deployments.
 
-    This is the option that Streamlit [recommends to its corporate users](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094/2). In case you use your GitHub profile as a portfolio and therefore want to keep all of your projects together and associated to you, you can keep the development repository in your original repository and fork a copy from your deployment account, which you then proceed to deploy to Streamlit.  
+    This is the option that Streamlit Developer Relations [recommends to its corporate users](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094/2). In case you use your GitHub profile as a portfolio and therefore want to keep all of your projects together and associated to you, you can keep the development repository in your original repository and fork a copy from your deployment account, which you then proceed to deploy to Streamlit.  
 
-Which one to prefer? Up to you really. Just not option 0. Just don't give Streamlit access to all your private GitHub repositories.
+Which one to prefer? They are both a little inconvenient, but in similar amounts, so up to you really. Just as long as you choose one of them and don't give Streamlit access to all your private GitHub repositories.
