@@ -1,11 +1,10 @@
 ---
 layout: single
 permalink: /about/
-title: Out and About
+title: Hello! 👋
+
 authorprofile: true
 ---
-
-# Hello! 👋
 
 I am Jessica. I hold a PhD in computational physics and work as a Data Scientist. Originally, I am from Germany, but after having spent some time living in Mexico, Spain and Scotland, I now live in London, UK (at least for the moment).
 
