@@ -2,9 +2,10 @@
 title: >-
     Building and Deploying a Meetup Organizer App for London's PyData Meetup
 header:
-  overlay_image: /images/meeting-attendance-organizer-app.png
-  overlay_filter: 0.1 # same as adding an opacity of 0.5 to a black background
-  caption: "Screenshot of the Meeting Attendance Organizer App starting page"
+  overlay_image: /images/meetup-organizer-app.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  caption: "Photo by [Matthew Osborn](https://unsplash.com/es/@matthewosborn) on [Unsplash](https://unsplash.com/photos/wMRIcT86SWU)"
+  
   actions:
     - label: ""
 classes: wide
@@ -18,7 +19,7 @@ excerpt:
 I recently built and deployed the [Meeting Attendance Organizer App](https://meeting-attendance-organizer.streamlit.app/). This app fullfills a simple need: It lets users upload one or more lists of names of people attending a meeting and allows them to perform one or more of the following tasks:
 
 * Split attendee names into first name and surname.
-*  Compare two lists of attendees with each other and see who is new on the second list.
+* Compare two lists of attendees with each other and see who is new on the second list.
 * Find people in a list by either searching for their complete names or parts of their name
 * Write any of the results back out, so you can share it with others.
 
@@ -44,6 +45,6 @@ With this in mind, I wanted to build something that would allow me to easily per
 
 The app itself is fully built in Python. For this, I considered two options: [Voila Notebooks](https://github.com/voila-dashboards/voila) in combination with [Jupyter Widgets](https://ipywidgets.readthedocs.io/en/latest/) on one hand vs [Streamlit](https://streamlit.io/) on the other. In the end, I decided to use Streamlit over Voila. This is because the app requires users to upload data files and some of the functionality of the app then depends on the properties of the uploaded data. For this type of of use-case, I prefer Streamlit's straightforward top-to-bottom excecution over having to consider the different execution layers of the noteboook/widget combination.
 
-Once built, I decided to host the app on Streamlit Cloud Community, which can be done directly from GitHub. In order to [protect my private GitHub repositories]() I created a second GitHub profile for the sole purpose of deploying Streamlit apps and forked my original project to this repository.
+Once built, I decided to host the app on Streamlit Cloud Community, which can be done directly from GitHub. In order to [protect my private GitHub repositories](https://walkenho.github.io/excuse-me-streamlit-cloud-you-want-what/), I created a second GitHub profile for the sole purpose of deploying Streamlit apps and forked my original project to a new repository on this newly created profile.
 
-And that's where it lives now. You can see and use the app at https://meeting-attendance-organizer.streamlit.app and I hope you will find it useful!
+You can see and [use the app on Streamlit](https://meeting-attendance-organizer.streamlit.app) and find it's source code on [my GitHub](https://github.com/walkenho/meeting-attendance-organizer). 
