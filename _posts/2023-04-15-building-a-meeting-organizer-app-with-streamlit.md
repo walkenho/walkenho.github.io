@@ -1,6 +1,6 @@
 ---
 title: >-
-    Building and Deploying a Meetup Organizer App Using Streamlit
+    Building and Deploying a Meetup Organizer App for London's PyData Meetup
 header:
   overlay_image: /images/meeting-attendance-organizer-app.png
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -12,7 +12,7 @@ tags:
   - streamlit
   - PyData
 excerpt: 
-    Why I build a Meetup Organizer App for London's PyData Meetup
+    Why and How I built an Organizer App for London's PyData Meetup
 ---
 
 ## Why?
