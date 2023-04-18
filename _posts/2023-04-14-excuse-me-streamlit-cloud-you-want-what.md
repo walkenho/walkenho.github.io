@@ -32,10 +32,10 @@ So what are potential solutions here? At this point, [options are two](https://w
 
 1. Don't use Streamlit Cloud Community, but deploy your app somewhere else instead.
 
-    Free options include [Hugging Face Spaces](https://huggingface.co/spaces), where you can either directly deploy a Streamlit space or you can deploy a Docker container containing your Streamlit application (if you choose the latter, remember to re-route the port!). More about how to make this a smooth workflow in a post to come.
+    Free options include [Hugging Face Spaces](https://huggingface.co/spaces), where you can either directly deploy a Streamlit space or you can deploy a Docker container containing your Streamlit application (if you choose the latter, remember to re-route the port!). If you want to keep your repository in your GitHub, you can make this a smooth workflow by adding Hugging Face as a second remote.
 
 2. Do use Streamlit Cloud Community, but create an additional GitHub account exclusively for your Streamlit deployments.
 
     This is the option that Streamlit Developer Relations [recommends to its corporate users](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094/2). In case you use your GitHub profile as a portfolio and therefore want to keep all of your projects together and associated to you, you can keep the development repository in your original repository and fork a copy from your deployment account, which you then proceed to deploy to Streamlit.  
 
-Which one to prefer? They are both a little inconvenient, but in similar amounts, so up to you really. Just as long as you choose one of them and don't give Streamlit access to all your private GitHub repositories.
+Now which of these is the better option? I think they are both slightly inconvenient, but in equal amounts. Hence, chose whatever fits better into your workflow. As long as you don't give Streamlit Community access to all your private GitHub repositories. Personally, for my Meeting Organizer project, I went with latter.
