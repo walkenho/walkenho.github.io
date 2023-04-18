@@ -12,7 +12,7 @@ tags:
   - streamlit
   - PyData
 excerpt: 
-    Why and How I built an Organizer App for London's PyData Meetup
+    Why and How I built an App to Help Me Organize London's PyData Meetup
 ---
 
 ## Why?
