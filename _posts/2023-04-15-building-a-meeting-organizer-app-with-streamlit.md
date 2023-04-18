@@ -3,7 +3,7 @@ title: >-
     Building and Deploying a Meetup Organizer App for London's PyData Meetup
 header:
   overlay_image: /images/meeting-attendance-organizer-app.png
-  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  overlay_filter: 0.1 # same as adding an opacity of 0.5 to a black background
   caption: "Screenshot of the Meeting Attendance Organizer App starting page"
   actions:
     - label: ""
