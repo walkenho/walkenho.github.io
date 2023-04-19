@@ -1,6 +1,6 @@
 ---
 title: >-
-    Why I won't deploy Streamlit applications from my main GitHub account and neither should you
+    Why You Shouldn't deploy Streamlit applications from your main GitHub account and What to do Instead
 header:
   overlay_image: /images/shocked_monkey.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -13,10 +13,10 @@ tags:
   - web deployment
   - rant
 excerpt: 
-    Excuse-Me Streamlit Cloud, You Want WHAT???
+    How to keep your private GitHub repositories private
 ---
 
-I love [Streamlit](https://streamlit.io/). It is easy to use and gets you what you want (i.e. a running app) really quickly. And since its execution flow is straight-forward top-to-bottom and everything gets re-run every time, there is no need to worry about what you can and cannot updated and when (in contrast to Ipywidgets+Voila).
+I love [Streamlit](https://streamlit.io/). It is ridiculously easy to use and allows you to code up a running front-end in basically no time at all. And since its execution flow is straight-forward top-to-bottom and everything gets re-run every time, there is no need to worry about what you can and cannot updated and when (in contrast to using Ipywidgets+Voila).
 
 So what's the fuss about?
 
@@ -26,7 +26,7 @@ The only caveat: In order to do so, you have to  give Streamlit **full read and 
 
 _Say again???_
 
-Now, apparently this is not Streamlit's fault, but [an issue with GitHub itself](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094), so nothing that Streamlit can really fix. However, call me paranoid, but I won't give a third party read and write access to my all my repositories.
+Now, apparently this is not Streamlit's fault, but [an issue with GitHub itself](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094), hence there isn't really anything that Streamlit can do about it. However, call me paranoid, but I am not comfortable giving third parties read and write access to each and every single one of my private repositories.
 
 So what are potential solutions here? At this point, [options are two](https://www.tor.com/2008/10/30/not-only-science-fiction-but-more-science-fictional-than-anything-else-rosemary-kirsteins-steerswoman-books/):
 
@@ -38,4 +38,6 @@ So what are potential solutions here? At this point, [options are two](https://w
 
     This is the option that Streamlit Developer Relations [recommends to its corporate users](https://discuss.streamlit.io/t/github-permissions-too-onerous/22094/2). In case you use your GitHub profile as a portfolio and therefore want to keep all of your projects together and associated to you, you can keep the development repository in your original repository and fork a copy from your deployment account, which you then proceed to deploy to Streamlit.  
 
-Now which of these is the better option? I think they are both slightly inconvenient, but in equal amounts. Hence, chose whatever fits better into your workflow. As long as you don't give Streamlit Community access to all your private GitHub repositories. Personally, for my Meeting Organizer project, I went with latter.
+Now which of these is the better option? In my mind, they are much of a muchness. Both are slightly inconvenient, but none much more than the other. Hence, chose whatever fits better into your personal workflow. Personally, for my Meeting Organizer project, I went with latter.
+
+Happy deploying!
