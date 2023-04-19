@@ -1,6 +1,6 @@
 ---
 title: >-
-    Why You Shouldn't deploy Streamlit applications from your main GitHub account and What to do Instead
+    Why You Shouldn't Deploy Streamlit Applications from Your Main GitHub Account and What You Should Do Instead
 header:
   overlay_image: /images/shocked_monkey.jpg
   overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
@@ -9,9 +9,9 @@ header:
     - label: ""
 classes: wide
 tags:
-  - streamlit
+  - Streamlit
   - web deployment
-  - rant
+  - data privacy
 excerpt: 
     How to keep your private GitHub repositories private
 ---
