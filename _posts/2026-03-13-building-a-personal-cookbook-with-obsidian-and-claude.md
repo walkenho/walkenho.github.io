@@ -1,6 +1,6 @@
 ---
 title: >-
-    Building a Personal Cookbook with Obsidian and Claude — Your Recipes, Your Way
+    Building a Personal Cookbook with Obsidian and Claude
 header:
   overlay_image: /images/cookbooks.jpg
   overlay_filter: 0.5
@@ -34,7 +34,7 @@ What I wanted was:
   * that lives on my own machine, but can be accessed from anywhere
   * that is written in a portable format
   * that allows me to sort my recipes in a way that is suitable for the moment, but stays flexible for the future
-* and a workflow:
+* A workflow:
   * that standardizes recipe data from different sources into a common format
   * that preferably enables me to easily translate my recipes on the way
 
@@ -155,9 +155,7 @@ This is how a section of the cookbook index looks in practice:
   <img src="{{ site.url }}{{ site.baseurl }}/images/cookbook_md_example.png" alt="A Section of my Cookbook" style="max-width: 100%" class="center"/>
 </figure>
 
-### Example Queries
-
-**Query By Meal Type**
+### Example: Querying By Meal Type
 
 This is how you create a table containing all breakfast recipes.
 
@@ -167,7 +165,7 @@ FROM #recipe AND #breakfast
 SORT file.name asc
 ```
 
-**Query By Source**
+### Example: Querying By Source
 
 In addition to sorting by meal type, I have sections for my favourite recipe sources. This is how you would query for all recipes from Hugh Fearnley-Whittingstall's *Much More Veg* book:
 
@@ -178,7 +176,7 @@ WHERE source = "Much More Veg"
 SORT file.name asc
 ```
 
-**Customizing & Extending**
+### Customizing & Extending
 
 Dataview is flexible. Some ideas for further sections:
 
@@ -189,9 +187,7 @@ Dataview is flexible. Some ideas for further sections:
 
 ## Building the Claude Recipe Skill 
 
-Once I had the cookbook index backbone, I needed to populate it with recipes. For this, I created a Claude recipe skill.
-
-This is how it looks like
+Once I had the cookbook index backbone, I needed to populate it with recipes. For this, I created the following Claude recipe skill:
 
 ````markdown
 ---
@@ -286,9 +282,7 @@ To use Claude's new recipe skill:
 
 Overall I am quite happy with the performance of this workflow. Is it perfect? Certainly not. There are still manual steps involved and the double-checking still takes time. But it certainly is a very viable form of organizing a cookbook. I have used it to finally take advantage of my old hand-copied recipes. I have managed to make all my favourite recipes accessible on my mobile phone. And I finally have the feeling of having all my recipes accessible in a single place. 
 
-If you'd like to try it yourself, everything you need is in my
-[GitHub repository](https://github.com/walkenho/cookbook-creator-with-claude-and-obsidian).
-
-Your recipes, your format, your device — but shareable anywhere. So you can have your cake and eat it, too. 
+If you'd like to try it yourself, everything you need is in [my associated GitHub repository](https://github.com/walkenho/cookbook-creator-with-claude-and-obsidian).
+So you can have your cake and eat it, too. 
 
 Happy cooking!
