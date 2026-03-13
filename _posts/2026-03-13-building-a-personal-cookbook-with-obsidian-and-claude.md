@@ -1,6 +1,6 @@
 ---
 title: >-
-    Building a Personal Cookbook with Obsidian and Claude
+    Building a Personal Cookbook Parser with Obsidian and Claude
 header:
   overlay_image: /images/cookbooks.jpg
   overlay_filter: 0.5
