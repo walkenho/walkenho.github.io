@@ -68,18 +68,16 @@ You can find the [Claude recipe skill in my GitHub repository](https://github.co
 
 Note that whilst here I used Claude because its skill feature makes it easy to build re-usable workflows, the same principle could be used with other LLMs.
 
-## Building the Cookbook Workflow
-
-### Prerequisites
+## Prerequisites
 
 * [Obsidian](https://obsidian.md/) installed; Dataview Community Plugin activated; a new folder to host your Obsidian vault (or use an existing one)
 * [Claude Code](https://claude.ai/code) installed
 
-### Building the Obsidian Cookbook Backbone
+## Building the Obsidian Cookbook Backbone
 
 The Obsidian cookbook backbone consists of two components: (i) a collection of recipes with YAML frontmatter metadata and (ii) the cookbook index markdown file containing the dataview queries to pull the recipes together.
 
-#### Recipe File Structure
+### Recipe File Structure
 
 For the recipe files to be picked up by Obsidian's dataview query, each recipe must be tagged as `recipe`. I also used additional metadata fields to sort recipes into categories and add metadata of interest.
 
@@ -136,7 +134,7 @@ I used the following tags:
 In the Claude workflow, `category` and `vegetarian` will be defined by Claude, `new` will always be added and `quick` or `favourite` will be added manually based on my personal opinion.
 
 
-#### Defining the Cookbook Index
+### Defining the Cookbook Index
 
 `Cookbook.md` - the cookbook index - is the backbone of the cookbook. It is a dynamic index that uses Obsidian's DQL to automatically index all of notes containing the `recipe` tag in your Obsidian vault. Its automatic querying dynamic means that when you drop a recipe into your Obsidian vault, the recipe will automatically get added to the appropriate section of your cookbook (given it has the right tags).
 
@@ -154,12 +152,12 @@ My cookbook index is organized into sections by either meal type (Breakfasts, Sa
 This is how a section of the cookbook index looks in practice: 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/cookbook_md_example.png" alt="A Section of my Cookbook" style="max-width: 25%" class="center"/>
+  <img src="{{ site.url }}{{ site.baseurl }}/images/cookbook_md_example.png" alt="A Section of my Cookbook" style="max-width: 100%" class="center"/>
 </figure>
 
-#### Example Queries
+### Example Queries
 
-##### Query By Meal Type
+**Query By Meal Type**
 
 This is how you create a table containing all breakfast recipes.
 
@@ -169,7 +167,7 @@ FROM #recipe AND #breakfast
 SORT file.name asc
 ```
 
-##### By Source
+**Query By Source**
 
 In addition to sorting by meal type, I have sections for my favourite recipe sources. This is how you would query for all recipes from Hugh Fearnley-Whittingstall's *Much More Veg* book:
 
@@ -180,7 +178,7 @@ WHERE source = "Much More Veg"
 SORT file.name asc
 ```
 
-#### Customizing & Extending
+**Customizing & Extending**
 
 Dataview is flexible. Some ideas for further sections:
 
@@ -189,7 +187,7 @@ Dataview is flexible. Some ideas for further sections:
 - Recipes below xxx kcal or with more than xxx g protein.
 
 
-### Building the Claude Recipe Skill 
+## Building the Claude Recipe Skill 
 
 Once I had the cookbook index backbone, I needed to populate it with recipes. For this, I created a Claude recipe skill.
 
@@ -274,7 +272,7 @@ source: <book or website name>
 
 Note: In order to use a skill, save the file as `~/.claude/skills/recipe/SKILL.md`. This registers it as a skill. You will be able to use it after restarting the conversation.
 
-### Using Claude's Recipe Skill
+## Using Claude's Recipe Skill
 
 To use Claude's new recipe skill:
 
