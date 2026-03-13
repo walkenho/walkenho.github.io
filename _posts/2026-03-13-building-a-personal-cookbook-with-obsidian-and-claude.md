@@ -153,7 +153,9 @@ My cookbook index is organized into sections by either meal type (Breakfasts, Sa
 
 This is how a section of the cookbook index looks in practice: 
 
-![Cookbook Example](images/cookbook_md_example.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/cookbook_md_example.png" alt="A Section of my Cookbook" style="max-width: 25%" class="center"/>
+</figure>
 
 #### Example Queries
 
@@ -161,7 +163,7 @@ This is how a section of the cookbook index looks in practice:
 
 This is how you create a table containing all breakfast recipes.
 
-```dataview
+```markdown
 TABLE WITHOUT ID file.link as "Recipe", (choice(contains(tags, "new"), "🆕", "")) as "", (choice(contains(tags, "favourite"), "⭐", "")) as "⭐", (choice(contains(tags, "quick"), "🏃", "")) as "🏃", (choice(contains(tags, "vegetarian"), "🥕", "")) as "🥕", preptime as "🔪", (default(preptime, 0) + default(cooktime, 0)) as "⏳", source as "📖"
 FROM #recipe AND #breakfast
 SORT file.name asc
@@ -171,7 +173,7 @@ SORT file.name asc
 
 In addition to sorting by meal type, I have sections for my favourite recipe sources. This is how you would query for all recipes from Hugh Fearnley-Whittingstall's *Much More Veg* book:
 
-```dataview
+```markdown
 TABLE WITHOUT ID file.link as "Recipe", (choice(contains(tags, "new"), "🆕", "")) as "", preptime as "🔪", (default(preptime, 0) + default(cooktime, 0)) as "⏳", source as "📖"
 FROM #recipe 
 WHERE source = "Much More Veg"
